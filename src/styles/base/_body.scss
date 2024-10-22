@@ -1,0 +1,8 @@
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background font-poppins-font text-Text2;
+  }
+}

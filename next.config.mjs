@@ -1,4 +1,18 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+import createNextIntlPlugin from "next-intl/plugin";
 
-export default nextConfig;
+const withNextIntl = createNextIntlPlugin();
+const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "firebasestorage.googleapis.com",
+        pathname: "/v0/b/videocallapp-4fbc2.appspot.com/o/**",
+      },
+    ],
+  },
+  pageExtensions: ["ts", "tsx"],
+};
+
+export default withNextIntl(nextConfig);

@@ -1,0 +1,160 @@
+{
+  "Header": {
+    "Navbar": {
+      "home": "Trang chủ",
+      "contact": "Liên hệ",
+      "about": "Giới thiệu",
+      "signup": "Đăng ký"
+    },
+    "Advertise": {
+      "shop-now": "Mua ngay",
+      "advertise": "Giảm giá mùa hè cho tất cả các bộ đồ bơi và giao hàng nhanh miễn phí - GIẢM 50%!"
+    },
+    "Search": {
+      "placehoverSearch": "Bạn đang tìm kiếm gì?"
+    }
+  },
+  "Footer": {
+    "Advertise": {
+      "subcribes": "Đăng ký",
+      "advertise": "Giảm 10% cho đơn hàng đầu tiên"
+    },
+    "Input": {
+      "placeHover": "Nhập email của bạn"
+    },
+    "Support": {
+      "support": "Hỗ trợ"
+    },
+    "Account": {
+      "account": "Tài khoản",
+      "myAccount": "Tài khoản của tôi",
+      "auth": "Đăng nhập / Đăng ký",
+      "cart": "Giỏ hàng",
+      "wishlist": "Danh sách yêu thích",
+      "shop": "Cửa hàng"
+    },
+    "QuickLink": {
+      "quickLink": "Liên kết nhanh",
+      "privacy": "Chính sách bảo mật",
+      "term": "Điều khoản sử dụng",
+      "faq": "Câu hỏi thường gặp",
+      "contact": "Liên hệ"
+    },
+    "App": {
+      "app": "Ứng dụng",
+      "discount": "Tiết kiệm $3 dành cho người dùng mới"
+    },
+    "CopyRight": {
+      "copyRight": "Bản quyền Rimel 2022. Mọi quyền được bảo lưu"
+    }
+  },
+  "Register": {
+    "Title": {
+      "name": "Tạo tài khoản",
+      "details": "Nhập thông tin của bạn vào bên dưới"
+    },
+    "Placehover": {
+      "name": "Họ và tên",
+      "email-phone": "Email hoặc Số điện thoại",
+      "password": "Mật khẩu"
+    },
+    "Button": {
+      "create": "Tạo tài khoản",
+      "google": "Đăng ký với Google"
+    },
+    "Link": {
+      "details": "Đã có tài khoản?",
+      "name": "Đăng nhập"
+    }
+  },
+  "Login": {
+    "Title": {
+      "name": "Đăng nhập",
+      "details": "Nhập thông tin của bạn vào bên dưới"
+    },
+    "Placehover": {
+      "email-phone": "Email hoặc Số điện thoại",
+      "password": "Mật khẩu"
+    },
+    "Button": {
+      "login": "Đăng nhập",
+      "forgotPassword": "Quên mật khẩu?",
+      "google": "Đăng nhập với Google"
+    },
+    "Link": {
+      "details": "Bạn chưa có tài khoản?",
+      "name": "Đăng ký "
+    }
+  },
+  "Home": {
+    "Link": {
+      "shop-now": "Mua ngay"
+    },
+    "Categories": {
+      "feature": "Danh mục",
+      "title": "Duyệt theo Danh mục"
+    },
+    "FlashSave": {
+      "feature": "Hôm nay",
+      "title": "Khuyến mãi",
+      "button": "Xem tất cả"
+    },
+    "BestSellingProduct": {
+      "feature": "Tháng này",
+      "title": "Sản phẩm bán chạy",
+      "button": "Xem tất cả"
+    },
+    "PromoProduct": {
+      "feature": "Danh mục",
+      "title": "Nâng cao trải nghiệm âm nhạc",
+      "buy-now": "Mua ngay"
+    },
+    "ExploreProduct": {
+      "feature": "Sản phẩm",
+      "title": "Khám phá các sản phẩm",
+      "button": "Xem tất cả",
+      "QuickReview": {
+        "title": "Tổng quan",
+        "details": "Chi tiết",
+        "buttonAddToCart": "Thêm vào giỏ"
+      }
+    },
+    "NewArrival": {
+      "feature": "Đặc trưng",
+      "tittle": "Sản phẩm mới",
+      "Frame1": {
+        "title": "PlayStation 5",
+        "description": "Phiên bản đen trắng của PS5 sắp được bán."
+      },
+
+      "Frame2": {
+        "title": "Bộ sưu tập nữ",
+        "description": "Các bộ sưu tập dành cho phụ nữ, mang đến cảm giác khác biệt."
+      },
+
+      "Frame3": {
+        "title": "Loa",
+        "description": "Loa không dây Amazon"
+      },
+
+      "Frame4": {
+        "title": "Nước hoa",
+        "description": "GUCCI INTENSE OUD EDP"
+      }
+    },
+    "Assurance": {
+      "Delivery": {
+        "name": "GIAO HÀNG MIỄN PHÍ VÀ NHANH CHÓNG",
+        "details": "Miễn phí giao hàng cho tất cả đơn hàng trên $140"
+      },
+      "Service": {
+        "name": "DỊCH VỤ KHÁCH HÀNG 24/7",
+        "details": "Hỗ trợ khách hàng thân thiện 24/7"
+      },
+      "Guarantee": {
+        "name": "CHÍNH SÁCH HOÀN TIỀN",
+        "details": "Chúng tôi hoàn tiền trong vòng 30 ngày"
+      }
+    }
+  }
+}

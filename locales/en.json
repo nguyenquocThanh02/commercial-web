@@ -1,0 +1,158 @@
+{
+  "Header": {
+    "Navbar": {
+      "home": "Home",
+      "contact": "Contact",
+      "about": "About",
+      "signup": "Sign up"
+    },
+    "Advertise": {
+      "advertise": "Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!",
+      "shop-now": "Shop now"
+    },
+    "Search": {
+      "placehoverSearch": "What are you looking for?"
+    }
+  },
+  "Footer": {
+    "Advertise": {
+      "subcribes": "Subcribes",
+      "advertise": "Get 10% off your first order"
+    },
+    "Input": {
+      "placeHover": "Enter your email"
+    },
+    "Support": {
+      "support": "Support"
+    },
+    "Account": {
+      "account": "Account",
+      "myAccount": "My Account",
+      "auth": "Login / Register",
+      "cart": "Cart",
+      "wishlist": "Wishlist",
+      "shop": "Shop"
+    },
+    "QuickLink": {
+      "quickLink": "Quick Link",
+      "privacy": "Privacy Policy",
+      "term": "Term Of User",
+      "faq": "FAQ",
+      "contact": "Contact"
+    },
+    "App": {
+      "app": "App",
+      "discount": "Save $3 with App New User Only"
+    },
+    "CopyRight": {
+      "copyRight": "Copyright Rimel 2022. All right reserved"
+    }
+  },
+  "Register": {
+    "Title": {
+      "name": "Create an account",
+      "details": "Enter your details below"
+    },
+    "Placehover": {
+      "name": "Name",
+      "email-phone": "Email or Phone Number",
+      "password": "Password"
+    },
+    "Button": {
+      "create": "Create Account",
+      "google": "Sign up with Google"
+    },
+    "Link": {
+      "details": "Already have account?",
+      "name": "Log in"
+    }
+  },
+  "Login": {
+    "Title": {
+      "name": "Log in to Exclusive",
+      "details": "Enter your details below"
+    },
+    "Placehover": {
+      "email-phone": "Email or Phone Number",
+      "password": "Password"
+    },
+    "Button": {
+      "login": "Log In",
+      "forgotPassword": "Forget Password?",
+      "google": "Sign up with Google"
+    },
+    "Link": {
+      "details": "Don't have a account?",
+      "name": "Sign in"
+    }
+  },
+  "Home": {
+    "Link": {
+      "shop-now": "Shop now"
+    },
+    "Categories": {
+      "feature": "Categories",
+      "title": "Browse By Category"
+    },
+    "FlashSave": {
+      "feature": "Today's",
+      "title": "Flash Saves",
+      "button": "View All Products"
+    },
+    "BestSellingProduct": {
+      "feature": "This month",
+      "title": "Best Selling Products",
+      "button": "View All"
+    },
+    "PromoProduct": {
+      "feature": "Categories",
+      "title": "Enhance Your Music Experience",
+      "buy-now": "Buy Now"
+    },
+    "ExploreProduct": {
+      "feature": "Our Products",
+      "title": "Explore Our Products",
+      "button": "View All Products",
+      "QuickReview": {
+        "title": "Quick Review",
+        "details": "Details",
+        "buttonAddToCart": "Add To Cart"
+      }
+    },
+    "NewArrival": {
+      "feature": "Featured",
+      "tittle": "New Arrival",
+      "Frame1": {
+        "title": "PlayStation 5",
+        "description": "Black and White version of the PS5 coming out on sale."
+      },
+
+      "Frame2": {
+        "title": "Women’s Collections",
+        "description": "Featured woman collections that give you another vibe."
+      },
+      "Frame3": {
+        "title": "Speakers",
+        "description": "Amazon wireless speakers"
+      },
+      "Frame4": {
+        "title": "Perfume",
+        "description": "GUCCI INTENSE OUD EDP"
+      }
+    },
+    "Assurance": {
+      "Delivery": {
+        "name": "FREE AND FAST DELIVERY",
+        "details": "Free delivery for all orders over $140"
+      },
+      "Service": {
+        "name": "24/7 CUSTOMER SERVICE",
+        "details": "Friendly 24/7 customer support"
+      },
+      "Guarantee": {
+        "name": "MONEY BACK GUARANTEE",
+        "details": "We return money within 30 days"
+      }
+    }
+  }
+}
