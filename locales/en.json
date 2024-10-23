@@ -177,7 +177,9 @@
   "Wishlist": {
     "MainSection": {
       "title": "Wishlist",
-      "button": "Move On To Badge"
+      "button": "Move On To Badge",
+      "empty": "There are no products in your wishlist.",
+      "redirect": "Go back"
     },
     "Trash": {
       "tooltip": "Remove",

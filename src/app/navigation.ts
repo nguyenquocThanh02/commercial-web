@@ -26,6 +26,10 @@ export const routing = defineRouting({
       en: "/wishlist",
       vi: "/wishlist",
     },
+    "/product/[id]": {
+      en: "/product/[id]",
+      vi: "/product/[id]",
+    },
   },
   localePrefix: "as-needed",
 });

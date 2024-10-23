@@ -6,11 +6,13 @@ import {cn} from "@/libs/utils";
 
 interface ButtonCustomProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
+  classForText?: string;
   children: ReactNode;
 }
 
 const PrimaryButton: React.FC<ButtonCustomProps> = ({
   className = "",
+  classForText = "",
   children,
   type = "button",
   ...props
@@ -34,7 +36,12 @@ const PrimaryButton: React.FC<ButtonCustomProps> = ({
 
       <span className="absolute inset-0 h-full w-full bg-Secondary1 opacity-0 delay-300 duration-300 group-hover:opacity-100" />
 
-      <span className="ease relative text-base font-medium transition-colors delay-300 duration-300 group-hover:text-Secondary2">
+      <span
+        className={cn(
+          "ease relative text-base font-medium transition-colors delay-300 duration-300 group-hover:text-Secondary2",
+          classForText,
+        )}
+      >
         {children}
       </span>
     </Button>

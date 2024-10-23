@@ -179,7 +179,9 @@
   "Wishlist": {
     "MainSection": {
       "title": "Danh sách yêu thích",
-      "button": "Thêm tất cả vào giỏ"
+      "button": "Thêm tất cả vào giỏ",
+      "empty": "Không có bất kỳ sản phẩm nào trong mục yêu thích của bạn.",
+      "redirect": "Trở lại"
     },
     "Trash": {
       "tooltip": "Xoá",

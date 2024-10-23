@@ -6,6 +6,7 @@ import SecondaryButton from "./secondaryButton.component";
 
 import CardProductWishlistComponent from "@/components/custom/cartProductWishlist.component";
 import {wishlistStore} from "@/store";
+import {Link} from "@/app/navigation";
 
 const WishlistSectionComponent = () => {
   const {wishlist} = wishlistStore();
@@ -15,9 +16,22 @@ const WishlistSectionComponent = () => {
     console.log("test");
   };
 
+  console.log(wishlist);
+
+  if (wishlist.length === 0) {
+    return (
+      <div className="mt-20 flex justify-center gap-2">
+        <h2 className="text-xl">{t("empty")}</h2>
+        <Link className="text-xl font-medium text-Secondary2 underline hover:opacity-75" href={"/"}>
+          {t("redirect")}
+        </Link>
+      </div>
+    );
+  }
+
   return (
-    <div>
-      <div className="mt-20 flex items-center justify-between">
+    <div className="mt-20">
+      <div className="flex items-center justify-between">
         <h1 className="text-xl">
           {t("title")} ({wishlist.length})
         </h1>

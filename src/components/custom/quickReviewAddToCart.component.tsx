@@ -3,12 +3,14 @@ import Image from "next/image";
 import {useLocale, useTranslations} from "next-intl";
 
 import {Sheet, SheetContent, SheetTrigger} from "../ui/sheet";
-import {Button} from "../ui/button";
 
 import RatingComponent from "./rating.component";
+import SecondaryButton from "./secondaryButton.component";
+import PrimaryButton from "./primaryButton.ui";
 
 import {typeColor, typeProduct} from "@/types";
 import {calculatePriceSale, renderPriceFollowCurrency} from "@/utils";
+import {Link} from "@/app/navigation";
 
 const QuickReviewAddToCartComponent: React.FC<{data: typeProduct; color: typeColor}> = ({
   data,
@@ -55,8 +57,13 @@ const QuickReviewAddToCartComponent: React.FC<{data: typeProduct; color: typeCol
           </div>
           <p className="my-4 text-center text-sm italic">{data.description}</p>
           <div className="flex justify-center gap-3">
-            <Button variant={"outline"}>{t("details")}</Button>
-            <Button>{t("buttonAddToCart")}</Button>
+            <Link href={`/product/${data.id}`}>
+              <SecondaryButton className="h-10">{t("details")}</SecondaryButton>
+            </Link>
+
+            <PrimaryButton classForText="text-sm font-medium" className="h-10 text-sm">
+              {t("buttonAddToCart")}
+            </PrimaryButton>
           </div>
         </div>
       </SheetContent>

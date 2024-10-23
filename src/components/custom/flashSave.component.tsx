@@ -22,7 +22,7 @@ import {cn} from "@/libs/utils";
 import {typeProduct} from "@/types";
 const FlashSaveComponent = () => {
   const t = useTranslations("Home.FlashSave");
-  const plugin = React.useRef(Autoplay({delay: 3000, stopOnInteraction: true}));
+  const plugin = React.useRef(Autoplay({delay: 1000, stopOnInteraction: true}));
 
   const {data, isLoading} = useQueryProduct.useProduct(8, 1);
 

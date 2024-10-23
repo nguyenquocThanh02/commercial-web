@@ -3,7 +3,6 @@
 import {z} from "zod";
 import {useTranslations} from "next-intl";
 import {useState} from "react";
-import {toast} from "sonner";
 
 import SignUpWithGoogleButton from "../custom/signUpWithGoogle.button";
 import {InputAuth} from "../custom/inputAuth.ui";
@@ -17,7 +16,6 @@ import {loginSchema} from "@/formSchema/formSchema";
 import {Link, useRouter} from "@/app/navigation";
 import {AuthApis} from "@/services";
 import {typeLogin} from "@/types";
-import {localStorageKey} from "@/constants/localStorage";
 import {authStore} from "@/store";
 
 export default function LoginForm() {
@@ -40,17 +38,17 @@ export default function LoginForm() {
     };
     const loginResult = await AuthApis.login(dataLogin);
 
-    localStorage.setItem(localStorageKey.accessToken, loginResult.token);
-    if (loginResult) {
-      setIsAuth(true);
-      toast.success("Login successfully");
-      route.push("/");
-    }
+    // localStorage.setItem(localStorageKey.accessToken, loginResult.token);
+    // if (loginResult) {
+    //   setIsAuth(true);
+    //   toast.success("Login successfully");
+    //   route.push("/");
+    // }
     // ---- use localStorage -----
 
-    const fetchToSetCookie = await fetch("/api/auth", {
+    await fetch("/api/auth", {
       method: "POST",
-      body: JSON.stringify("hello"),
+      body: JSON.stringify(loginResult),
       headers: {
         "Content-Type": "application/json",
       },
@@ -68,7 +66,7 @@ export default function LoginForm() {
     //   .then((res) => res.json())
     //   .then((data) => console.log(data))
     //   .catch((err) => console.log(err));
-    // setIsLoading(false);
+    setIsLoading(false);
   }
 
   return (

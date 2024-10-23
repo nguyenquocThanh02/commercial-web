@@ -4,13 +4,14 @@ import {useLocale, useTranslations} from "next-intl";
 
 import {Dialog, DialogContent, DialogTrigger} from "../ui/dialog";
 import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from "../ui/tooltip";
-import {Button} from "../ui/button";
 
 import RatingComponent from "./rating.component";
+import SecondaryButton from "./secondaryButton.component";
 
 import {typeColor, typeProduct} from "@/types";
 import {calculatePriceSale, renderPriceFollowCurrency} from "@/utils";
 import iconQuickReview from "@/assets/svg/quickViewIcon.svg";
+import {Link} from "@/app/navigation";
 
 const QuickReviewProductComponent: React.FC<{data: typeProduct; color: typeColor}> = ({
   data,
@@ -64,7 +65,9 @@ const QuickReviewProductComponent: React.FC<{data: typeProduct; color: typeColor
           </div>
           <p className="my-4 text-center text-sm italic">{data.description}</p>
           <div className="flex w-full">
-            <Button className="mx-auto">{t("details")}</Button>
+            <Link className="mx-auto" href={`/product/${data.id}`}>
+              <SecondaryButton className="h-10">{t("details")}</SecondaryButton>
+            </Link>
           </div>
         </div>
       </DialogContent>

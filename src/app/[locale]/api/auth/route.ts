@@ -1,5 +1,13 @@
 export async function POST(request: Request) {
-  console.log(await request.json());
+  const res = await request.json();
 
-  return Response.json({sessionCookie: ""});
+  return Response.json(
+    {res},
+    {
+      status: 200,
+      headers: {
+        "Set-Cookie": `sessionToken=${res.token}; Path=/`,
+      },
+    },
+  );
 }
