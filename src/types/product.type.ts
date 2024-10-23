@@ -17,17 +17,26 @@ export type typeColor = {
   imageUrl: string;
 };
 
+export type typePrice = {
+  en: string | number;
+  vi: string | number;
+};
+
 export type typeProduct = {
   id: number;
   name: string;
   description: string;
   colors: typeColor[];
-  price: number;
+  price: any;
   discountPercentage: number;
   rating: number;
   numberOfReviews: number;
   unitsInStock: number;
   isNew: boolean;
   purchaseCount: number;
-  currency: string;
+};
+
+export type typeWishlist = {
+  wishlist: typeProduct[];
+  setWishlist: (value: typeProduct[]) => void;
 };

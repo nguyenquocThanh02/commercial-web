@@ -33,14 +33,16 @@ const BestSellingProductComponent = () => {
           "https://firebasestorage.googleapis.com/v0/b/videocallapp-4fbc2.appspot.com/o/images%2FcarBlack.png?alt=media&token=6f8bd287-5fef-4518-9e91-bc5d2ca4674b",
       },
     ],
-    price: 7000,
+    price: {
+      vi: "269000000",
+      en: "12000",
+    },
     discountPercentage: 10,
     rating: 4.5,
     numberOfReviews: 150,
     unitsInStock: 25,
     isNew: true,
     purchaseCount: 10,
-    currency: "$",
   };
 
   return (

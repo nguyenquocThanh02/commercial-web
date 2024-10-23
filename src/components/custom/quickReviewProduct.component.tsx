@@ -1,12 +1,15 @@
 import React, {useState} from "react";
 import Image from "next/image";
-import {Rating, RoundedStar} from "@smastrom/react-rating";
-import {useTranslations} from "next-intl";
+import {useLocale, useTranslations} from "next-intl";
 
 import {Dialog, DialogContent, DialogTrigger} from "../ui/dialog";
+import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from "../ui/tooltip";
+import {Button} from "../ui/button";
+
+import RatingComponent from "./rating.component";
 
 import {typeColor, typeProduct} from "@/types";
-import {calculatePriceSale} from "@/utils";
+import {calculatePriceSale, renderPriceFollowCurrency} from "@/utils";
 import iconQuickReview from "@/assets/svg/quickViewIcon.svg";
 
 const QuickReviewProductComponent: React.FC<{data: typeProduct; color: typeColor}> = ({
@@ -15,13 +18,21 @@ const QuickReviewProductComponent: React.FC<{data: typeProduct; color: typeColor
 }) => {
   const [openQuickReview, setOpenQuickReview] = useState<boolean>(false);
   const t = useTranslations("Home.ExploreProduct.QuickReview");
+  const locale = useLocale();
 
   return (
     <Dialog open={openQuickReview} onOpenChange={setOpenQuickReview}>
-      <DialogTrigger className="w-full">
-        <div className="mt-2 flex h-[34px] w-[34px] items-center justify-center rounded-full bg-Primary">
-          <Image alt="icon quick view" height={24} src={iconQuickReview} width={24} />
-        </div>
+      <DialogTrigger className="">
+        <TooltipProvider delayDuration={0}>
+          <Tooltip>
+            <TooltipTrigger>
+              <div className="mt-2 flex h-[34px] w-[34px] items-center justify-center rounded-full bg-Primary">
+                <Image alt="icon quick view" height={24} src={iconQuickReview} width={24} />
+              </div>
+            </TooltipTrigger>
+            <TooltipContent>{t("tooltip")}</TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
       </DialogTrigger>
       <DialogContent>
         <div>
@@ -33,38 +44,28 @@ const QuickReviewProductComponent: React.FC<{data: typeProduct; color: typeColor
               <div className="flex flex-col gap-3">
                 <div className="flex gap-3">
                   <p className="font-medium text-Secondary2">
-                    {data.currency}
-                    {calculatePriceSale(data.price, data.discountPercentage)}
+                    {renderPriceFollowCurrency(
+                      locale,
+                      calculatePriceSale(data.price[locale], data.discountPercentage),
+                    )}
                   </p>
                   <p className="ml-1 font-medium text-Text2/50 line-through">
-                    {data.currency}
-                    {data.price}
+                    {renderPriceFollowCurrency(locale, data.price[locale])}
                   </p>
                 </div>
-                <div className="flex gap-3">
-                  <div>
-                    <Rating
-                      readOnly
-                      className="max-w-20"
-                      halfFillMode="svg"
-                      itemStyles={{
-                        itemShapes: RoundedStar,
-                        activeFillColor: "#FFAD33",
-                        inactiveFillColor: "#CCC",
-                      }}
-                      value={data.rating}
-                    />
-                  </div>
-                  <p className="text-sm font-semibold text-Text2/50">({data.numberOfReviews})</p>
+                <div className="flex items-center gap-3">
+                  <RatingComponent rating={data.rating} />
+                  <p className="mt-[2px] text-sm font-semibold text-Text2/50">
+                    ({data.numberOfReviews})
+                  </p>
                 </div>
               </div>
             </div>
           </div>
           <p className="my-4 text-center text-sm italic">{data.description}</p>
-          {/* <div className="flex gap-3 justify-center">
-            <Button variant={"outline"}>{t("details")}</Button>
-            <Button>{t("buttonAddToCart")}</Button>
-          </div> */}
+          <div className="flex w-full">
+            <Button className="mx-auto">{t("details")}</Button>
+          </div>
         </div>
       </DialogContent>
     </Dialog>

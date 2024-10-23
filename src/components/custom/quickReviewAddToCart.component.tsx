@@ -1,13 +1,14 @@
 import React, {useState} from "react";
 import Image from "next/image";
-import {Rating, RoundedStar} from "@smastrom/react-rating";
-import {useTranslations} from "next-intl";
+import {useLocale, useTranslations} from "next-intl";
 
 import {Sheet, SheetContent, SheetTrigger} from "../ui/sheet";
 import {Button} from "../ui/button";
 
+import RatingComponent from "./rating.component";
+
 import {typeColor, typeProduct} from "@/types";
-import {calculatePriceSale} from "@/utils";
+import {calculatePriceSale, renderPriceFollowCurrency} from "@/utils";
 
 const QuickReviewAddToCartComponent: React.FC<{data: typeProduct; color: typeColor}> = ({
   data,
@@ -15,6 +16,7 @@ const QuickReviewAddToCartComponent: React.FC<{data: typeProduct; color: typeCol
 }) => {
   const [openQuickReview, setOpenQuickReview] = useState<boolean>(false);
   const t = useTranslations("Home.ExploreProduct.QuickReview");
+  const locale = useLocale();
 
   return (
     <Sheet open={openQuickReview} onOpenChange={setOpenQuickReview}>
@@ -31,31 +33,22 @@ const QuickReviewAddToCartComponent: React.FC<{data: typeProduct; color: typeCol
             <div className="flex flex-col justify-center">
               <h3 className="font-medium">{data.name}</h3>
               <div className="flex flex-col gap-3">
-                <div className="flex gap-3">
+                <div>
                   <p className="font-medium text-Secondary2">
-                    {data.currency}
-                    {calculatePriceSale(data.price, data.discountPercentage)}
+                    {renderPriceFollowCurrency(
+                      locale,
+                      calculatePriceSale(data.price[locale], data.discountPercentage),
+                    )}
                   </p>
-                  <p className="ml-1 font-medium text-Text2/50 line-through">
-                    {data.currency}
-                    {data.price}
+                  <p className="font-medium text-Text2/50 line-through">
+                    {renderPriceFollowCurrency(locale, data.price[locale])}
                   </p>
                 </div>
-                <div className="flex gap-3">
-                  <div>
-                    <Rating
-                      readOnly
-                      className="max-w-20"
-                      halfFillMode="svg"
-                      itemStyles={{
-                        itemShapes: RoundedStar,
-                        activeFillColor: "#FFAD33",
-                        inactiveFillColor: "#CCC",
-                      }}
-                      value={data.rating}
-                    />
-                  </div>
-                  <p className="text-sm font-semibold text-Text2/50">({data.numberOfReviews})</p>
+                <div className="flex items-center gap-3">
+                  <RatingComponent rating={data.rating} />
+                  <p className="mt-[2px] text-sm font-semibold text-Text2/50">
+                    ({data.numberOfReviews})
+                  </p>
                 </div>
               </div>
             </div>

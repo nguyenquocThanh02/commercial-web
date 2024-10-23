@@ -41,7 +41,7 @@ export default async function RootLayout({
             <HeaderLayout />
             <ProgressBarProviders>{children}</ProgressBarProviders>
             <FooterLayout />
-            <Toaster closeButton richColors expand={true} position="top-right" />
+            <Toaster closeButton richColors expand={true} position="bottom-right" />
           </NextIntlClientProvider>
         </body>
       </ReactQueryProvider>

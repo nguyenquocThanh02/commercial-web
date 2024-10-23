@@ -40,8 +40,9 @@ export default function RegisterForm() {
     if (result) {
       toast.success("Register Successfully");
       route.push("/login");
+    } else {
+      setIsLoading(false);
     }
-    setIsLoading(false);
   }
 
   return (
@@ -110,13 +111,13 @@ export default function RegisterForm() {
             <PrimaryButton className="mb-4 h-[56px] w-full bg-Secondary2 font-medium" type="submit">
               {t("Button.create")}
             </PrimaryButton>
-            <SignUpWithGoogleButton />
+            <SignUpWithGoogleButton text={t("Button.google")} />
           </div>
           <div className="mt-8 flex justify-center gap-4">
             <p>{t("Link.details")}</p>
             <Link
               className="border-b border-Text2/70 pb-1 font-medium hover:opacity-50"
-              href={"/login"}
+              href="/login"
             >
               {t("Link.name")}
             </Link>

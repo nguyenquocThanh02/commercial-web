@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, {useEffect} from "react";
 import Image from "next/image";
 import {useLocale, useTranslations} from "next-intl";
 
@@ -15,22 +15,26 @@ import {
 } from "../ui/dropdown-menu";
 import {Button} from "../ui/button";
 import LinkCustom from "../custom/link.custom";
-import CartIcon from "../icon/cart.icon";
-import WishlistIcon from "../icon/wishlist.icon";
+import ProfileComponent from "../custom/profile.component";
+import IconWithCounterComponent from "../ui/iconWithCounter.component";
 
 import iconSearch from "@/assets/svg/searchIcon.svg";
 import iconDropdown from "@/assets/svg/DropDown.svg";
 import {Link, usePathname, useRouter} from "@/app/navigation";
+import {localStorageKey} from "@/constants/localStorage";
+import {authStore, wishlistStore} from "@/store";
+import {typeProduct} from "@/types";
 
 const HeaderLayout = () => {
-  // const locale = useLocale();
   const pathname = usePathname();
-
-  console.log("pathname: ", pathname);
-  // const params: {[key: string]: string} = useParams();
   const t = useTranslations("Header");
-
   const router = useRouter();
+  const currentLocale = useLocale();
+  let isLogin = localStorage.getItem(localStorageKey.accessToken) ? true : false;
+
+  const {isAuth} = authStore();
+  const {wishlist, setWishlist} = wishlistStore();
+
   const navbar = [
     {
       name: t("Navbar.home"),
@@ -49,7 +53,22 @@ const HeaderLayout = () => {
       path: "/register",
     },
   ];
-  const currentLocale = useLocale();
+
+  useEffect(() => {
+    isLogin = localStorage.getItem(localStorageKey.accessToken) ? true : false;
+  }, [isAuth]);
+
+  useEffect(() => {
+    const calculateAccountWishlist = () => {
+      const favorites: typeProduct[] = localStorage.getItem(localStorageKey.wishlist)
+        ? JSON.parse(localStorage.getItem(localStorageKey.wishlist) || "[]")
+        : [];
+
+      setWishlist(favorites);
+    };
+
+    calculateAccountWishlist();
+  }, []);
 
   const handleChangeLocale = (value: string) => {
     router.push(pathname, {locale: value});
@@ -78,7 +97,7 @@ const HeaderLayout = () => {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="dropdown-blur-custom w-fit text-Text">
-                <DropdownMenuLabel className="text-shadow">Languages</DropdownMenuLabel>
+                <DropdownMenuLabel className="text-shadow">{t("language")}</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuRadioGroup
                   defaultValue={currentLocale}
@@ -86,14 +105,10 @@ const HeaderLayout = () => {
                   onValueChange={handleChangeLocale}
                 >
                   <DropdownMenuRadioItem className="text-shadow hover:cursor-pointer" value="en">
-                    {/* <Link href={pathname} locale="en"> */}
                     English
-                    {/* </Link> */}
                   </DropdownMenuRadioItem>
                   <DropdownMenuRadioItem className="text-shadow hover:cursor-pointer" value="vi">
-                    {/* <Link href={pathname} locale="vn"> */}
                     Vietnamese
-                    {/* </Link> */}
                   </DropdownMenuRadioItem>
                 </DropdownMenuRadioGroup>
               </DropdownMenuContent>
@@ -103,20 +118,22 @@ const HeaderLayout = () => {
       </div>
 
       <div className="l-container mt-10 flex h-[38px] items-center justify-between">
-        <div className="flex w-[675px] justify-between">
-          <Link href={"/"}>
-            <h2 className="font-inter-font text-2xl font-bold">Exclusive</h2>
-          </Link>
-          <div className="flex items-center gap-[49px]">
-            {navbar?.map((item, index) => (
+        <Link href={"/"}>
+          <h2 className="font-inter-font text-2xl font-bold">Exclusive</h2>
+        </Link>
+        <div className="flex items-center gap-[49px]">
+          {navbar.map((item, index) =>
+            isLogin && item.path === "/register" ? (
+              ""
+            ) : (
               <LinkCustom
                 key={index}
                 href={item.path}
                 isActive={pathname === item.path}
                 text={item?.name}
               />
-            ))}
-          </div>
+            ),
+          )}
         </div>
         <div className="flex items-center gap-6">
           <div className="relative ml-auto flex-1 md:grow-0">
@@ -133,8 +150,14 @@ const HeaderLayout = () => {
             />
           </div>
           <div className="flex gap-4">
-            <WishlistIcon />
-            <CartIcon />
+            <IconWithCounterComponent account={wishlist.length} tooltip={t("Icon.wishlist")} />
+            <IconWithCounterComponent
+              account={5}
+              icon="cart"
+              path="/cart"
+              tooltip={t("Icon.cart")}
+            />
+            {isLogin && <ProfileComponent />}
           </div>
         </div>
       </div>

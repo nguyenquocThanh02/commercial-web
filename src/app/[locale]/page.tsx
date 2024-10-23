@@ -32,9 +32,6 @@ export default function Home() {
       </div>
       <NewArrivalComponent />
       <AssuranceComponent />
-      {/* <div>
-        <RatingComponent rating={Number(4.5)} />
-      </div> */}
     </div>
   );
 }

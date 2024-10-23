@@ -3,22 +3,28 @@
 import {z} from "zod";
 import {useTranslations} from "next-intl";
 import {useState} from "react";
+import {toast} from "sonner";
 
 import SignUpWithGoogleButton from "../custom/signUpWithGoogle.button";
 import {InputAuth} from "../custom/inputAuth.ui";
 import PrimaryButton from "../custom/primaryButton.ui";
 import WaitingLayout from "../layout/waiting.layout";
+import ForgotPasswordComponent from "../custom/forgotPassword.component";
 
 import {Form, FormControl, FormField, FormItem, FormMessage} from "@/components/ui/form";
 import {useCreateForm} from "@/hooks/useCreateForm.hook";
 import {loginSchema} from "@/formSchema/formSchema";
-import {Link} from "@/app/navigation";
+import {Link, useRouter} from "@/app/navigation";
 import {AuthApis} from "@/services";
 import {typeLogin} from "@/types";
+import {localStorageKey} from "@/constants/localStorage";
+import {authStore} from "@/store";
 
 export default function LoginForm() {
   const t = useTranslations("Login");
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const route = useRouter();
+  const {setIsAuth} = authStore();
 
   const form = useCreateForm(loginSchema, {
     account: "",
@@ -34,17 +40,35 @@ export default function LoginForm() {
     };
     const loginResult = await AuthApis.login(dataLogin);
 
-    // const fetchToSetCookie = await fetch("/api/auth", {
+    localStorage.setItem(localStorageKey.accessToken, loginResult.token);
+    if (loginResult) {
+      setIsAuth(true);
+      toast.success("Login successfully");
+      route.push("/");
+    }
+    // ---- use localStorage -----
+
+    const fetchToSetCookie = await fetch("/api/auth", {
+      method: "POST",
+      body: JSON.stringify("hello"),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then(async (res) => {
+      const payload = await res.json();
+
+      console.log(payload);
+    });
+    // const requestOptions = {
     //   method: "POST",
-    //   body: JSON.stringify("hello"),
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // }).then(async (res) => {
-    //   const payload = await res.json();
-    //   console.log(payload);
-    // });
-    setIsLoading(false);
+    //   body: JSON.stringify({hello: "world"}),
+    //   headers: {"content-type": "application/json"},
+    // };
+    // fetch(`/api/auth`, requestOptions)
+    //   .then((res) => res.json())
+    //   .then((data) => console.log(data))
+    //   .catch((err) => console.log(err));
+    // setIsLoading(false);
   }
 
   return (
@@ -98,9 +122,9 @@ export default function LoginForm() {
               <PrimaryButton className="h-[56px] w-[143px] bg-Secondary2 font-medium" type="submit">
                 {t("Button.login")}
               </PrimaryButton>
-              <p className="text-Secondary2">{t("Button.forgotPassword")}</p>
+              <ForgotPasswordComponent />
             </div>
-            <SignUpWithGoogleButton />
+            <SignUpWithGoogleButton text={t("Button.google")} />
           </div>
           <div className="mt-8 flex justify-center gap-4">
             <p>{t("Link.details")}</p>

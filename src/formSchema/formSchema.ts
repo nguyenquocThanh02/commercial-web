@@ -96,3 +96,15 @@ export const loginSchema = z.object({
       message: "Password must contain at least one special character (@$!%*?&).",
     }),
 });
+
+export const emailSchema = z.object({
+  email: z
+    .string()
+    .trim()
+    .min(1, {
+      message: "Email is required.",
+    })
+    .email({
+      message: "Format email is invalid",
+    }),
+});

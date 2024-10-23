@@ -3,7 +3,10 @@ import React, {useState, useEffect} from "react";
 
 import {typeCountDownTime} from "@/types/general.type";
 
-const CountdownTimeSaleComponent: React.FC<{variant?: string}> = ({variant = "default"}) => {
+const CountdownTimeSaleComponent: React.FC<{variant?: string; timeEnd: string}> = ({
+  variant = "default",
+  timeEnd,
+}) => {
   const [timeLeft, setTimeLeft] = useState<typeCountDownTime>({
     days: 0,
     hours: 0,
@@ -12,7 +15,7 @@ const CountdownTimeSaleComponent: React.FC<{variant?: string}> = ({variant = "de
   });
 
   useEffect(() => {
-    const dest = new Date("Nov 25, 2024 10:00:00").getTime();
+    const dest = new Date(timeEnd).getTime();
 
     const intervalId = setInterval(() => {
       const now = new Date().getTime();

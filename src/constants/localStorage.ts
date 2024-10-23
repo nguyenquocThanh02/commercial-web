@@ -5,4 +5,5 @@ export const localStorageKey = {
   refreshToken: `refreshToken_${version}`,
   userId: `userId_${version}`,
   userLocal: `userLocal_${version}`,
+  wishlist: `wishlist_${version}`,
 };
