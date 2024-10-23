@@ -2,6 +2,8 @@
 import {useTranslations} from "next-intl";
 import React, {useState} from "react";
 
+import ListProductSkeleton from "../skeleton/listProduct.skeleton";
+
 import SectionTitle from "./sectionTitle.component";
 import PrimaryButton from "./primaryButton.ui";
 import ProductCardComponent from "./productCart.component";
@@ -24,30 +26,29 @@ const ExploreProductComponent = () => {
     setPage((e) => (e > 1 ? e - 1 : 1));
   };
 
-  if (isLoading) {
-    return <div>Loading</div>;
-  }
-
   return (
     <section className="">
       <div className="flex items-end justify-between">
         <SectionTitle feature={t("feature")} title={t("title")} />
         <div className="flex items-center gap-2">
           <ArrowButton direct="left" disabled={page === 1} onClick={handlePrevious} />
-          <ArrowButton direct="right" disabled={page === data.length} onClick={handleNext} />
+          <ArrowButton direct="right" disabled={page === data?.length} onClick={handleNext} />
         </div>
       </div>
       <div
-        className={cn("mt-[60px] flex flex-wrap justify-between", {
+        className={cn("flex flex-wrap justify-between", {
           "justify-start gap-[30px]": data?.products.length < 4,
         })}
       >
-        {data?.products &&
+        {!isLoading && data?.products ? (
           data.products.map((item: typeProduct, index: number) => (
-            <div key={index} className="mb-[60px]">
+            <div key={index} className="my-[60px]">
               <ProductCardComponent data={item} />
             </div>
-          ))}
+          ))
+        ) : (
+          <ListProductSkeleton />
+        )}
       </div>
       <div className="flex w-full">
         <PrimaryButton className="mx-auto h-[56px] px-11 font-medium">{t("button")}</PrimaryButton>

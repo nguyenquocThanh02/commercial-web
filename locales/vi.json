@@ -6,12 +6,24 @@
       "about": "Giới thiệu",
       "signup": "Đăng ký"
     },
+    "language": "Ngôn ngữ",
     "Advertise": {
       "shop-now": "Mua ngay",
       "advertise": "Giảm giá mùa hè cho tất cả các bộ đồ bơi và giao hàng nhanh miễn phí - GIẢM 50%!"
     },
     "Search": {
       "placehoverSearch": "Bạn đang tìm kiếm gì?"
+    },
+    "Icon": {
+      "wishlist": "Sản phẩm yêu thích",
+      "cart": "Giỏ hàng"
+    },
+    "Profile": {
+      "account": "Quản lý tài khoản",
+      "order": "Đơn hàng của tôi",
+      "cancel": "Đơn đã huỷ",
+      "review": "Đánh giá của tôi",
+      "logout": "Đăng xuất"
     }
   },
   "Footer": {
@@ -78,12 +90,18 @@
     },
     "Button": {
       "login": "Đăng nhập",
-      "forgotPassword": "Quên mật khẩu?",
       "google": "Đăng nhập với Google"
     },
     "Link": {
       "details": "Bạn chưa có tài khoản?",
       "name": "Đăng ký "
+    },
+    "ForgotPassword": {
+      "forgetPassword": "Quên mật khẩu?",
+      "title": "Quên mật khẩu?",
+      "description": "Nhập địa chỉ email của bạn và chúng tôi sẽ gửi liên kết để bạn đặt lại mật khẩu.",
+      "placeHover": "Nhập email của bạn",
+      "confirm": "Xác nhận"
     }
   },
   "Home": {
@@ -116,7 +134,8 @@
       "QuickReview": {
         "title": "Tổng quan",
         "details": "Chi tiết",
-        "buttonAddToCart": "Thêm vào giỏ"
+        "buttonAddToCart": "Thêm vào giỏ",
+        "tooltip": "Xem nhanh"
       }
     },
     "NewArrival": {
@@ -156,5 +175,26 @@
         "details": "Chúng tôi hoàn tiền trong vòng 30 ngày"
       }
     }
+  },
+  "Wishlist": {
+    "MainSection": {
+      "title": "Danh sách yêu thích",
+      "button": "Thêm tất cả vào giỏ"
+    },
+    "Trash": {
+      "tooltip": "Xoá",
+      "title": "Xoá sản phẩm khỏi danh sách yêu thích",
+      "description": "Chọn Xoá để xoá khỏi danh sách yêu thích. Bạn có thể thêm lại sau đó.",
+      "button": "Xoá",
+      "cancel": "Quay lại",
+      "toast": "Sản phẩm đã xoá khỏi danh sách yêu thích"
+    }
+  },
+  "RecommendSection": {
+    "title": "Chỉ Dành Cho Bạn",
+    "button": "Xem Tất Cả"
+  },
+  "Tooltip": {
+    "addToWishlist": "Thêm vào yêu thích"
   }
 }

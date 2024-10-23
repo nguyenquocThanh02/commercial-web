@@ -6,12 +6,24 @@
       "about": "About",
       "signup": "Sign up"
     },
+    "language": "Language",
     "Advertise": {
       "advertise": "Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!",
       "shop-now": "Shop now"
     },
     "Search": {
       "placehoverSearch": "What are you looking for?"
+    },
+    "Icon": {
+      "wishlist": "Wishlist",
+      "cart": "Cart"
+    },
+    "Profile": {
+      "account": "Manage My Account",
+      "order": "My Order",
+      "cancel": "My Cancellations",
+      "review": "My Reviews",
+      "logout": "Logout"
     }
   },
   "Footer": {
@@ -78,12 +90,18 @@
     },
     "Button": {
       "login": "Log In",
-      "forgotPassword": "Forget Password?",
-      "google": "Sign up with Google"
+      "google": "Sign in with Google"
     },
     "Link": {
       "details": "Don't have a account?",
       "name": "Sign in"
+    },
+    "ForgotPassword": {
+      "forgetPassword": "Forget Password?",
+      "title": "Forgot your password?",
+      "description": "Enter your email address and we'll send you a link to reset your password.",
+      "placeHover": "Enter your email",
+      "confirm": "Confirm"
     }
   },
   "Home": {
@@ -116,7 +134,8 @@
       "QuickReview": {
         "title": "Quick Review",
         "details": "Details",
-        "buttonAddToCart": "Add To Cart"
+        "buttonAddToCart": "Add To Cart",
+        "tooltip": "Quick View"
       }
     },
     "NewArrival": {
@@ -154,5 +173,26 @@
         "details": "We return money within 30 days"
       }
     }
+  },
+  "Wishlist": {
+    "MainSection": {
+      "title": "Wishlist",
+      "button": "Move On To Badge"
+    },
+    "Trash": {
+      "tooltip": "Remove",
+      "title": "Remove the product from the wishlist",
+      "description": "Select Delete to remove from the wishlist. You can add it back later.",
+      "button": "Delete",
+      "cancel": "Cancel",
+      "toast": "Product was removed from wishlist"
+    }
+  },
+  "RecommendSection": {
+    "title": "Just For You",
+    "button": "See All"
+  },
+  "Tooltip": {
+    "addToWishlist": "Add to wishlist"
   }
 }

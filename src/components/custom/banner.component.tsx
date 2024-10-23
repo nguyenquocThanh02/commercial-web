@@ -2,6 +2,8 @@
 import Image from "next/image";
 import React, {useState} from "react";
 
+import {Skeleton} from "../ui/skeleton";
+
 import ShopNowComponent from "./shopNow.component";
 
 import {typeBanner} from "@/types";
@@ -11,8 +13,12 @@ import {useQueryProduct} from "@/hooks/useQueryHooks";
 const Carousel: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
 
-  const {data} = useQueryProduct.useBanners();
+  const {data, isLoading} = useQueryProduct.useBanners();
   const banners: typeBanner[] = data?.banners || [];
+
+  if (isLoading) {
+    return <Skeleton className="h-[344px] w-[892px]" />;
+  }
 
   return (
     <div className="h-[344px] w-[892px]">
@@ -30,7 +36,7 @@ const Carousel: React.FC = () => {
               <ShopNowComponent arrow link="#" />
             </div>
           ) : (
-            <div className="flex items-center justify-center text-3xl">No banner</div>
+            <div className="flex items-center justify-center bg-lime-300 text-3xl">No banner</div>
           )}
           <div className="flex h-full w-1/2 justify-center lg:w-[496px]">
             <Image

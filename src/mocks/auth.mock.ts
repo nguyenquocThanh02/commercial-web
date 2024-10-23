@@ -9,6 +9,17 @@ const mockAuth = (mock: AxiosMockAdapter) => {
 
     return [200, {messages: "Register successfully"}];
   });
+
+  mock.onPost("/forget-password").reply((config) => {
+    const email = JSON.parse(config.data);
+
+    console.log(config.data);
+
+    if (!email) return [400, {message: "Post email fail"}];
+
+    return [200, {messages: "Post email successfully"}];
+  });
+
   mock.onPost("/login").reply((config) => {
     const dataLogin = JSON.parse(config.data);
 

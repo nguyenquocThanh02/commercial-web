@@ -1,35 +1,23 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const RatingComponent = ({rating}) => {
-  const fullStars = Math.floor(rating); // Số sao nguyên
-  const partialStar = rating - fullStars; // Phần dư của sao
+const RatingComponent: React.FC<{rating: number}> = ({rating}) => {
+  const rate = (rating / 5) * 100;
 
   return (
-    <div className="rating">
-      {/* Tạo các sao đầy */}
-      {[...Array(fullStars)].map((_, index) => (
-        <div key={`full-star-${index}`} className="star full" />
-      ))}
-
-      {/* Tạo sao có phần dư */}
-      {partialStar > 0 && (
-        <div
-          className="star partial"
-          style={{width: `${partialStar * 100}%`, backgroundColor: "gold"}}
-        />
-      )}
-
-      {/* Tạo các sao rỗng */}
-      {[...Array(5 - fullStars - (partialStar > 0 ? 1 : 0))].map((_, index) => (
-        <div key={`empty-star-${index}`} className="star empty" />
-      ))}
+    <div className="star-outer relative inline-block">
+      <div
+        className="star-inner absolute left-0 top-0 overflow-hidden text-[21px]"
+        style={{width: `${rate}%`}}
+      >
+        &#9733;&#9733;&#9733;&#9733;&#9733;
+      </div>
     </div>
   );
 };
 
 RatingComponent.propTypes = {
-  rating: PropTypes.number.isRequired, // rating phải là số
+  rating: PropTypes.number.isRequired,
 };
 
 export default RatingComponent;

@@ -6,9 +6,25 @@ export const routing = defineRouting({
   defaultLocale: "en",
   pathnames: {
     "/": "/",
-    "/pathnames": {
-      en: "/pathnames",
-      vi: "/pathnames",
+    "/login": {
+      en: "/login",
+      vi: "/login",
+    },
+    "/register": {
+      en: "/register",
+      vi: "/register",
+    },
+    "/contact": {
+      en: "/contact",
+      vi: "/contact",
+    },
+    "/about": {
+      en: "/about",
+      vi: "/about",
+    },
+    "/wishlist": {
+      en: "/wishlist",
+      vi: "/wishlist",
     },
   },
   localePrefix: "as-needed",
@@ -19,9 +35,3 @@ export type Locale = (typeof routing.locales)[number];
 
 export const {Link, getPathname, redirect, usePathname, useRouter} =
   createLocalizedPathnamesNavigation(routing);
-
-// import {createSharedPathnamesNavigation} from "next-intl/navigation";
-
-// export const {Link, redirect, usePathname, useRouter} = createSharedPathnamesNavigation({
-//   locales: ["en", "vn"],
-// });

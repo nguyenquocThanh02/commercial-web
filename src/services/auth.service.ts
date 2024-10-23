@@ -1,6 +1,5 @@
 import instance from "@/mocks";
 import {typeLogin, typeRegister} from "@/types";
-import axios from "@/mocks/axios";
 export const AuthApis = {
   register: async (data: typeRegister) => {
     try {
@@ -20,9 +19,12 @@ export const AuthApis = {
       return error;
     }
   },
-  test: async () => {
+  forgetPassword: async (email: string) => {
     try {
-      const response = await axios.post("/users");
+      const data = {
+        email: email,
+      };
+      const response = await instance.post("/forget-password", data);
 
       return response?.data;
     } catch (error) {

@@ -1,16 +1,16 @@
 "use client";
 import React, {useEffect, useState} from "react";
 import Image from "next/image";
-import {Rating, RoundedStar} from "@smastrom/react-rating";
+import {useLocale} from "next-intl";
 
-import WishlistIcon from "../icon/wishlist.icon";
+import AddToWishlistComponent from "../form/addToWishListComponent";
 
 import QuickReviewProductComponent from "./quickReviewProduct.component";
 import QuickReviewAddToCartComponent from "./quickReviewAddToCart.component";
+import RatingComponent from "./rating.component";
 
 import {typeColor, typeProduct} from "@/types";
-import "@smastrom/react-rating/style.css";
-import {calculatePriceSale} from "@/utils";
+import {calculatePriceSale, renderPriceFollowCurrency} from "@/utils";
 import {cn} from "@/libs/utils";
 
 const ProductCardComponent: React.FC<{data: typeProduct; style?: string}> = ({
@@ -18,6 +18,7 @@ const ProductCardComponent: React.FC<{data: typeProduct; style?: string}> = ({
   style = "default",
 }) => {
   const [selectColor, setSelectColor] = useState<typeColor>(data.colors[0]);
+  const locale = useLocale();
 
   const handleClick = (color: typeColor) => {
     setSelectColor(color);
@@ -50,10 +51,8 @@ const ProductCardComponent: React.FC<{data: typeProduct; style?: string}> = ({
           ) : (
             <div />
           )}
-          <div>
-            <button className="flex h-[34px] w-[34px] items-center justify-center rounded-full bg-Primary">
-              <WishlistIcon fillColor="red" height={24} strokeColor="red" width={24} />
-            </button>
+          <div className="flex flex-col">
+            <AddToWishlistComponent data={data} />
             <QuickReviewProductComponent color={selectColor} data={data} />
           </div>
         </div>
@@ -75,31 +74,20 @@ const ProductCardComponent: React.FC<{data: typeProduct; style?: string}> = ({
           {" "}
           <div className="flex gap-3">
             <p className="font-medium text-Secondary2">
-              {data.currency}
-              {calculatePriceSale(data.price, data.discountPercentage)}
+              {renderPriceFollowCurrency(
+                locale,
+                calculatePriceSale(data.price[locale], data.discountPercentage),
+              )}
             </p>
             {style !== "default" && (
               <p className="ml-1 font-medium text-Text2/50 line-through">
-                {data.currency}
-                {data.price}
+                {renderPriceFollowCurrency(locale, data.price[locale])}
               </p>
             )}
           </div>
-          <div className="flex gap-2">
-            <div>
-              <Rating
-                readOnly
-                className="max-w-20"
-                halfFillMode="svg"
-                itemStyles={{
-                  itemShapes: RoundedStar,
-                  activeFillColor: "#FFAD33",
-                  inactiveFillColor: "#CCC",
-                }}
-                value={data.rating}
-              />
-            </div>
-            <p className="text-sm font-semibold text-Text2/50">({data.numberOfReviews})</p>
+          <div className="flex items-center gap-2">
+            <RatingComponent rating={data.rating} />
+            <p className="mt-[2px] text-sm font-semibold text-Text2/50">({data.numberOfReviews})</p>
           </div>
         </div>
         {style === "default" && data.colors.length > 1 && (

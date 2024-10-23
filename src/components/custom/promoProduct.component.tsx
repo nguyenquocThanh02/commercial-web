@@ -19,7 +19,7 @@ const PromoProductComponent = () => {
           <h2 className="font-inter-font text-5xl font-semibold leading-[60px] text-Text">
             {t("title")}
           </h2>
-          <CountdownTimeSaleComponent />
+          <CountdownTimeSaleComponent timeEnd="2024-11-25T10:00:00Z" />
         </div>
         <Button
           className="mt-10 h-[56px] w-[171px] bg-Button1 font-medium text-Secondary1"
