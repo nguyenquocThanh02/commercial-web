@@ -129,7 +129,7 @@ const HeaderLayout = () => {
             <SheetTrigger>
               <AlignJustify className="opacity-90 hover:opacity-70" size={28} />
             </SheetTrigger>
-            <SheetContent className="flex flex-col gap-5">
+            <SheetContent className="flex flex-col gap-5" side="left">
               {navbar.map((item, index) =>
                 isLogin && item.path === "/register" ? (
                   ""

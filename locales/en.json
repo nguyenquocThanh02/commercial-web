@@ -105,6 +105,9 @@
     }
   },
   "Home": {
+    "Hero": {
+      "categories": "Categories"
+    },
     "Link": {
       "shop-now": "Shop now"
     },

@@ -1,8 +1,10 @@
+import HeroComponent from "@/components/custom/hero.component";
+
 export default function Home() {
   return (
     <div>
-      {/* <HeroComponent />
-      <FlashSaveComponent />
+      <HeroComponent />
+      {/*   <FlashSaveComponent />
       <DeviceCategoryComponent />
       <BestSellingProductComponent />
       <PromoProductComponent />

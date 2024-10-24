@@ -21,7 +21,7 @@ const Carousel: React.FC = () => {
   }
 
   return (
-    <div className="h-[344px] w-[892px]">
+    <div className="h-[344px] w-full xl:w-[892px]">
       <div className="relative flex h-full w-full items-center justify-center bg-black">
         <div className="absolute flex h-full w-full items-center justify-between">
           {banners && banners.length > 0 ? (
@@ -30,7 +30,7 @@ const Carousel: React.FC = () => {
                 <Image alt="svg icon" height={40} src={banners[currentIndex]?.logo} width={40} />
                 <p>{banners[currentIndex].type}</p>
               </div>
-              <h3 className="font-inter-font text-5xl font-semibold leading-[60px] tracking-[0.04em]">
+              <h3 className="font-inter-font font-semibold leading-relaxed tracking-[0.04em] sm:text-3xl lg:text-4xl lg:leading-[60px] xl:text-5xl">
                 {banners[currentIndex].name}
               </h3>
               <ShopNowComponent arrow link="#" />
@@ -38,10 +38,12 @@ const Carousel: React.FC = () => {
           ) : (
             <div className="flex items-center justify-center bg-lime-300 text-3xl">No banner</div>
           )}
-          <div className="flex h-full w-1/2 justify-center lg:w-[496px]">
+          <div className="flex h-full w-1/2 justify-center xl:w-[496px]">
             <Image
               alt="icon row right"
               height={352}
+              objectFit="cover"
+              quality={100}
               src={banners[currentIndex]?.image}
               width={496}
             />
