@@ -6,11 +6,11 @@ import RegisterForm from "@/components/form/register.form";
 const RegisterPage = () => {
   return (
     <div className="relative mb-[280px] mt-[200px]">
-      <div className="l-container flex items-center justify-center lg:justify-between">
-        <div className="absolute left-0 hidden flex-1 lg:flex">
+      <div className="l-container flex items-center justify-center xl:justify-between">
+        <div className="absolute left-0 hidden w-1/2 flex-shrink xl:flex">
           <Image alt="slider auth" height={781} src={SliderAuth} width={805} />
         </div>
-        <div className="flex flex-1 items-center justify-end">
+        <div className="flex flex-1 items-center justify-center xl:justify-end">
           <RegisterForm />
         </div>
       </div>
