@@ -24,12 +24,13 @@ const AddToWishlistComponent: React.FC<{data: typeProduct}> = ({data}) => {
       favorites.push(data);
       localStorage.setItem(localStorageKey.wishlist, JSON.stringify(favorites));
       setWishlist(favorites);
-      toast.success("Product was added into wishlist");
+      toast.success(t("MessageToast.added"));
     } else {
       const favoritesAfterDelete: typeProduct[] = favorites.filter((item) => item.id !== data.id);
 
       setWishlist(favoritesAfterDelete);
       localStorage.setItem(localStorageKey.wishlist, JSON.stringify(favoritesAfterDelete));
+      toast.success(t("MessageToast.removed"));
     }
   };
 

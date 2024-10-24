@@ -16,8 +16,6 @@ const WishlistSectionComponent = () => {
     console.log("test");
   };
 
-  console.log(wishlist);
-
   if (wishlist.length === 0) {
     return (
       <div className="mt-20 flex justify-center gap-2">
@@ -43,20 +41,6 @@ const WishlistSectionComponent = () => {
         {wishlist &&
           wishlist.map((item, index) => <CardProductWishlistComponent key={index} data={item} />)}
       </div>
-      {/* <Pagination className="mt-10">
-        <PaginationContent>
-          <PaginationItem>
-            <PaginationPrevious href="#" />
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationLink href="#">1</PaginationLink>
-          </PaginationItem>
-
-          <PaginationItem>
-            <PaginationNext href="#" />
-          </PaginationItem>
-        </PaginationContent>
-      </Pagination> */}
     </div>
   );
 };

@@ -13,3 +13,8 @@ export type typeProfileNav = {
   path: string;
   isButton?: boolean;
 };
+
+export type typeLocale = {
+  vi?: string;
+  en?: string;
+};

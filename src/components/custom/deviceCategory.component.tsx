@@ -9,7 +9,7 @@ const DeviceCategoryComponent = () => {
   const t = useTranslations("Home.Categories");
 
   return (
-    <section className="">
+    <section className="l-container mt-[70px]">
       <div className="flex items-end justify-between">
         <SectionTitle feature={t("feature")} title={t("title")} />
         <div className="flex items-center gap-2">

@@ -3,6 +3,7 @@
 import {z} from "zod";
 import {useTranslations} from "next-intl";
 import {useState} from "react";
+import {toast} from "sonner";
 
 import SignUpWithGoogleButton from "../custom/signUpWithGoogle.button";
 import {InputAuth} from "../custom/inputAuth.ui";
@@ -17,11 +18,12 @@ import {Link, useRouter} from "@/app/navigation";
 import {AuthApis} from "@/services";
 import {typeLogin} from "@/types";
 import {authStore} from "@/store";
+import {localStorageKey} from "@/constants/localStorage";
 
 export default function LoginForm() {
   const t = useTranslations("Login");
-  const [isLoading, setIsLoading] = useState<boolean>(false);
   const route = useRouter();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const {setIsAuth} = authStore();
 
   const form = useCreateForm(loginSchema, {
@@ -38,13 +40,14 @@ export default function LoginForm() {
     };
     const loginResult = await AuthApis.login(dataLogin);
 
-    // localStorage.setItem(localStorageKey.accessToken, loginResult.token);
-    // if (loginResult) {
-    //   setIsAuth(true);
-    //   toast.success("Login successfully");
-    //   route.push("/");
-    // }
-    // ---- use localStorage -----
+    localStorage.setItem(localStorageKey.accessToken, loginResult.token);
+    if (loginResult) {
+      setIsAuth(true);
+      toast.success("Login successfully");
+      route.push("/");
+    }
+
+    // ---- use cookie -----
 
     await fetch("/api/auth", {
       method: "POST",
@@ -57,15 +60,7 @@ export default function LoginForm() {
 
       console.log(payload);
     });
-    // const requestOptions = {
-    //   method: "POST",
-    //   body: JSON.stringify({hello: "world"}),
-    //   headers: {"content-type": "application/json"},
-    // };
-    // fetch(`/api/auth`, requestOptions)
-    //   .then((res) => res.json())
-    //   .then((data) => console.log(data))
-    //   .catch((err) => console.log(err));
+
     setIsLoading(false);
   }
 

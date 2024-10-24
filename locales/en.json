@@ -195,6 +195,10 @@
     "button": "See All"
   },
   "Tooltip": {
-    "addToWishlist": "Add to wishlist"
+    "addToWishlist": "Add to wishlist",
+    "MessageToast": {
+      "added": "Product was added into wishlist",
+      "removed": "Removed from wishlist"
+    }
   }
 }

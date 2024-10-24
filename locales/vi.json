@@ -197,6 +197,10 @@
     "button": "Xem Tất Cả"
   },
   "Tooltip": {
-    "addToWishlist": "Thêm vào yêu thích"
+    "addToWishlist": "Thêm vào yêu thích",
+    "MessageToast": {
+      "added": "Sản phẩm đã được thêm vào yêu thích",
+      "removed": "Đã bỏ yêu thích"
+    }
   }
 }

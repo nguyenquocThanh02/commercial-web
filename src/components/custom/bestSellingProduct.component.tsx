@@ -46,7 +46,7 @@ const BestSellingProductComponent = () => {
   };
 
   return (
-    <section className="">
+    <section className="l-container mt-[70px]">
       <div className="flex items-end justify-between">
         <SectionTitle feature={t("feature")} title={t("title")} />
         <PrimaryButton className="h-[56px] px-11 font-medium">{t("button")}</PrimaryButton>

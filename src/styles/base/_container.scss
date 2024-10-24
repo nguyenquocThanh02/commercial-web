@@ -1,6 +1,6 @@
 @layer components {
   .l-container {
-    @apply mx-auto w-full px-[135px];
+    @apply mx-auto w-full px-4 lg:px-[135px];
     max-width: calc(1170px + 270px);
   }
 }
