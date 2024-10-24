@@ -103,12 +103,12 @@ const FlashSaveComponent = () => {
 
   return (
     <section className="mt-[140px]">
-      <div className="l-container flex w-full items-end justify-between">
-        <div className="flex items-end gap-[87px]">
+      <div className="l-container flex w-full flex-col items-stretch justify-between gap-5 xl:flex-row xl:items-end">
+        <div className="flex items-end justify-between xl:gap-[87px]">
           <SectionTitle feature={t("feature")} title={t("title")} />
           <CountdownTimeSaleComponent timeEnd="2024-11-25T10:00:00Z" variant="ghost" />
         </div>
-        <div className="flex items-center gap-2">
+        <div className="ml-auto mt-5 flex items-center gap-3">
           <ArrowButton direct="left" />
           <ArrowButton direct="right" />
         </div>

@@ -7,7 +7,7 @@ const SectionTitle: React.FC<{feature: string; title: string}> = ({feature, titl
         <div className="h-10 w-5 rounded bg-Secondary2" />
         <h3 className="font-semibold">{feature}</h3>
       </div>
-      <h2 className="py-0 text-left font-inter-font text-[36px] font-semibold leading-none tracking-[0.04em]">
+      <h2 className="py-0 text-left font-inter-font text-2xl font-semibold leading-none tracking-[0.04em] xl:text-[36px]">
         {title}
       </h2>
     </div>
