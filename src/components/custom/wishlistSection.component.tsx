@@ -33,11 +33,11 @@ const WishlistSectionComponent = () => {
         <h1 className="text-xl">
           {t("title")} ({wishlist.length})
         </h1>
-        <SecondaryButton className="w-[223px]" onClick={handleMoveAllToBadge}>
+        <SecondaryButton className="md:w-[223px]" onClick={handleMoveAllToBadge}>
           {t("button")}
         </SecondaryButton>
       </div>
-      <div className="mt-[60px] flex flex-wrap gap-[30px]">
+      <div className="mt-[60px] flex flex-wrap justify-center gap-[30px] lg:justify-start">
         {wishlist &&
           wishlist.map((item, index) => <CardProductWishlistComponent key={index} data={item} />)}
       </div>

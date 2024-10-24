@@ -26,7 +26,7 @@ const RecommendSectionComponent = () => {
       {isLoading ? (
         <ListProductSkeleton />
       ) : (
-        <div className="flex flex-wrap gap-[30px]">
+        <div className="flex flex-wrap justify-center gap-[30px] lg:justify-start">
           {data.products.map((item: typeProduct, index: number) => (
             <div key={index} className="my-[60px]">
               <ProductCardComponent data={item} />

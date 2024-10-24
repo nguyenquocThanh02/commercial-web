@@ -34,7 +34,7 @@ const ExploreProductComponent = () => {
           <ArrowButton direct="right" disabled={page === data?.length} onClick={handleNext} />
         </div>
       </div>
-      <div className="flex flex-wrap justify-center gap-[30px]">
+      <div className="flex flex-wrap justify-center gap-[30px] lg:justify-start">
         {!isLoading && data?.products ? (
           data.products.map((item: typeProduct, index: number) => (
             <div key={index} className="mt-[60px]">
