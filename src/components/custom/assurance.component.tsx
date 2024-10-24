@@ -28,7 +28,7 @@ const AssuranceComponent = () => {
   ];
 
   return (
-    <div className="l-container my-[140px] flex flex-col items-center justify-center gap-[88px] md:flex-row">
+    <div className="l-container my-[140px] flex flex-col items-center justify-center gap-[88px] md:flex-row md:items-start">
       {arrayAssurances.map((item, index) => (
         <div key={index} className="flex w-[262px] flex-col items-center justify-center gap-6">
           <AssuranceIconComponent icon={item.icon} />

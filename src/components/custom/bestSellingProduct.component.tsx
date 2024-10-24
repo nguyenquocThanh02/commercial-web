@@ -51,7 +51,7 @@ const BestSellingProductComponent = () => {
         <SectionTitle feature={t("feature")} title={t("title")} />
         <PrimaryButton className="h-[56px] px-11 font-medium">{t("button")}</PrimaryButton>
       </div>
-      <div className="mt-[60px] flex justify-between">
+      <div className="mt-[60px] flex flex-wrap justify-center gap-[30px]">
         {Array.from({length: 4}).map((_, index) => (
           <ProductCardComponent key={index} data={theProduct} style="sale" />
         ))}

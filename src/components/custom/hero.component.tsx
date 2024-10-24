@@ -17,7 +17,7 @@ const HeroComponent = () => {
         <CategoryComponent />
       </div>
 
-      <div className="xl:hidden">
+      <div className="my-3 xl:hidden">
         <Sheet>
           <SheetTrigger className="my-2 flex items-center gap-3">
             <LayoutDashboard className="opacity-90 hover:opacity-70" />

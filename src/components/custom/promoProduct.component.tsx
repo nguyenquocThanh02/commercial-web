@@ -14,7 +14,7 @@ const PromoProductComponent = () => {
   return (
     <section className="l-container mt-[140px]">
       <div className="group relative flex h-[500px] w-full items-center justify-between bg-Text2">
-        <div className="ml-[56px]">
+        <div className="z-10 ml-[56px]">
           <div className="flex max-w-[443px] flex-col gap-8">
             <p className="font-semibold text-Button1">{t("feature")}</p>
             <h2 className="font-inter-font text-5xl font-semibold leading-[60px] text-Text">
@@ -29,10 +29,10 @@ const PromoProductComponent = () => {
             {t("buy-now")}
           </Button>
         </div>
-        <div className="promo-bg-blur mr-11 flex">
+        <div className="promo-bg-blur absolute flex opacity-40 md:relative md:mr-11 md:opacity-100">
           <Image
             alt="loudspeaker img"
-            className="auto animate-pulse"
+            className="m-auto"
             height={420}
             src={loudSpeakerImg}
             width={600}

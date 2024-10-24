@@ -1,5 +1,5 @@
 "use client";
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import Image from "next/image";
 import {useLocale, useTranslations} from "next-intl";
 import {AlignJustify} from "lucide-react";
@@ -33,6 +33,8 @@ const HeaderLayout = () => {
   const router = useRouter();
   const currentLocale = useLocale();
   let isLogin = localStorage.getItem(localStorageKey.accessToken) ? true : false;
+
+  const [open, setOpen] = useState<boolean>(false);
 
   const {isAuth} = authStore();
   const {wishlist, setWishlist} = wishlistStore();
@@ -77,7 +79,7 @@ const HeaderLayout = () => {
   };
 
   return (
-    <div className="sticky left-0 right-0 top-0 z-10 w-full border-b border-Text2/30 bg-Primary pb-4">
+    <div className="sticky left-0 right-0 top-0 z-20 w-full border-b border-Text2/30 bg-Primary pb-4">
       <div className="hidden h-[48px] w-full bg-Text2 text-Primary lg:flex">
         <div className="l-container relative my-auto">
           <div className="flex w-full items-center justify-center gap-[10px] text-sm">
@@ -125,7 +127,7 @@ const HeaderLayout = () => {
         </Link>
 
         <div className="ml-0 lg:hidden">
-          <Sheet>
+          <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger>
               <AlignJustify className="opacity-90 hover:opacity-70" size={28} />
             </SheetTrigger>
@@ -140,6 +142,7 @@ const HeaderLayout = () => {
                     href={item.path}
                     isActive={pathname === item.path}
                     text={item?.name}
+                    onClick={() => setOpen(false)}
                   />
                 ),
               )}

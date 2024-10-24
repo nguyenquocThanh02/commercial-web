@@ -11,7 +11,6 @@ import ArrowButton from "./arrowButton.component";
 
 import {typeProduct} from "@/types";
 import {useQueryProduct} from "@/hooks/useQueryHooks";
-import {cn} from "@/libs/utils";
 
 const ExploreProductComponent = () => {
   const t = useTranslations("Home.ExploreProduct");
@@ -35,11 +34,7 @@ const ExploreProductComponent = () => {
           <ArrowButton direct="right" disabled={page === data?.length} onClick={handleNext} />
         </div>
       </div>
-      <div
-        className={cn("flex flex-wrap justify-between", {
-          "justify-start gap-[30px]": data?.products.length < 4,
-        })}
-      >
+      <div className="flex flex-wrap justify-center gap-[30px]">
         {!isLoading && data?.products ? (
           data.products.map((item: typeProduct, index: number) => (
             <div key={index} className="mt-[60px]">
