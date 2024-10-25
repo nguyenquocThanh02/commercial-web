@@ -197,6 +197,20 @@
     "title": "Just For You",
     "button": "See All"
   },
+  "DetailProduct": {
+    "InfoProduct": {
+      "inStock": "IN STOCK",
+      "outOfStock": "OUT OF STOCK",
+      "colours": "Colours",
+      "sizes": "Sizes",
+      "buttonBuy": "Buy Now",
+      "methodDelivery": "Free Delivery",
+      "linkChooseMethod": "Enter your postal code for Delivery Availability",
+      "return": "Return Delivery",
+      "returnDetail": "Free 30 Days Delivery Returns. Details",
+      "linkReturn": "Details"
+    }
+  },
   "Tooltip": {
     "addToWishlist": "Add to wishlist",
     "MessageToast": {

@@ -18,4 +18,10 @@ export const useQueryProduct = {
       queryFn: () => ProductApis.getProduct(limit, page),
     });
   },
+  useDetailProduct: (id: string | number) => {
+    return useQuery({
+      queryKey: ["products", id],
+      queryFn: () => ProductApis.getDetailProduct(id),
+    });
+  },
 };

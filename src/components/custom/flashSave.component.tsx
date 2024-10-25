@@ -17,6 +17,10 @@ import CountdownTimeSaleComponent from "./countdownTimeSale.component";
 import ArrowButton from "./arrowButton.component";
 import ProductCardComponent from "./productCart.component";
 
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/navigation";
+import "swiper/css/thumbs";
 import {useQueryProduct} from "@/hooks/useQueryHooks";
 import {typeProduct} from "@/types";
 const FlashSaveComponent = () => {
@@ -38,8 +42,7 @@ const FlashSaveComponent = () => {
         </div>
       </div>
       <Swiper
-        // watchOverflow
-        className="container1"
+        className="!w-[1170px]"
         scrollbar={{draggable: true}}
         slidesPerView={4}
         spaceBetween={30}

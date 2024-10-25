@@ -11,7 +11,7 @@ interface ButtonCustomProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 const SecondaryButton: React.FC<ButtonCustomProps> = ({className, children, ...props}) => {
   return (
     <Button
-      className={cn("h-[56px] border border-Text1 font-medium", className)}
+      className={cn("h-[56px] rounded border border-Text1 font-medium", className)}
       variant={"outline"}
       {...props}
     >

@@ -195,6 +195,20 @@
       "toast": "Sản phẩm đã xoá khỏi danh sách yêu thích"
     }
   },
+  "DetailProduct": {
+    "InfoProduct": {
+      "inStock": "Còn hàng",
+      "outOfStock": "Hết hàng",
+      "colours": "Màu sắc",
+      "sizes": "Kích thước",
+      "buttonBuy": "Mua ngay",
+      "methodDelivery": "Miễn phí vận chuyển",
+      "linkChooseMethod": "Nhập mã bưu chính của bạn để kiểm tra khả năng giao hàng.",
+      "Return": "Trả hàng",
+      "returnDetail": "Miễn phí trả hàng trong 30 ngày.",
+      "linkReturn": "Chi tiết"
+    }
+  },
   "RecommendSection": {
     "title": "Chỉ Dành Cho Bạn",
     "button": "Xem Tất Cả"
