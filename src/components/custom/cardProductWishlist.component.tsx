@@ -1,17 +1,22 @@
 "use client";
 import React, {useEffect, useState} from "react";
 import Image from "next/image";
-import {useLocale} from "next-intl";
+import {useLocale, useTranslations} from "next-intl";
 
-import QuickReviewAddToCartComponent from "./quickReviewAddToCart.component";
+import {Button} from "../ui/button";
+
 import DeleteWishlistComponent from "./deleteWishlist.component";
 
 import {typeColor, typeProduct} from "@/types";
 import {calculatePriceSale, renderPriceFollowCurrency} from "@/utils";
 import {cn} from "@/libs/utils";
+import {productStore} from "@/store";
 
 const CardProductWishlistComponent: React.FC<{data: typeProduct}> = ({data}) => {
   const [selectColor, setSelectColor] = useState<typeColor>(data.colors[0]);
+  const {setOpenQuickReviewAddToCart, setProduct} = productStore();
+
+  const t = useTranslations("Home.ExploreProduct.QuickReview");
   const locale = useLocale();
 
   const handleClick = (color: typeColor) => {
@@ -21,6 +26,11 @@ const CardProductWishlistComponent: React.FC<{data: typeProduct}> = ({data}) => 
   useEffect(() => {
     setSelectColor(data.colors[0]);
   }, [data]);
+
+  const handleQuickViewAddToCart = (data: typeProduct) => {
+    setOpenQuickReviewAddToCart(true);
+    setProduct(data);
+  };
 
   return (
     <div>
@@ -47,8 +57,12 @@ const CardProductWishlistComponent: React.FC<{data: typeProduct}> = ({data}) => 
         </div>
 
         <div className="absolute bottom-0 flex w-full items-end justify-center opacity-0 transition-all duration-1000 group-hover:opacity-100">
-          {" "}
-          <QuickReviewAddToCartComponent color={selectColor} data={data} />
+          <Button
+            className="w-full rounded-none font-medium"
+            onClick={() => handleQuickViewAddToCart(data)}
+          >
+            {t("buttonAddToCart")}
+          </Button>
         </div>
       </div>
 

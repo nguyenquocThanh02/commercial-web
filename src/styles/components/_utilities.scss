@@ -9,7 +9,7 @@
     @apply rounded border-none;
   }
   .promo-bg-blur {
-    background-image: radial-gradient(closest-side, #fff, #000);
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.4), rgba(0, 0, 0, 0.8) 70%);
   }
   .text-shadow {
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
@@ -25,5 +25,63 @@
   .star-inner::before {
     content: "\2605 \2605 \2605 \2605 \2605";
     color: gold;
+  }
+
+  .swiper {
+    width: 700px;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .mySwiper2 {
+    height: 600px;
+    width: 500px;
+  }
+  .mySwiper2 .swiper-slide {
+    height: 600px;
+    width: 500px;
+  }
+
+  .mySwiper {
+    height: 600px;
+    width: 138px;
+
+    box-sizing: border-box;
+  }
+
+  .mySwiper .swiper-slide {
+    height: 138px;
+    width: 170px;
+    opacity: 0.4;
+  }
+
+  .mySwiper .swiper-slide-thumb-active {
+    opacity: 1;
+  }
+
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  // .swiper-slide img {
+  //   display: block;
+  //   max-width: 100%;
+  //   max-height: 100%;
+  //   object-fit: cover;
+  // }
+
+  // slider custom
+
+  .container1 {
+    max-width: 1440px;
+    margin: 0 auto;
+    overflow: hidden;
   }
 }

@@ -108,6 +108,9 @@
     "Link": {
       "shop-now": "Mua ngay"
     },
+    "Hero": {
+      "categories": "Danh mục"
+    },
     "Categories": {
       "feature": "Danh mục",
       "title": "Duyệt theo Danh mục"
@@ -135,7 +138,8 @@
         "title": "Tổng quan",
         "details": "Chi tiết",
         "buttonAddToCart": "Thêm vào giỏ",
-        "tooltip": "Xem nhanh"
+        "tooltip": "Xem nhanh",
+        "new": "Mới"
       }
     },
     "NewArrival": {
@@ -192,11 +196,31 @@
       "toast": "Sản phẩm đã xoá khỏi danh sách yêu thích"
     }
   },
+  "DetailProduct": {
+    "InfoProduct": {
+      "inStock": "Còn hàng",
+      "outOfStock": "Hết hàng",
+      "colours": "Màu sắc",
+      "sizes": "Kích thước",
+      "buttonBuy": "Mua ngay",
+      "methodDelivery": "Miễn phí vận chuyển",
+      "linkChooseMethod": "Nhập mã bưu chính của bạn để kiểm tra khả năng giao hàng.",
+      "Return": "Trả hàng",
+      "returnDetail": "Miễn phí trả hàng trong 30 ngày.",
+      "linkReturn": "Chi tiết"
+    }
+  },
   "RecommendSection": {
     "title": "Chỉ Dành Cho Bạn",
     "button": "Xem Tất Cả"
   },
   "Tooltip": {
-    "addToWishlist": "Thêm vào yêu thích"
+    "addToWishlist": "Thêm vào yêu thích",
+    "removeWishlist": "Xoá khỏi yêu thích",
+
+    "MessageToast": {
+      "added": "Sản phẩm đã được thêm vào yêu thích",
+      "removed": "Đã bỏ yêu thích"
+    }
   }
 }

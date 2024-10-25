@@ -1,9 +1,23 @@
 import React from "react";
 
-const ProductDetailPage = ({params}: {params: {id: string}}) => {
-  console.log(params.id);
+import {BreadcrumbComponent} from "@/components/custom/breadscrumb.component";
+import ProductDetailComponent from "@/components/custom/detailProduct.component";
 
-  return <div>ProductDetailPage</div>;
+const DetailProductPage = ({params}: {params: {id: string}}) => {
+  const links = [
+    {
+      name: "Account",
+      links: "/account",
+    },
+  ];
+
+  return (
+    <div className="l-container">
+      <BreadcrumbComponent links={links} />
+      <ProductDetailComponent id={params.id} />
+      {/* <TestSwiper /> */}
+    </div>
+  );
 };
 
-export default ProductDetailPage;
+export default DetailProductPage;

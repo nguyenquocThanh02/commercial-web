@@ -21,24 +21,18 @@ import PrimaryButton from "./primaryButton.ui";
 
 import {wishlistStore} from "@/store";
 import {typeProduct} from "@/types";
-import {localStorageKey} from "@/constants/localStorage";
 
 const DeleteWishlistComponent: React.FC<{
   data: typeProduct;
 }> = ({data}) => {
   const [open, setOpen] = useState<boolean>(false);
   const t = useTranslations("Wishlist.Trash");
-  const {setWishlist} = wishlistStore();
+  const {wishlist, setWishlist} = wishlistStore();
 
   const handleRemove = () => {
-    const favorites: typeProduct[] = localStorage.getItem(localStorageKey.wishlist)
-      ? JSON.parse(localStorage.getItem(localStorageKey.wishlist) || "")
-      : [];
+    const favoritesAfterDelete: typeProduct[] = wishlist.filter((item) => item.id !== data.id);
 
-    const favoritesAfterDelete: typeProduct[] = favorites.filter((item) => item.id !== data.id);
-
-    if (favorites.length > favoritesAfterDelete.length) {
-      localStorage.setItem(localStorageKey.wishlist, JSON.stringify(favoritesAfterDelete));
+    if (wishlist.length > favoritesAfterDelete.length) {
       toast.success(t("toast"));
       setWishlist(favoritesAfterDelete);
       setOpen(false);

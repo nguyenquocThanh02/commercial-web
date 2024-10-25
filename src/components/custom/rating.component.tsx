@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const RatingComponent: React.FC<{rating: number}> = ({rating}) => {
+const RatingComponent: React.FC<{rating?: number}> = ({rating = 5}) => {
   const rate = (rating / 5) * 100;
 
   return (

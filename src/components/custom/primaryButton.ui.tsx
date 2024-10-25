@@ -20,7 +20,7 @@ const PrimaryButton: React.FC<ButtonCustomProps> = ({
   return (
     <Button
       className={cn(
-        "group relative overflow-hidden rounded-lg border border-Secondary2 bg-Secondary2 px-5 py-2.5 font-medium text-Text shadow-inner transition-all duration-300 hover:bg-Secondary2",
+        "group relative overflow-hidden rounded border border-Secondary2 bg-Secondary2 px-5 py-2.5 font-medium text-Text shadow-inner transition-all duration-300 hover:bg-Secondary2",
         className,
       )}
       type={type}

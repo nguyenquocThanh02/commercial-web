@@ -14,8 +14,14 @@ import FooterLayout from "@/components/layout/footer.layout";
 import {getMessages} from "next-intl/server";
 import {NextIntlClientProvider} from "next-intl";
 
+import "swiper/css";
+// import "swiper/css/free-mode";
+import "swiper/css/navigation";
+// import "swiper/css/thumbs";
 import {poppins, inter} from "@/app/fonts/font";
 import {Toaster} from "@/components/ui/sonner";
+import QuickReviewProductComponent from "@/components/custom/quickReviewProduct.component";
+import QuickReviewAddToCartComponent from "@/components/custom/quickReviewAddToCart.component";
 // import {cookies} from "next/headers";
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -31,10 +37,6 @@ export default async function RootLayout({
 }>) {
   const messages = await getMessages();
 
-  // const cookie = cookies();
-  // const sessionToken = cookie.get("sessionToken");
-
-  // console.log("From layout: ", sessionToken);
   return (
     <html lang={locale}>
       <Head>
@@ -45,6 +47,8 @@ export default async function RootLayout({
           <NextIntlClientProvider messages={messages}>
             <HeaderLayout />
             <ProgressBarProviders>{children}</ProgressBarProviders>
+            <QuickReviewProductComponent />
+            <QuickReviewAddToCartComponent />
             <FooterLayout />
             <Toaster closeButton richColors expand={true} position="bottom-right" />
           </NextIntlClientProvider>

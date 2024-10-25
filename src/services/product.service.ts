@@ -15,6 +15,19 @@ export const ProductApis = {
       return error;
     }
   },
+  getDetailProduct: async (id: string | number) => {
+    try {
+      const response = await instance.get("/product/details", {
+        params: {
+          id: id,
+        },
+      });
+
+      return response?.data;
+    } catch (error) {
+      return error;
+    }
+  },
   getCategories: async () => {
     try {
       const response = await instance.get("/categories");

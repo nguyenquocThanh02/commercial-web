@@ -105,6 +105,9 @@
     }
   },
   "Home": {
+    "Hero": {
+      "categories": "Categories"
+    },
     "Link": {
       "shop-now": "Shop now"
     },
@@ -132,6 +135,7 @@
       "title": "Explore Our Products",
       "button": "View All Products",
       "QuickReview": {
+        "new": "New",
         "title": "Quick Review",
         "details": "Details",
         "buttonAddToCart": "Add To Cart",
@@ -194,7 +198,26 @@
     "title": "Just For You",
     "button": "See All"
   },
+  "DetailProduct": {
+    "InfoProduct": {
+      "inStock": "IN STOCK",
+      "outOfStock": "OUT OF STOCK",
+      "colours": "Colours",
+      "sizes": "Sizes",
+      "buttonBuy": "Buy Now",
+      "methodDelivery": "Free Delivery",
+      "linkChooseMethod": "Enter your postal code for Delivery Availability",
+      "return": "Return Delivery",
+      "returnDetail": "Free 30 Days Delivery Returns. Details",
+      "linkReturn": "Details"
+    }
+  },
   "Tooltip": {
-    "addToWishlist": "Add to wishlist"
+    "addToWishlist": "Add to wishlist",
+    "removeWishlist": "Remove wishlist",
+    "MessageToast": {
+      "added": "Product was added into wishlist",
+      "removed": "Removed from wishlist"
+    }
   }
 }

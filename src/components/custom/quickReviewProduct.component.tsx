@@ -1,45 +1,34 @@
-import React, {useState} from "react";
-import Image from "next/image";
+"use client";
+import React from "react";
 import {useLocale, useTranslations} from "next-intl";
+import Image from "next/image";
 
-import {Dialog, DialogContent, DialogTrigger} from "../ui/dialog";
-import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from "../ui/tooltip";
+import {Dialog, DialogContent, DialogHeader, DialogTitle} from "../ui/dialog";
 
 import RatingComponent from "./rating.component";
 import SecondaryButton from "./secondaryButton.component";
 
-import {typeColor, typeProduct} from "@/types";
 import {calculatePriceSale, renderPriceFollowCurrency} from "@/utils";
-import iconQuickReview from "@/assets/svg/quickViewIcon.svg";
 import {Link} from "@/app/navigation";
+import {productStore} from "@/store";
 
-const QuickReviewProductComponent: React.FC<{data: typeProduct; color: typeColor}> = ({
-  data,
-  color,
-}) => {
-  const [openQuickReview, setOpenQuickReview] = useState<boolean>(false);
+const QuickReviewProductComponent = () => {
+  const {openQuickReviewProduct, setOpenQuickReviewProduct, product: data} = productStore();
+
   const t = useTranslations("Home.ExploreProduct.QuickReview");
   const locale = useLocale();
 
   return (
-    <Dialog open={openQuickReview} onOpenChange={setOpenQuickReview}>
-      <DialogTrigger className="">
-        <TooltipProvider delayDuration={0}>
-          <Tooltip>
-            <TooltipTrigger>
-              <div className="mt-2 flex h-[34px] w-[34px] items-center justify-center rounded-full bg-Primary">
-                <Image alt="icon quick view" height={24} src={iconQuickReview} width={24} />
-              </div>
-            </TooltipTrigger>
-            <TooltipContent>{t("tooltip")}</TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
-      </DialogTrigger>
+    <Dialog open={openQuickReviewProduct} onOpenChange={setOpenQuickReviewProduct}>
       <DialogContent>
+        <DialogHeader>
+          <DialogTitle>
+            <p className="mb-5 text-center text-xl font-medium">{t("title")}</p>
+          </DialogTitle>
+        </DialogHeader>
         <div>
-          <h2 className="mb-5 text-center text-xl font-medium">{t("title")}</h2>
           <div className="flex w-full items-center justify-evenly">
-            <Image alt="product img" height={100} src={color.imageUrl} width={100} />
+            <Image alt="product img" height={100} src={data.colors[0]?.imageUrl} width={100} />
             <div className="flex flex-col justify-center">
               <h3 className="font-medium">{data.name}</h3>
               <div className="flex flex-col gap-3">
@@ -65,7 +54,11 @@ const QuickReviewProductComponent: React.FC<{data: typeProduct; color: typeColor
           </div>
           <p className="my-4 text-center text-sm italic">{data.description}</p>
           <div className="flex w-full">
-            <Link className="mx-auto" href={`/product/${data.id}`}>
+            <Link
+              className="mx-auto"
+              href={`/product/${data.id}`}
+              onClick={() => setOpenQuickReviewProduct(false)}
+            >
               <SecondaryButton className="h-10">{t("details")}</SecondaryButton>
             </Link>
           </div>

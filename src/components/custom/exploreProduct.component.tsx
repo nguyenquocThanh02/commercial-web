@@ -6,12 +6,11 @@ import ListProductSkeleton from "../skeleton/listProduct.skeleton";
 
 import SectionTitle from "./sectionTitle.component";
 import PrimaryButton from "./primaryButton.ui";
-import ProductCardComponent from "./productCart.component";
+import ProductCardComponent from "./productCard.component";
 import ArrowButton from "./arrowButton.component";
 
 import {typeProduct} from "@/types";
 import {useQueryProduct} from "@/hooks/useQueryHooks";
-import {cn} from "@/libs/utils";
 
 const ExploreProductComponent = () => {
   const t = useTranslations("Home.ExploreProduct");
@@ -27,7 +26,7 @@ const ExploreProductComponent = () => {
   };
 
   return (
-    <section className="">
+    <section className="l-container mt-[70px]">
       <div className="flex items-end justify-between">
         <SectionTitle feature={t("feature")} title={t("title")} />
         <div className="flex items-center gap-2">
@@ -35,14 +34,10 @@ const ExploreProductComponent = () => {
           <ArrowButton direct="right" disabled={page === data?.length} onClick={handleNext} />
         </div>
       </div>
-      <div
-        className={cn("flex flex-wrap justify-between", {
-          "justify-start gap-[30px]": data?.products.length < 4,
-        })}
-      >
+      <div className="flex flex-wrap justify-center gap-[30px] lg:justify-start">
         {!isLoading && data?.products ? (
           data.products.map((item: typeProduct, index: number) => (
-            <div key={index} className="my-[60px]">
+            <div key={index} className="mt-[60px]">
               <ProductCardComponent data={item} />
             </div>
           ))
@@ -50,7 +45,7 @@ const ExploreProductComponent = () => {
           <ListProductSkeleton />
         )}
       </div>
-      <div className="flex w-full">
+      <div className="mt-[60px] flex w-full">
         <PrimaryButton className="mx-auto h-[56px] px-11 font-medium">{t("button")}</PrimaryButton>
       </div>
     </section>

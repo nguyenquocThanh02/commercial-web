@@ -21,8 +21,7 @@ const InputAuth = React.forwardRef<HTMLInputElement, InputProps>(
             ref={ref}
             autoComplete="off"
             className={cn(
-              "flex h-9 w-full rounded-none border-b border-Text2/50 bg-transparent px-3 py-1 transition-all duration-0 placeholder:text-base placeholder:text-Text2/40 focus:outline-none focus:ring-0 disabled:cursor-not-allowed",
-              "hover:border-b-2 hover:border-primary",
+              "flex h-9 w-full rounded-none border-b border-Text2/50 bg-transparent px-3 py-1 transition-all duration-0 placeholder:text-base placeholder:text-Text2/40 hover:border-Text2 focus:outline-none focus:ring-0 disabled:cursor-not-allowed",
               className,
             )}
             style={{
@@ -51,8 +50,7 @@ const InputAuth = React.forwardRef<HTMLInputElement, InputProps>(
         <input
           ref={ref}
           className={cn(
-            "flex h-9 w-full rounded-none border-b border-Text2/50 bg-transparent px-3 py-1 text-sm transition-all duration-0 placeholder:text-base placeholder:text-Text2/40 focus:outline-none focus:ring-0 disabled:cursor-not-allowed",
-            "hover:border-b-2 hover:border-primary",
+            "flex h-9 w-full rounded-none border-b border-Text2/50 bg-transparent px-3 py-1 text-sm transition-all duration-0 placeholder:text-base placeholder:text-Text2/40 hover:border-Text2 focus:outline-none focus:ring-0 disabled:cursor-not-allowed",
             endIcon ? "pr-8" : "",
             className,
           )}

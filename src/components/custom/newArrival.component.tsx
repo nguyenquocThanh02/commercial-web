@@ -15,7 +15,7 @@ const NewArrivalComponent = () => {
   const t = useTranslations("Home.NewArrival");
 
   return (
-    <div className="">
+    <div className="l-container mt-[140px]">
       <div>
         <SectionTitle feature={t("feature")} title={t("tittle")} />
       </div>

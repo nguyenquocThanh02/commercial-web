@@ -3,7 +3,7 @@ import React from "react";
 
 import SectionTitle from "./sectionTitle.component";
 import PrimaryButton from "./primaryButton.ui";
-import ProductCardComponent from "./productCart.component";
+import ProductCardComponent from "./productCard.component";
 
 import {typeProduct} from "@/types";
 
@@ -46,12 +46,12 @@ const BestSellingProductComponent = () => {
   };
 
   return (
-    <section className="">
+    <section className="l-container mt-[70px]">
       <div className="flex items-end justify-between">
         <SectionTitle feature={t("feature")} title={t("title")} />
         <PrimaryButton className="h-[56px] px-11 font-medium">{t("button")}</PrimaryButton>
       </div>
-      <div className="mt-[60px] flex justify-between">
+      <div className="mt-[60px] flex flex-wrap justify-center gap-[30px]">
         {Array.from({length: 4}).map((_, index) => (
           <ProductCardComponent key={index} data={theProduct} style="sale" />
         ))}

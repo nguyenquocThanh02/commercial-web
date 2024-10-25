@@ -66,14 +66,14 @@ const FooterLayout = () => {
 
   return (
     <div className="mt-[140px] bg-Text2 text-Text">
-      <div className="l-container flex flex-col items-center justify-between py-16 lg:flex-row lg:items-start">
-        <div>
+      <div className="l-container flex flex-col items-center justify-center gap-6 py-16 lg:flex-row lg:items-start lg:justify-between">
+        <div className="text-center lg:text-left">
           <h2 className="mb-6 font-inter-font text-2xl font-bold">Exclusive</h2>
 
           <div>
             <h3 className="mb-4 text-xl font-medium leading-[28px]">{t("Advertise.subcribes")}</h3>
             <p className="mb-4">{t("Advertise.advertise")}</p>
-            <div className="relative h-[48px] w-[217px]">
+            <div className="relative h-[48px] xl:w-[217px]">
               <Input className="h-full w-full" placeholder={t("Input.placeHover")} />
               <Image
                 alt="icon send"
@@ -84,7 +84,7 @@ const FooterLayout = () => {
             </div>
           </div>
         </div>
-        <div className="w-[175px]">
+        <div className="w-fit text-center lg:w-[175px] lg:text-left">
           <h3 className="mb-6 text-xl font-medium leading-[28px]">{t("Support.support")}</h3>
           <ul className="flex flex-col gap-4">
             <li>{inforShop?.infor.address}</li>
@@ -92,7 +92,7 @@ const FooterLayout = () => {
             <li>{inforShop?.infor.phone}</li>
           </ul>
         </div>
-        <div>
+        <div className="text-center lg:text-left">
           <h3 className="mb-6 text-xl font-medium leading-[28px]">{t("Account.account")}</h3>
           <ul className="flex flex-col gap-4">
             {accountNav &&
@@ -115,7 +115,7 @@ const FooterLayout = () => {
           </ul>
         </div>
 
-        <div>
+        <div className="text-center lg:text-left">
           <h3 className="mb-6 text-xl font-medium leading-[28px]">{t("App.app")}</h3>
           <div>
             <h4 className="mb-2 text-xs font-medium">{t("App.discount")}</h4>

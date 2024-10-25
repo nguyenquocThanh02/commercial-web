@@ -6,7 +6,6 @@ import WishlistIcon from "../icon/wishlist.icon";
 import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from "../ui/tooltip";
 
 import {typeProduct} from "@/types";
-import {localStorageKey} from "@/constants/localStorage";
 import {wishlistStore} from "@/store";
 
 const AddToWishlistComponent: React.FC<{data: typeProduct}> = ({data}) => {
@@ -16,20 +15,15 @@ const AddToWishlistComponent: React.FC<{data: typeProduct}> = ({data}) => {
   const inWishlist = wishlist.some((item) => item.id === data.id);
 
   const handleAddToWishlist = () => {
-    const favorites: typeProduct[] = localStorage.getItem(localStorageKey.wishlist)
-      ? JSON.parse(localStorage.getItem(localStorageKey.wishlist) || "")
-      : [];
-
-    if (!favorites.some((item) => item.id === data.id)) {
-      favorites.push(data);
-      localStorage.setItem(localStorageKey.wishlist, JSON.stringify(favorites));
-      setWishlist(favorites);
-      toast.success("Product was added into wishlist");
+    if (!wishlist.some((item) => item.id === data.id)) {
+      wishlist.push(data);
+      setWishlist(wishlist);
+      toast.success(t("MessageToast.added"));
     } else {
-      const favoritesAfterDelete: typeProduct[] = favorites.filter((item) => item.id !== data.id);
+      const favoritesAfterDelete: typeProduct[] = wishlist.filter((item) => item.id !== data.id);
 
       setWishlist(favoritesAfterDelete);
-      localStorage.setItem(localStorageKey.wishlist, JSON.stringify(favoritesAfterDelete));
+      toast.info(t("MessageToast.removed"));
     }
   };
 
@@ -48,7 +42,7 @@ const AddToWishlistComponent: React.FC<{data: typeProduct}> = ({data}) => {
             )}
           </button>
         </TooltipTrigger>
-        <TooltipContent>{t("addToWishlist")}</TooltipContent>
+        <TooltipContent>{inWishlist ? t("removeWishlist") : t("addToWishlist")}</TooltipContent>
       </Tooltip>
     </TooltipProvider>
   );

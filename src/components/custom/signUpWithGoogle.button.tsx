@@ -2,7 +2,6 @@
 import React from "react";
 import Image from "next/image";
 import {signInWithPopup} from "firebase/auth";
-import {toast} from "sonner";
 import {useRouter} from "next/navigation";
 
 import {Button} from "../ui/button";
@@ -18,19 +17,13 @@ const SignUpWithGoogleButton: React.FC<{text: string}> = ({text}) => {
 
   const handleSignUp = async () => {
     try {
-      const result = await signInWithPopup(auth, provider);
-      // const data = result.user;
-      // const user = {
-      //   userName: data.displayName,
-      //   email: data.email,
-      //   userId: data.uid,
-      // };
+      await signInWithPopup(auth, provider);
 
-      localStorage.setItem(localStorageKey.accessToken, "token-with-firebase");
+      localStorage.setItem(localStorageKey.accessToken, "fake-token-firebase");
       setIsAuth(true);
       route.push("/");
     } catch (error) {
-      toast.error("Error when login with google");
+      //
     }
   };
 

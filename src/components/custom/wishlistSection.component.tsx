@@ -4,7 +4,7 @@ import {useTranslations} from "next-intl";
 
 import SecondaryButton from "./secondaryButton.component";
 
-import CardProductWishlistComponent from "@/components/custom/cartProductWishlist.component";
+import CardProductWishlistComponent from "@/components/custom/cardProductWishlist.component";
 import {wishlistStore} from "@/store";
 import {Link} from "@/app/navigation";
 
@@ -15,8 +15,6 @@ const WishlistSectionComponent = () => {
   const handleMoveAllToBadge = () => {
     console.log("test");
   };
-
-  console.log(wishlist);
 
   if (wishlist.length === 0) {
     return (
@@ -35,28 +33,14 @@ const WishlistSectionComponent = () => {
         <h1 className="text-xl">
           {t("title")} ({wishlist.length})
         </h1>
-        <SecondaryButton className="w-[223px]" onClick={handleMoveAllToBadge}>
+        <SecondaryButton className="md:w-[223px]" onClick={handleMoveAllToBadge}>
           {t("button")}
         </SecondaryButton>
       </div>
-      <div className="mt-[60px] flex flex-wrap gap-[30px]">
+      <div className="mt-[60px] flex flex-wrap justify-center gap-[30px] lg:justify-start">
         {wishlist &&
           wishlist.map((item, index) => <CardProductWishlistComponent key={index} data={item} />)}
       </div>
-      {/* <Pagination className="mt-10">
-        <PaginationContent>
-          <PaginationItem>
-            <PaginationPrevious href="#" />
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationLink href="#">1</PaginationLink>
-          </PaginationItem>
-
-          <PaginationItem>
-            <PaginationNext href="#" />
-          </PaginationItem>
-        </PaginationContent>
-      </Pagination> */}
     </div>
   );
 };
