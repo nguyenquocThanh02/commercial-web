@@ -16,6 +16,9 @@ export type typeColor = {
   colorHex?: string;
   imageUrl: string;
 };
+export type typeSize = {
+  size: string | number;
+};
 
 export type typePrice = {
   en: string | number;
@@ -32,6 +35,7 @@ export type typeProduct = {
   rating?: number;
   numberOfReviews?: number;
   unitsInStock?: number;
+  sizes?: typeSize[];
   isNew: boolean;
   purchaseCount?: number;
 };

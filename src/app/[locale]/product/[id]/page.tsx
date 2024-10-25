@@ -12,9 +12,10 @@ const DetailProductPage = ({params}: {params: {id: string}}) => {
   ];
 
   return (
-    <div>
+    <div className="l-container">
       <BreadcrumbComponent links={links} />
       <ProductDetailComponent id={params.id} />
+      {/* <TestSwiper /> */}
     </div>
   );
 };
