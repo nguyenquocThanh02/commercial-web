@@ -88,37 +88,75 @@
   // }
 
   // slider custom
-  .slider {
-    background-color: silver;
-    overflow: hidden;
-  }
 
-  .container {
-    max-width: 75%;
+  .container1 {
+    max-width: 1440px;
     margin: 0 auto;
-    border: 1px solid red;
     overflow: hidden;
   }
 
-  .container2 {
-    overflow: visible;
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+
+    /* Center slide text vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
-  .slider-test .slick-list {
-    overflow: visible !important;
+  .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
-  li.slick-slide {
-    background-color: blue;
+  .swiper {
+    width: 50%;
     height: 300px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
-  .slick-slide {
-    margin: 0 12px;
+  .swiper-slide {
+    background-size: cover;
+    background-position: center;
   }
 
-  /* the parent */
-  .slick-list {
-    margin: 0 -12px !important;
+  .mySwiper2 {
+    height: 80%;
+    width: 100%;
   }
+
+  .mySwiper {
+    height: 20%;
+    box-sizing: border-box;
+    padding: 10px 0;
+  }
+
+  .mySwiper .swiper-slide {
+    width: 25%;
+    height: 100%;
+    opacity: 0.4;
+  }
+
+  .mySwiper .swiper-slide-thumb-active {
+    opacity: 1;
+  }
+
+  // .swiper-slide img {
+  //   display: block;
+  //   width: 100%;
+  //   height: 100%;
+  //   object-fit: cover;
+  // }
+
+  // slider custom
+
+  // .container1 {
+  //   max-width: 1170px;
+  //   margin: 0 auto;
+  // }
 }

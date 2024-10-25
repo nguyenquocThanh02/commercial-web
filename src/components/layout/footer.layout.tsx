@@ -73,7 +73,7 @@ const FooterLayout = () => {
           <div>
             <h3 className="mb-4 text-xl font-medium leading-[28px]">{t("Advertise.subcribes")}</h3>
             <p className="mb-4">{t("Advertise.advertise")}</p>
-            <div className="relative h-[48px] w-[217px]">
+            <div className="relative h-[48px] xl:w-[217px]">
               <Input className="h-full w-full" placeholder={t("Input.placeHover")} />
               <Image
                 alt="icon send"

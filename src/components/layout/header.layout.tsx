@@ -25,19 +25,19 @@ import iconDropdown from "@/assets/svg/DropDown.svg";
 import {Link, usePathname, useRouter} from "@/app/navigation";
 import {localStorageKey} from "@/constants/localStorage";
 import {authStore, wishlistStore} from "@/store";
-import {typeProduct} from "@/types";
 
 const HeaderLayout = () => {
   const pathname = usePathname();
-  const t = useTranslations("Header");
   const router = useRouter();
   const currentLocale = useLocale();
+
+  const t = useTranslations("Header");
   let isLogin = localStorage.getItem(localStorageKey.accessToken) ? true : false;
 
   const [open, setOpen] = useState<boolean>(false);
 
   const {isAuth} = authStore();
-  const {wishlist, setWishlist} = wishlistStore();
+  const {wishlist} = wishlistStore();
 
   const navbar = [
     {
@@ -62,25 +62,13 @@ const HeaderLayout = () => {
     isLogin = localStorage.getItem(localStorageKey.accessToken) ? true : false;
   }, [isAuth]);
 
-  useEffect(() => {
-    const calculateAccountWishlist = () => {
-      const favorites: typeProduct[] = localStorage.getItem(localStorageKey.wishlist)
-        ? JSON.parse(localStorage.getItem(localStorageKey.wishlist) || "[]")
-        : [];
-
-      setWishlist(favorites);
-    };
-
-    calculateAccountWishlist();
-  }, []);
-
   const handleChangeLocale = (value: string) => {
     router.push(pathname, {locale: value});
   };
 
   return (
     <div className="sticky left-0 right-0 top-0 z-20 w-full border-b border-Text2/30 bg-Primary pb-4">
-      <div className="hidden h-[48px] w-full bg-Text2 text-Primary lg:flex">
+      <div className="hidden h-[48px] w-full bg-Text2 text-Primary xl:flex">
         <div className="l-container relative my-auto">
           <div className="flex w-full items-center justify-center gap-[10px] text-sm">
             <p className="leading-[21px]">{t("Advertise.advertise")}</p>
@@ -122,7 +110,7 @@ const HeaderLayout = () => {
       </div>
 
       <div className="l-container mt-10 flex h-[38px] items-center justify-between">
-        <Link className="hidden hover:opacity-70 lg:flex" href={"/"}>
+        <Link className="hidden hover:opacity-70 xl:flex" href={"/"}>
           <h2 className="font-inter-font text-2xl font-bold">Exclusive</h2>
         </Link>
 
@@ -165,9 +153,9 @@ const HeaderLayout = () => {
         </div>
 
         <div className="flex items-center gap-6">
-          <div className="relative ml-auto flex-1 md:grow-0">
+          <div className="relative ml-auto hidden flex-1 sm:flex md:grow-0">
             <Input
-              className="h-[38px] w-[243px] border-none bg-Secondary text-xs"
+              className="h-[38px] border-none bg-Secondary text-xs sm:w-[243px]"
               placeholder={t("Search.placehoverSearch")}
               type="text"
             />

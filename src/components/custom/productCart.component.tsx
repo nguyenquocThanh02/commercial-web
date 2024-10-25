@@ -1,24 +1,29 @@
 "use client";
 import React, {useEffect, useState} from "react";
 import Image from "next/image";
-import {useLocale} from "next-intl";
+import {useLocale, useTranslations} from "next-intl";
 
 import AddToWishlistComponent from "../form/addToWishListComponent";
+import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from "../ui/tooltip";
+import {Button} from "../ui/button";
 
-import QuickReviewProductComponent from "./quickReviewProduct.component";
-import QuickReviewAddToCartComponent from "./quickReviewAddToCart.component";
 import RatingComponent from "./rating.component";
 
 import {typeColor, typeProduct} from "@/types";
 import {calculatePriceSale, renderPriceFollowCurrency} from "@/utils";
 import {cn} from "@/libs/utils";
+import iconQuickReview from "@/assets/svg/quickViewIcon.svg";
+import {productStore} from "@/store";
 
 const ProductCardComponent: React.FC<{data: typeProduct; style?: string}> = ({
   data,
   style = "default",
 }) => {
   const [selectColor, setSelectColor] = useState<typeColor>(data.colors[0]);
+  const {setOpenQuickReviewProduct, setOpenQuickReviewAddToCart, setProduct} = productStore();
+
   const locale = useLocale();
+  const t = useTranslations("Home.ExploreProduct.QuickReview");
 
   const handleClick = (color: typeColor) => {
     setSelectColor(color);
@@ -27,6 +32,15 @@ const ProductCardComponent: React.FC<{data: typeProduct; style?: string}> = ({
   useEffect(() => {
     setSelectColor(data.colors[0]);
   }, [data]);
+
+  const handleQuickViewProduct = (data: typeProduct) => {
+    setOpenQuickReviewProduct(true);
+    setProduct(data);
+  };
+  const handleQuickViewAddToCart = (data: typeProduct) => {
+    setOpenQuickReviewAddToCart(true);
+    setProduct(data);
+  };
 
   return (
     <div>
@@ -53,13 +67,29 @@ const ProductCardComponent: React.FC<{data: typeProduct; style?: string}> = ({
           )}
           <div className="flex flex-col">
             <AddToWishlistComponent data={data} />
-            <QuickReviewProductComponent color={selectColor} data={data} />
+            <TooltipProvider delayDuration={0}>
+              <Tooltip>
+                <TooltipTrigger>
+                  <div
+                    className="mt-2 flex h-[34px] w-[34px] items-center justify-center rounded-full bg-Primary"
+                    onClick={() => handleQuickViewProduct(data)}
+                  >
+                    <Image alt="icon quick view" height={24} src={iconQuickReview} width={24} />
+                  </div>
+                </TooltipTrigger>
+                <TooltipContent>{t("tooltip")}</TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           </div>
         </div>
 
         <div className="absolute bottom-0 flex w-full items-end justify-center opacity-0 transition-all duration-1000 group-hover:opacity-100">
-          {" "}
-          <QuickReviewAddToCartComponent color={selectColor} data={data} />
+          <Button
+            className="w-full rounded-none font-medium"
+            onClick={() => handleQuickViewAddToCart(data)}
+          >
+            {t("buttonAddToCart")}
+          </Button>
         </div>
       </div>
 

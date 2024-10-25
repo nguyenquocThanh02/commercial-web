@@ -1,4 +1,4 @@
-export const calculatePriceSale = (price: any, numberPercent: string | number) => {
+export const calculatePriceSale = (price: any, numberPercent: string | number = 0) => {
   const numericPrice = typeof price === "string" ? parseFloat(price) : price;
   const numericPercent =
     typeof numberPercent === "string" ? parseFloat(numberPercent) : numberPercent;

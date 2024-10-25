@@ -6,6 +6,8 @@ import ListProductSkeleton from "../skeleton/listProduct.skeleton";
 
 import SecondaryButton from "./secondaryButton.component";
 import ProductCardComponent from "./productCart.component";
+import QuickReviewAddToCartComponent from "./quickReviewAddToCart.component";
+import QuickReviewProductComponent from "./quickReviewProduct.component";
 
 import {useQueryProduct} from "@/hooks/useQueryHooks";
 import {typeProduct} from "@/types";
@@ -28,10 +30,12 @@ const RecommendSectionComponent = () => {
       ) : (
         <div className="flex flex-wrap justify-center gap-[30px] lg:justify-start">
           {data.products.map((item: typeProduct, index: number) => (
-            <div key={index} className="my-[60px]">
+            <div key={index} className="mt-[60px]">
               <ProductCardComponent data={item} />
             </div>
           ))}
+          <QuickReviewProductComponent />
+          <QuickReviewAddToCartComponent />
         </div>
       )}
     </div>

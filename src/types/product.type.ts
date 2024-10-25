@@ -23,20 +23,29 @@ export type typePrice = {
 };
 
 export type typeProduct = {
-  id: number;
+  id: number | string;
   name: string;
   description: string;
   colors: typeColor[];
   price: any;
-  discountPercentage: number;
-  rating: number;
-  numberOfReviews: number;
-  unitsInStock: number;
+  discountPercentage?: number;
+  rating?: number;
+  numberOfReviews?: number;
+  unitsInStock?: number;
   isNew: boolean;
-  purchaseCount: number;
+  purchaseCount?: number;
 };
 
 export type typeWishlist = {
   wishlist: typeProduct[];
   setWishlist: (value: typeProduct[]) => void;
+};
+
+export type typeProductStore = {
+  openQuickReviewProduct: boolean;
+  openQuickReviewAddToCart: boolean;
+  product: typeProduct;
+  setOpenQuickReviewProduct: (value: boolean) => void;
+  setOpenQuickReviewAddToCart: (value: boolean) => void;
+  setProduct: (product: typeProduct) => void;
 };

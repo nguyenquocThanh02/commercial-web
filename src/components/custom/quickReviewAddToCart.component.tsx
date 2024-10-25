@@ -1,37 +1,35 @@
-import React, {useState} from "react";
-import Image from "next/image";
+"use client";
+import React from "react";
 import {useLocale, useTranslations} from "next-intl";
+import Image from "next/image";
 
-import {Sheet, SheetContent, SheetTrigger} from "../ui/sheet";
+import {Sheet, SheetContent, SheetHeader, SheetTitle} from "../ui/sheet";
 
 import RatingComponent from "./rating.component";
 import SecondaryButton from "./secondaryButton.component";
 import PrimaryButton from "./primaryButton.ui";
 
-import {typeColor, typeProduct} from "@/types";
 import {calculatePriceSale, renderPriceFollowCurrency} from "@/utils";
 import {Link} from "@/app/navigation";
+import {productStore} from "@/store";
 
-const QuickReviewAddToCartComponent: React.FC<{data: typeProduct; color: typeColor}> = ({
-  data,
-  color,
-}) => {
-  const [openQuickReview, setOpenQuickReview] = useState<boolean>(false);
+const QuickReviewAddToCartComponent = () => {
+  const {setOpenQuickReviewAddToCart, openQuickReviewAddToCart, product: data} = productStore();
+
   const t = useTranslations("Home.ExploreProduct.QuickReview");
   const locale = useLocale();
 
   return (
-    <Sheet open={openQuickReview} onOpenChange={setOpenQuickReview}>
-      <SheetTrigger className="w-full">
-        <div className="w-full rounded-none bg-Text2 p-2 font-medium text-Text hover:cursor-pointer hover:opacity-80">
-          Add To Cart
-        </div>
-      </SheetTrigger>
+    <Sheet open={openQuickReviewAddToCart} onOpenChange={setOpenQuickReviewAddToCart}>
       <SheetContent>
+        <SheetHeader>
+          <SheetTitle>
+            <p className="mb-5 text-center text-xl font-medium">{t("title")}</p>
+          </SheetTitle>
+        </SheetHeader>
         <div>
-          <h2 className="mb-5 text-center text-xl font-medium">{t("title")}</h2>
           <div className="flex w-full items-center justify-evenly">
-            <Image alt="product img" height={100} src={color.imageUrl} width={100} />
+            <Image alt="product img" height={100} src={data.colors[0]?.imageUrl} width={100} />
             <div className="flex flex-col justify-center">
               <h3 className="font-medium">{data.name}</h3>
               <div className="flex flex-col gap-3">

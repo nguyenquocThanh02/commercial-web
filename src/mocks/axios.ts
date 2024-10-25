@@ -10,8 +10,8 @@ mock.onGet("/users").reply(200, {
   users: [{id: 1, name: "John Smith"}],
 });
 
-axios.get("/users").then(function (response) {
-  console.log(response.data);
-});
+// axios.get("/users").then(function (response) {
+//   console.log(response.data);
+// });
 
 module.exports = {axios};
