@@ -54,7 +54,11 @@ const QuickReviewProductComponent = () => {
           </div>
           <p className="my-4 text-center text-sm italic">{data.description}</p>
           <div className="flex w-full">
-            <Link className="mx-auto" href={`/product/${data.id}`}>
+            <Link
+              className="mx-auto"
+              href={`/product/${data.id}`}
+              onClick={() => setOpenQuickReviewProduct(false)}
+            >
               <SecondaryButton className="h-10">{t("details")}</SecondaryButton>
             </Link>
           </div>

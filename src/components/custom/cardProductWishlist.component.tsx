@@ -14,7 +14,7 @@ import {productStore} from "@/store";
 
 const CardProductWishlistComponent: React.FC<{data: typeProduct}> = ({data}) => {
   const [selectColor, setSelectColor] = useState<typeColor>(data.colors[0]);
-  const {setOpenQuickReviewProduct, setOpenQuickReviewAddToCart, setProduct} = productStore();
+  const {setOpenQuickReviewAddToCart, setProduct} = productStore();
 
   const t = useTranslations("Home.ExploreProduct.QuickReview");
   const locale = useLocale();

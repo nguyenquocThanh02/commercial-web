@@ -3,7 +3,7 @@ import React from "react";
 
 import SectionTitle from "./sectionTitle.component";
 import PrimaryButton from "./primaryButton.ui";
-import ProductCardComponent from "./productCart.component";
+import ProductCardComponent from "./productCard.component";
 
 import {typeProduct} from "@/types";
 

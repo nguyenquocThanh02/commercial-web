@@ -23,7 +23,7 @@ const AddToWishlistComponent: React.FC<{data: typeProduct}> = ({data}) => {
       const favoritesAfterDelete: typeProduct[] = wishlist.filter((item) => item.id !== data.id);
 
       setWishlist(favoritesAfterDelete);
-      toast.success(t("MessageToast.removed"));
+      toast.info(t("MessageToast.removed"));
     }
   };
 
@@ -42,7 +42,7 @@ const AddToWishlistComponent: React.FC<{data: typeProduct}> = ({data}) => {
             )}
           </button>
         </TooltipTrigger>
-        <TooltipContent>{t("addToWishlist")}</TooltipContent>
+        <TooltipContent>{inWishlist ? t("removeWishlist") : t("addToWishlist")}</TooltipContent>
       </Tooltip>
     </TooltipProvider>
   );

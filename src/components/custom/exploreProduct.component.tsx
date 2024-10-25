@@ -6,7 +6,7 @@ import ListProductSkeleton from "../skeleton/listProduct.skeleton";
 
 import SectionTitle from "./sectionTitle.component";
 import PrimaryButton from "./primaryButton.ui";
-import ProductCardComponent from "./productCart.component";
+import ProductCardComponent from "./productCard.component";
 import ArrowButton from "./arrowButton.component";
 
 import {typeProduct} from "@/types";

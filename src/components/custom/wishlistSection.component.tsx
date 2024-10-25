@@ -4,7 +4,7 @@ import {useTranslations} from "next-intl";
 
 import SecondaryButton from "./secondaryButton.component";
 
-import CardProductWishlistComponent from "@/components/custom/cartProductWishlist.component";
+import CardProductWishlistComponent from "@/components/custom/cardProductWishlist.component";
 import {wishlistStore} from "@/store";
 import {Link} from "@/app/navigation";
 

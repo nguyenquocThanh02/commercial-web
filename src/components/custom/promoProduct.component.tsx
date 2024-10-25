@@ -29,10 +29,10 @@ const PromoProductComponent = () => {
             {t("buy-now")}
           </Button>
         </div>
-        <div className="promo-bg-blur absolute flex opacity-40 md:relative md:mr-11 md:opacity-100">
+        <div className="promo-bg-blur absolute flex h-full opacity-40 md:relative md:mr-11 md:opacity-100">
           <Image
             alt="loudspeaker img"
-            className="m-auto"
+            className="m-auto md:animate-pulse"
             height={420}
             src={loudSpeakerImg}
             width={600}

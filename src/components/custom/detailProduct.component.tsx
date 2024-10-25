@@ -5,18 +5,22 @@ import {FreeMode, Navigation, Thumbs} from "swiper/modules";
 import {useLocale, useTranslations} from "next-intl";
 import Image from "next/image";
 
+import AddToWishlistComponent from "../form/addToWishListComponent";
+
+import InputQuanlityComponent from "./inputQuanlity.component";
+
 import {useQueryProduct} from "@/hooks/useQueryHooks";
 import RatingComponent from "@/components/custom/rating.component";
 import {calculatePriceSale, renderPriceFollowCurrency} from "@/utils";
 import {cn} from "@/libs/utils";
 import PrimaryButton from "@/components/custom/primaryButton.ui";
-import WishlistIcon from "@/components/icon/wishlist.icon";
 import iconDeliveryBlack from "@/assets/svg/iconDeliveryBlack.svg";
 import iconReturn from "@/assets/svg/Icon-return.svg";
-import {typeColor, typeSize} from "@/types";
+import {typeColor} from "@/types";
 const ProductDetailComponent: React.FC<{id: string}> = ({id}) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
   const [swiper, setSwiper] = useState<any>(null);
+  const [amount, setAmount] = useState<number>(1);
 
   const t = useTranslations("DetailProduct.InfoProduct");
   const locale = useLocale();
@@ -30,9 +34,8 @@ const ProductDetailComponent: React.FC<{id: string}> = ({id}) => {
   }
 
   const handleSlideChange = (index: number) => {
-    if (swiper) {
-      swiper.slideTo(index);
-    }
+    swiper.slideTo(index);
+    console.log(swiper);
   };
 
   return (
@@ -120,14 +123,14 @@ const ProductDetailComponent: React.FC<{id: string}> = ({id}) => {
                   <div key={color.colorName} className="relative">
                     <div
                       className={cn("h-5 w-5 cursor-pointer rounded-full", {
-                        // "border-4 border-Primary": color.colorName === selectColor.colorName,s
+                        "border-4 border-Primary": index === swiper?.activeIndex,
                       })}
                       style={{backgroundColor: color.colorHex}}
                       onClick={() => handleSlideChange(index)}
                     />
-                    {/* {color.colorName === selectColor.colorName && (
-                  <div className="absolute inset-0 rounded-full border-2 border-Text2" />
-                )} */}
+                    {index === swiper?.activeIndex && (
+                      <div className="absolute inset-0 rounded-full border-2 border-Text2" />
+                    )}
                   </div>
                 ))}
               </div>
@@ -137,21 +140,21 @@ const ProductDetailComponent: React.FC<{id: string}> = ({id}) => {
             <h3 className="text-xl">{t("sizes")}:</h3>
             <div className="flex gap-4">
               {data?.sizes &&
-                data.sizes.map((item: typeSize, index: number) => (
-                  <div
+                data.sizes.map((item: string, index: number) => (
+                  <button
                     key={index}
-                    className="flex size-8 items-center justify-center rounded border border-Primary1 text-Primary1"
+                    className="flex size-8 items-center justify-center rounded border border-Primary1 text-Primary1 transition-all duration-300 hover:border-none hover:bg-Secondary2 hover:text-Text"
                   >
                     {item}
-                  </div>
+                  </button>
                 ))}
             </div>
           </div>
           <div className="flex items-center gap-4">
-            <input className="h-[44px] w-[159px] border" type="number" />
+            <InputQuanlityComponent amount={amount} setAmount={setAmount} />
             <PrimaryButton className="h-[44px] w-[165px]">{t("buttonBuy")}</PrimaryButton>
             <div className="flex size-10 items-center justify-center rounded border border-Primary1">
-              <WishlistIcon height={32} width={32} />
+              <AddToWishlistComponent data={data} />
             </div>
           </div>
           <div className="mt-5 flex h-[180px] w-full flex-col rounded border border-Primary1/50">

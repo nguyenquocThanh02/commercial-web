@@ -135,6 +135,7 @@
       "title": "Explore Our Products",
       "button": "View All Products",
       "QuickReview": {
+        "new": "New",
         "title": "Quick Review",
         "details": "Details",
         "buttonAddToCart": "Add To Cart",
@@ -213,6 +214,7 @@
   },
   "Tooltip": {
     "addToWishlist": "Add to wishlist",
+    "removeWishlist": "Remove wishlist",
     "MessageToast": {
       "added": "Product was added into wishlist",
       "removed": "Removed from wishlist"

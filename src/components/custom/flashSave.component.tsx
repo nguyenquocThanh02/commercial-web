@@ -15,7 +15,7 @@ import ListProductSkeleton from "../skeleton/listProduct.skeleton";
 import SectionTitle from "./sectionTitle.component";
 import CountdownTimeSaleComponent from "./countdownTimeSale.component";
 import ArrowButton from "./arrowButton.component";
-import ProductCardComponent from "./productCart.component";
+import ProductCardComponent from "./productCard.component";
 
 import "swiper/css";
 import "swiper/css/free-mode";

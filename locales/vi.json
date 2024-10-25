@@ -138,7 +138,8 @@
         "title": "Tổng quan",
         "details": "Chi tiết",
         "buttonAddToCart": "Thêm vào giỏ",
-        "tooltip": "Xem nhanh"
+        "tooltip": "Xem nhanh",
+        "new": "Mới"
       }
     },
     "NewArrival": {
@@ -215,6 +216,8 @@
   },
   "Tooltip": {
     "addToWishlist": "Thêm vào yêu thích",
+    "removeWishlist": "Xoá khỏi yêu thích",
+
     "MessageToast": {
       "added": "Sản phẩm đã được thêm vào yêu thích",
       "removed": "Đã bỏ yêu thích"

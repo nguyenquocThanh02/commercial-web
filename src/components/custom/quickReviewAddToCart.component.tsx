@@ -55,11 +55,15 @@ const QuickReviewAddToCartComponent = () => {
           </div>
           <p className="my-4 text-center text-sm italic">{data.description}</p>
           <div className="flex justify-center gap-3">
-            <Link href={`/product/${data.id}`}>
+            <Link href={`/product/${data.id}`} onClick={() => setOpenQuickReviewAddToCart(false)}>
               <SecondaryButton className="h-10">{t("details")}</SecondaryButton>
             </Link>
 
-            <PrimaryButton classForText="text-sm font-medium" className="h-10 text-sm">
+            <PrimaryButton
+              classForText="text-sm font-medium"
+              className="h-10 text-sm"
+              onClick={() => setOpenQuickReviewAddToCart(false)}
+            >
               {t("buttonAddToCart")}
             </PrimaryButton>
           </div>

@@ -6,8 +6,6 @@ import FlashSaveComponent from "@/components/custom/flashSave.component";
 import HeroComponent from "@/components/custom/hero.component";
 import NewArrivalComponent from "@/components/custom/newArrival.component";
 import PromoProductComponent from "@/components/custom/promoProduct.component";
-import QuickReviewAddToCartComponent from "@/components/custom/quickReviewAddToCart.component";
-import QuickReviewProductComponent from "@/components/custom/quickReviewProduct.component";
 
 export default function Home() {
   return (
@@ -20,8 +18,6 @@ export default function Home() {
       <ExploreProductComponent />
       <NewArrivalComponent />
       <AssuranceComponent />
-      <QuickReviewProductComponent />
-      <QuickReviewAddToCartComponent />
     </div>
   );
 }
