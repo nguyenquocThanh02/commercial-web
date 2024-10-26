@@ -1,12 +1,6 @@
 "use client";
 import {useRef} from "react";
-import "swiper/css";
-import "swiper/css/free-mode";
-import "swiper/css/navigation";
-import "swiper/css/thumbs";
 import {Swiper, SwiperSlide} from "swiper/react";
-
-import "swiper/css";
 import {useTranslations} from "next-intl";
 import {Swiper as SwiperType} from "swiper";
 
@@ -17,10 +11,6 @@ import CountdownTimeSaleComponent from "./countdownTimeSale.component";
 import ArrowButton from "./arrowButton.component";
 import ProductCardComponent from "./productCard.component";
 
-import "swiper/css";
-import "swiper/css/free-mode";
-import "swiper/css/navigation";
-import "swiper/css/thumbs";
 import {useQueryProduct} from "@/hooks/useQueryHooks";
 import {typeProduct} from "@/types";
 const FlashSaveComponent = () => {
@@ -42,7 +32,25 @@ const FlashSaveComponent = () => {
         </div>
       </div>
       <Swiper
-        className="!w-[1170px]"
+        breakpoints={{
+          440: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          640: {
+            slidesPerView: 2,
+            spaceBetween: 30,
+          },
+          768: {
+            slidesPerView: 3,
+            spaceBetween: 30,
+          },
+          1440: {
+            slidesPerView: 4,
+            spaceBetween: 30,
+          },
+        }}
+        className="l-container"
         scrollbar={{draggable: true}}
         slidesPerView={4}
         spaceBetween={30}

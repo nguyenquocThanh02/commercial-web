@@ -138,8 +138,16 @@
         "title": "Tổng quan",
         "details": "Chi tiết",
         "buttonAddToCart": "Thêm vào giỏ",
+        "buttonCheckout": "Thanh toán",
+        "buttonReturn": "Tiếp tục mua sắm",
+        "messageErrorAdd": "Không thể thêm vào giỏ",
+        "messageAdded": "Đã thêm vào giỏ",
         "tooltip": "Xem nhanh",
-        "new": "Mới"
+        "new": "Mới",
+        "inStock": "Còn hàng",
+        "outOfStock": "Hết hàng",
+        "colours": "Màu sắc",
+        "sizes": "Kích thước"
       }
     },
     "NewArrival": {
@@ -222,5 +230,10 @@
       "added": "Sản phẩm đã được thêm vào yêu thích",
       "removed": "Đã bỏ yêu thích"
     }
+  },
+  "NotFound": {
+    "title": "404 Không Tìm Thấy",
+    "description": "Trang bạn truy cập không tìm thấy. Bạn có thể quay lại trang chủ.",
+    "button": "Quay lại trang chủ"
   }
 }

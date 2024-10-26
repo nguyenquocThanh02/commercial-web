@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import {usePathname} from "next/navigation";
+import {SlashIcon} from "@radix-ui/react-icons";
 
 import LinkCustom from "./link.custom";
 
@@ -9,24 +10,19 @@ import {
   BreadcrumbItem,
   BreadcrumbList,
   BreadcrumbPage,
-  BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import {cn} from "@/libs/utils";
-
-interface BreadcrumbItemProps {
-  link?: string;
-  name: string;
-}
+import {typeBreadCrumbs} from "@/types";
 
 interface BreadcrumbCustomProps {
-  links: BreadcrumbItemProps[];
+  links: typeBreadCrumbs[];
 }
 
 export function BreadcrumbComponent({links}: BreadcrumbCustomProps) {
   const paramPath = usePathname();
 
   return (
-    <Breadcrumb className="mb-3 mt-3">
+    <Breadcrumb className="mt-20">
       <BreadcrumbList>
         {links.map((item, index) => (
           <React.Fragment key={index}>
@@ -42,10 +38,14 @@ export function BreadcrumbComponent({links}: BreadcrumbCustomProps) {
               </BreadcrumbItem>
             ) : (
               <BreadcrumbItem>
-                <BreadcrumbPage>{item.name}</BreadcrumbPage>
+                <BreadcrumbPage
+                  className={cn("text-Text2/50", {"text-Text2": index >= links.length - 1})}
+                >
+                  {item.name}
+                </BreadcrumbPage>
               </BreadcrumbItem>
             )}
-            {index < links.length - 1 && <BreadcrumbSeparator />}
+            {index < links.length - 1 && <SlashIcon />}
           </React.Fragment>
         ))}
       </BreadcrumbList>

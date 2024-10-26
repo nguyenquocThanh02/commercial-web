@@ -48,18 +48,22 @@ export default function LoginForm() {
     }
 
     // ---- use cookie -----
+    const cookie = await AuthApis.setCookie(loginResult);
 
-    await fetch("/api/auth", {
-      method: "POST",
-      body: JSON.stringify(loginResult),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then(async (res) => {
-      const payload = await res.json();
+    console.log("cookie: ", cookie);
+    console.log(process.env.NEXT_PUBLIC_BASE_URL);
 
-      console.log(payload);
-    });
+    // await fetch("/api/auth", {
+    //   method: "POST",
+    //   body: JSON.stringify(loginResult),
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    // }).then(async (res) => {
+    //   const payload = await res.json();
+
+    //   console.log(payload);
+    // });
 
     setIsLoading(false);
   }

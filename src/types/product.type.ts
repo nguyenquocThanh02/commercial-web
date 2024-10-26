@@ -16,9 +16,6 @@ export type typeColor = {
   colorHex?: string;
   imageUrl: string;
 };
-export type typeSize = {
-  size: string | number;
-};
 
 export type typePrice = {
   en: string | number;
@@ -35,7 +32,7 @@ export type typeProduct = {
   rating?: number;
   numberOfReviews?: number;
   unitsInStock?: number;
-  sizes?: typeSize[];
+  sizes?: string[];
   isNew: boolean;
   purchaseCount?: number;
 };
@@ -52,4 +49,18 @@ export type typeProductStore = {
   setOpenQuickReviewProduct: (value: boolean) => void;
   setOpenQuickReviewAddToCart: (value: boolean) => void;
   setProduct: (product: typeProduct) => void;
+};
+
+export type typeProductSelect = {
+  product: typeProduct;
+  quantity: number;
+  selectedColor?: typeColor;
+  selectedSize?: string;
+  totalPrice: number;
+  discount?: number;
+};
+
+export type typeProductSelectStore = {
+  productSelect: typeProductSelect;
+  setProductSelect: (value: any) => void;
 };

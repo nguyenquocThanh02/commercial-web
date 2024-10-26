@@ -24,7 +24,7 @@ import iconSearch from "@/assets/svg/searchIcon.svg";
 import iconDropdown from "@/assets/svg/DropDown.svg";
 import {Link, usePathname, useRouter} from "@/app/navigation";
 import {localStorageKey} from "@/constants/localStorage";
-import {authStore, wishlistStore} from "@/store";
+import {authStore, cartStore, wishlistStore} from "@/store";
 
 const HeaderLayout = () => {
   const pathname = usePathname();
@@ -38,6 +38,7 @@ const HeaderLayout = () => {
 
   const {isAuth} = authStore();
   const {wishlist} = wishlistStore();
+  const {cart} = cartStore();
 
   const navbar = [
     {
@@ -169,7 +170,7 @@ const HeaderLayout = () => {
           <div className="flex gap-4">
             <IconWithCounterComponent account={wishlist.length} tooltip={t("Icon.wishlist")} />
             <IconWithCounterComponent
-              account={5}
+              account={cart.length}
               icon="cart"
               path="/cart"
               tooltip={t("Icon.cart")}

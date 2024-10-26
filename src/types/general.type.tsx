@@ -1,5 +1,10 @@
 import React from "react";
 
+export type typeBreadCrumbs = {
+  link?: string;
+  name: string;
+};
+
 export type typeCountDownTime = {
   days: number | string;
   hours: number | string;

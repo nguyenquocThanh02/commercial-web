@@ -1,40 +1,46 @@
-import React, {SetStateAction} from "react";
+"use client";
+import React from "react";
 
-const InputQuantityComponent: React.FC<{
-  amount: number;
-  setAmount: React.Dispatch<SetStateAction<number>>;
-}> = ({amount, setAmount}) => {
+import {productSelectStore} from "@/store/productSelect.store";
+
+const InputQuantityComponent = () => {
+  const {setProductSelect, productSelect} = productSelectStore();
+
+  const isQuantityValid = (quantity: number) => {
+    const unitsInStock = productSelect.product.unitsInStock || 1;
+
+    return quantity >= 1 && quantity <= unitsInStock;
+  };
+
   return (
-    <div className="flex h-[44px] items-center overflow-hidden rounded border border-Primary1">
+    <div className="flex h-[44px] items-center overflow-hidden rounded">
       <button
-        className="h-full w-[41px] border-r border-Primary1 text-2xl"
-        disabled={amount <= 0} // Disable nếu amount <= 0
+        className="h-full w-[41px] rounded-l border border-r-0 border-Primary1/50 text-2xl"
+        disabled={!isQuantityValid(productSelect.quantity - 1)}
         onClick={() => {
-          if (amount > 0) {
-            setAmount((prev) => prev - 1);
-          }
+          if (isQuantityValid(productSelect.quantity - 1))
+            setProductSelect({quantity: productSelect.quantity - 1});
         }}
       >
         -
       </button>
       <input
-        className="text-medium h-full w-20 border text-center"
-        value={amount}
+        className="text-medium h-full w-20 border border-Primary1/50 text-center focus:outline-none focus:ring-0"
+        value={productSelect.quantity}
         onChange={(e) => {
           const newValue = Number(e.target.value);
 
-          if (!isNaN(newValue) && newValue >= 0 && newValue <= 10) {
-            setAmount(newValue);
+          if (isQuantityValid(newValue)) {
+            setProductSelect({quantity: newValue});
           }
         }}
       />
       <button
         className="h-full w-[41px] border-Secondary2 bg-Secondary2 text-2xl text-Text"
-        disabled={amount >= 10} // Disable nếu amount >= 10
+        disabled={!isQuantityValid(productSelect.quantity + 1)}
         onClick={() => {
-          if (amount < 10) {
-            setAmount((prev) => prev + 1);
-          }
+          if (isQuantityValid(productSelect.quantity + 1))
+            setProductSelect({quantity: productSelect.quantity + 1});
         }}
       >
         +

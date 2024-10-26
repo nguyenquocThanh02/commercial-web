@@ -139,7 +139,15 @@
         "title": "Quick Review",
         "details": "Details",
         "buttonAddToCart": "Add To Cart",
-        "tooltip": "Quick View"
+        "buttonCheckout": "Checkout",
+        "buttonReturn": "Return to Shopping",
+        "messageErrorAdd": "Can't add to cart",
+        "messageAdded": "Added to Cart",
+        "tooltip": "Quick View",
+        "inStock": "IN STOCK",
+        "outOfStock": "OUT OF STOCK",
+        "colours": "Colours",
+        "sizes": "Sizes"
       }
     },
     "NewArrival": {
@@ -219,5 +227,10 @@
       "added": "Product was added into wishlist",
       "removed": "Removed from wishlist"
     }
+  },
+  "NotFound": {
+    "title": "404 Not Found",
+    "description": "Your visited page not found. You may go home page.",
+    "button": "Back to home page"
   }
 }

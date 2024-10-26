@@ -41,6 +41,7 @@ const CardProductWishlistComponent: React.FC<{data: typeProduct}> = ({data}) => 
           alt="image-test"
           className="m-auto p-14 transition-all duration-1000 group-hover:scale-125"
           objectFit="contain"
+          quality={100}
           src={selectColor.imageUrl}
         />
         <div className="absolute left-3 right-3 top-3 flex items-start justify-between">
@@ -58,7 +59,7 @@ const CardProductWishlistComponent: React.FC<{data: typeProduct}> = ({data}) => 
 
         <div className="absolute bottom-0 flex w-full items-end justify-center opacity-0 transition-all duration-1000 group-hover:opacity-100">
           <Button
-            className="w-full rounded-none font-medium"
+            className="w-full rounded-none py-5 font-medium"
             onClick={() => handleQuickViewAddToCart(data)}
           >
             {t("buttonAddToCart")}
