@@ -3,9 +3,10 @@ import React from "react";
 import {useLocale, useTranslations} from "next-intl";
 import Image from "next/image";
 
+import ChangeQuantityProductCartComponent from "./changeQuantityProductCart.component";
+
 import {Link} from "@/app/navigation";
 import SecondaryButton from "@/components/custom/secondaryButton.component";
-import {Input} from "@/components/ui/input";
 import {cartStore} from "@/store";
 import {calculatePriceSale, renderPriceFollowCurrency} from "@/utils";
 import closeIcon from "@/assets/svg/closeIcon.svg";
@@ -21,18 +22,6 @@ const CartComponent = () => {
     t("Cart.Header.quantity"),
     t("Cart.Header.subtotal"),
   ];
-
-  const handleQuantityChange = (productId: string | number, newQuantity: number) => {
-    const updatedCart = cart.map((item) => {
-      if (item.product.id === productId && (item.product.unitsInStock ?? 0) >= newQuantity) {
-        return {...item, quantity: Math.max(1, newQuantity)};
-      }
-
-      return item;
-    });
-
-    setCart(updatedCart);
-  };
 
   const handleRemove = (id: number | string) => {
     const updatedCart = cart.filter((item) => item.product.id !== id);
@@ -77,15 +66,7 @@ const CartComponent = () => {
               {renderPriceFollowCurrency(locale, item.product.price[locale])}
             </div>
             <div className="flex flex-1 items-center">
-              <Input
-                className="h-[44px] w-[72px] border border-Text2"
-                min="0"
-                type="number"
-                value={item.quantity}
-                onChange={(e) =>
-                  handleQuantityChange(item.product.id, parseInt(e.target.value, 10))
-                }
-              />
+              <ChangeQuantityProductCartComponent item={item} />
             </div>
             <div className="flex flex-1 items-center text-Text2/50">
               {renderPriceFollowCurrency(
