@@ -24,4 +24,10 @@ export const useQueryProduct = {
       queryFn: () => ProductApis.getDetailProduct(id),
     });
   },
+  useCoupon: (code: string) => {
+    return useQuery({
+      queryKey: ["coupons", code],
+      queryFn: () => ProductApis.getCoupons(code),
+    });
+  },
 };

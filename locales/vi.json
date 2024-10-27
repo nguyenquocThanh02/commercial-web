@@ -192,6 +192,7 @@
     "MainSection": {
       "title": "Danh sách yêu thích",
       "button": "Thêm tất cả vào giỏ",
+      "toastMoveAll": "Đã thêm tất cả vào giỏ hàng",
       "empty": "Không có bất kỳ sản phẩm nào trong mục yêu thích của bạn.",
       "redirect": "Trở lại"
     },
@@ -222,6 +223,42 @@
     "title": "Chỉ Dành Cho Bạn",
     "button": "Xem Tất Cả"
   },
+  "Cart": {
+    "Header": {
+      "product": "Sản phẩm",
+      "price": "Giá",
+      "quantity": "Số lượng",
+      "subtotal": "Thành tiền",
+      "buttonReturn": "Tiếp tục mua sắm"
+    }
+  },
+  "Payment": {
+    "Coupon": {
+      "placeHover": "Mã giảm giá",
+      "buttonApply": "Áp dụng mã",
+      "cartTotal": "Tổng cộng",
+      "subTotal": "Tổng phụ",
+      "shipping": "Vận chuyển",
+      "total": "Tổng cộng",
+      "processButton": "Tiến hành thanh toán"
+    }
+  },
+  "Checkcount": {
+    "Form": {
+      "title": "Thông Tin Thanh Toán",
+      "firstName": "Họ và Tên",
+      "companyName": "Tên Công Ty",
+      "address": "Địa Chỉ",
+      "other": "Căn hộ, tầng, v.v. (tùy chọn)",
+      "town-city": "Thành Phố",
+      "phone": "Số Điện Thoại",
+      "Email": "Địa Chỉ Email",
+      "saveInfo": "Lưu thông tin này để thanh toán nhanh hơn lần sau"
+    },
+    "Order": {
+      "buttonPlace": "Place order"
+    }
+  },
   "Tooltip": {
     "addToWishlist": "Thêm vào yêu thích",
     "removeWishlist": "Xoá khỏi yêu thích",
@@ -233,6 +270,7 @@
   },
   "NotFound": {
     "title": "404 Không Tìm Thấy",
+    "titleProduct": "Sản phầm không tồn tại",
     "description": "Trang bạn truy cập không tìm thấy. Bạn có thể quay lại trang chủ.",
     "button": "Quay lại trang chủ"
   }

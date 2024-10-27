@@ -64,3 +64,10 @@ export type typeProductSelectStore = {
   productSelect: typeProductSelect;
   setProductSelect: (value: any) => void;
 };
+
+export type typeCoupon = {
+  id: string | number;
+  code: string;
+  discount: number | string;
+  name: string;
+};

@@ -170,6 +170,12 @@ const mockProduct = (mock: AxiosMockAdapter) => {
     },
   ];
 
+  const coupons = [
+    {id: 1, code: "SAVE10", discount: 10, name: "Save 10% on your order"},
+    {id: 2, code: "SAVE20", discount: 20, name: "Save 20% on your order"},
+    {id: 3, code: "SAVE30", discount: 30, name: "Save 30% on your order"},
+  ];
+
   mock.onGet("/products").reply((config) => {
     const limit = parseInt(config.params.limit, 10) || 8;
     const page = parseInt(config.params.page, 10) || 1;
@@ -188,7 +194,18 @@ const mockProduct = (mock: AxiosMockAdapter) => {
     if (product) {
       return [200, product];
     } else {
-      return [404, {message: "Product not found"}];
+      return [400, {message: "Not found"}];
+    }
+  });
+
+  mock.onGet("/coupon").reply((config) => {
+    const code = config.params.code;
+    const coupon = coupons.filter((p) => p.code === code);
+
+    if (coupon) {
+      return [200, coupon];
+    } else {
+      return [404, {message: "coupon not found"}];
     }
   });
 

@@ -7,4 +7,6 @@ export const localStorageKey = {
   userLocal: `userLocal_${version}`,
   wishlist: `wishlist_${version}`,
   cart: `cart_${version}`,
+  order: `order_${version}`,
+  coupon: `coupon_${version}`,
 };

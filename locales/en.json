@@ -190,6 +190,7 @@
     "MainSection": {
       "title": "Wishlist",
       "button": "Move On To Badge",
+      "toastMoveAll": "Move on Badge successfully",
       "empty": "There are no products in your wishlist.",
       "redirect": "Go back"
     },
@@ -220,6 +221,42 @@
       "linkReturn": "Details"
     }
   },
+  "Cart": {
+    "Header": {
+      "product": "Product",
+      "price": "Price",
+      "quantity": "Quantity",
+      "subtotal": "Subtotal",
+      "buttonReturn": "Return to Shopping"
+    }
+  },
+  "Payment": {
+    "Coupon": {
+      "placeHover": "Coupon Code",
+      "buttonApply": "Apply Code",
+      "cartTotal": "Cart Total",
+      "subTotal": "Subtotal",
+      "shipping": "Shipping",
+      "total": "Total",
+      "processButton": "Procees to checkout"
+    }
+  },
+  "Checkout": {
+    "Form": {
+      "title": "Billing Details",
+      "firstName": "First Name",
+      "companyName": "Company Name",
+      "address": "Street Address",
+      "other": "Apartment, floor, etc. (optional)",
+      "town-city": "Town/City",
+      "phone": "Phone Number",
+      "Email": "Email Address",
+      "saveInfo": "Save this information for faster check-out next time"
+    },
+    "Order": {
+      "buttonPlace": "Place order"
+    }
+  },
   "Tooltip": {
     "addToWishlist": "Add to wishlist",
     "removeWishlist": "Remove wishlist",
@@ -230,6 +267,7 @@
   },
   "NotFound": {
     "title": "404 Not Found",
+    "titleProduct": "Product Not Found",
     "description": "Your visited page not found. You may go home page.",
     "button": "Back to home page"
   }

@@ -108,3 +108,29 @@ export const emailSchema = z.object({
       message: "Format email is invalid",
     }),
 });
+
+export const infoCheckoutSchema = z.object({
+  firstName: z.string().trim().min(1, {
+    message: "First Name is required.",
+  }),
+  companyName: z.string().trim().optional(),
+  streetAddress: z.string().trim().min(1, {
+    message: "Street Address is required.",
+  }),
+  other: z.string().trim().optional(),
+  townCity: z.string().trim().min(1, {
+    message: "Town/City is required.",
+  }),
+  phone: z.string().trim().min(1, {
+    message: "Phone Number is required.",
+  }),
+  email: z
+    .string()
+    .trim()
+    .min(1, {
+      message: "Email is required.",
+    })
+    .email({
+      message: "Format email is invalid",
+    }),
+});

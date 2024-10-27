@@ -1,19 +1,46 @@
 "use client";
 import React from "react";
 import {useTranslations} from "next-intl";
+import {toast} from "sonner";
 
 import SecondaryButton from "./secondaryButton.component";
 
 import CardProductWishlistComponent from "@/components/custom/cardProductWishlist.component";
-import {wishlistStore} from "@/store";
+import {cartStore, wishlistStore} from "@/store";
 import {Link} from "@/app/navigation";
+import {typeProductSelect} from "@/types";
+import {isProductEqual} from "@/utils";
 
 const WishlistSectionComponent = () => {
-  const {wishlist} = wishlistStore();
+  const {wishlist, setWishlist} = wishlistStore();
+  const {cart, setCart} = cartStore();
+
   const t = useTranslations("Wishlist.MainSection");
 
   const handleMoveAllToBadge = () => {
-    console.log("test");
+    wishlist.map((item) => {
+      let productSelect: typeProductSelect = {
+        product: item,
+        selectedColor: item.colors[0],
+        selectedSize: item.sizes && item.sizes.length > 0 ? item.sizes[0] : "",
+        quantity: 1,
+        totalPrice: 0,
+        discount: 0,
+      };
+
+      const existingProductIndex = cart.findIndex((itemCart: typeProductSelect) => {
+        return isProductEqual(itemCart, productSelect);
+      });
+
+      if (existingProductIndex > -1) {
+        cart[existingProductIndex].quantity += productSelect.quantity;
+      } else {
+        cart.push(productSelect);
+      }
+    });
+    setCart(cart);
+    setWishlist([]);
+    toast.success(t("toastMoveAll") + ` + ${wishlist.length}`);
   };
 
   if (wishlist.length === 0) {

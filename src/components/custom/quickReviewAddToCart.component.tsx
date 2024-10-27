@@ -20,6 +20,7 @@ import {Link} from "@/app/navigation";
 import {cartStore, productStore} from "@/store";
 import {typeProductSelect} from "@/types";
 import {productSelectStore} from "@/store/productSelect.store";
+import {isProductEqual} from "@/utils/cart.util";
 
 const QuickReviewAddToCartComponent = () => {
   const {productSelect, setProductSelect} = productSelectStore();
@@ -53,12 +54,9 @@ const QuickReviewAddToCartComponent = () => {
       return;
     }
 
-    const existingProductIndex = cart.findIndex(
-      (item: typeProductSelect) =>
-        item.product.id === productSelect.product.id &&
-        item.selectedSize === productSelect.selectedSize &&
-        item.selectedColor === productSelect.selectedColor,
-    );
+    const existingProductIndex = cart.findIndex((item: typeProductSelect) => {
+      return isProductEqual(item, productSelect);
+    });
 
     if (existingProductIndex > -1) {
       cart[existingProductIndex].quantity += productSelect.quantity;
