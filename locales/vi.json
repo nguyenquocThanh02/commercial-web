@@ -212,6 +212,7 @@
       "colours": "Màu sắc",
       "sizes": "Kích thước",
       "buttonBuy": "Mua ngay",
+      "toastSize": "Bạn phải chọn kích thuóc",
       "methodDelivery": "Miễn phí vận chuyển",
       "linkChooseMethod": "Nhập mã bưu chính của bạn để kiểm tra khả năng giao hàng.",
       "Return": "Trả hàng",
@@ -238,6 +239,7 @@
       "buttonApply": "Áp dụng mã",
       "cartTotal": "Tổng cộng",
       "subTotal": "Tổng phụ",
+      "totalDiscount": "Giảm giá",
       "shipping": "Vận chuyển",
       "total": "Tổng cộng",
       "processButton": "Tiến hành thanh toán"

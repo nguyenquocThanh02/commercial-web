@@ -214,6 +214,7 @@
       "colours": "Colours",
       "sizes": "Sizes",
       "buttonBuy": "Buy Now",
+      "toastSize": "You must to select size",
       "methodDelivery": "Free Delivery",
       "linkChooseMethod": "Enter your postal code for Delivery Availability",
       "return": "Return Delivery",
@@ -236,6 +237,7 @@
       "buttonApply": "Apply Code",
       "cartTotal": "Cart Total",
       "subTotal": "Subtotal",
+      "totalDiscount": "Discount",
       "shipping": "Shipping",
       "total": "Total",
       "processButton": "Procees to checkout"

@@ -6,7 +6,8 @@ import {useLocale, useTranslations} from "next-intl";
 import Image from "next/image";
 import {Gallery, Item} from "react-photoswipe-gallery";
 import {Swiper as SwiperType} from "swiper";
-import {notFound} from "next/navigation";
+import {notFound, useRouter} from "next/navigation";
+import {toast} from "sonner";
 
 import AddToWishlistComponent from "../form/addToWishListComponent";
 import DetailProductSkeleton from "../skeleton/detailProduct.skeleton";
@@ -24,20 +25,20 @@ import iconDeliveryBlack from "@/assets/svg/iconDeliveryBlack.svg";
 import iconReturn from "@/assets/svg/Icon-return.svg";
 import {typeColor} from "@/types";
 import {productSelectStore} from "@/store/productSelect.store";
+import {localStorageKey} from "@/constants/localStorage";
 
 const ProductDetailComponent: React.FC<{id: string}> = ({id}) => {
+  const t = useTranslations("DetailProduct.InfoProduct");
+  const locale = useLocale();
+  const route = useRouter();
+
   const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
   const [mainSwiper, setMainSwiper] = useState<any>(null);
   const [selectedColorIndex, setSelectedColorIndex] = useState(0);
 
   const {productSelect, setProductSelect} = productSelectStore();
 
-  const t = useTranslations("DetailProduct.InfoProduct");
-  const locale = useLocale();
-
   const {data, isLoading} = useQueryProduct.useDetailProduct(id);
-
-  console.log("data", data);
 
   useEffect(() => {
     if (data) {
@@ -74,13 +75,6 @@ const ProductDetailComponent: React.FC<{id: string}> = ({id}) => {
     return <DetailProductSkeleton />;
   }
 
-  // const handleSlideChange = (index: number) => {
-  //   console.log(index);
-  //   swiper.slideTo(index);
-  //   console.log(swiper);
-  //   console.log(thumbsSwiper);
-  // };
-
   const handleColorSelect = (index: number) => {
     setSelectedColorIndex(index);
     if (mainSwiper) {
@@ -90,6 +84,18 @@ const ProductDetailComponent: React.FC<{id: string}> = ({id}) => {
 
   const handleSlideChange = (swiper: SwiperType) => {
     setSelectedColorIndex(swiper.activeIndex);
+  };
+
+  const handleBuyNow = () => {
+    if (
+      Array.isArray(productSelect.product.sizes) &&
+      productSelect.product.sizes.length > 0 &&
+      !productSelect.selectedSize
+    ) {
+      toast.warning(t("toastSize"));
+    }
+    localStorage.setItem(localStorageKey.order, JSON.stringify([productSelect]));
+    route.push("/checkout");
   };
 
   return (
@@ -219,7 +225,9 @@ const ProductDetailComponent: React.FC<{id: string}> = ({id}) => {
             <SizesProductComponent />
             <div className="flex items-center gap-4">
               <InputQuanlityComponent />
-              <PrimaryButton className="h-[44px] w-[165px]">{t("buttonBuy")}</PrimaryButton>
+              <PrimaryButton className="h-[44px] w-[165px]" onClick={handleBuyNow}>
+                {t("buttonBuy")}
+              </PrimaryButton>
               <div className="flex size-10 items-center justify-center rounded border border-Primary1">
                 <AddToWishlistComponent data={data} />
               </div>

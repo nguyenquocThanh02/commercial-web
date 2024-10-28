@@ -7,5 +7,5 @@ export type typeCart = {
 
 export type typeCouponStore = {
   coupons: typeCoupon[];
-  setCoupons: (value: typeCoupon) => void;
+  setCoupons: (value: typeCoupon, isAdding: boolean) => void;
 };

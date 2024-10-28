@@ -1,18 +1,18 @@
 "use client";
 import React from "react";
 import {useTranslations} from "next-intl";
-import {z} from "zod";
+import {UseFormReturn} from "react-hook-form";
 
 import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from "../ui/form";
 import {Checkbox} from "../ui/checkbox";
 
 import {InputPrimary} from "./inputPrimary.component";
 
-import {useCreateForm} from "@/hooks/useCreateForm.hook";
-import {infoCheckoutSchema} from "@/formSchema/formSchema";
-
-const FormInfoUserCheckoutComponent = () => {
+const FormInfoUserCheckoutComponent: React.FC<{
+  form: UseFormReturn;
+}> = ({form}) => {
   const t = useTranslations("Checkout.Form");
+
   const fields = [
     {
       name: "firstName",
@@ -51,25 +51,11 @@ const FormInfoUserCheckoutComponent = () => {
     },
   ];
 
-  const form = useCreateForm(infoCheckoutSchema, {
-    firstName: "",
-    companyName: "",
-    streetAddress: "",
-    other: "",
-    townCity: "",
-    phone: "",
-    email: "",
-  });
-
-  function onSubmit(values: z.infer<typeof infoCheckoutSchema>) {
-    console.log(values);
-  }
-
   return (
     <div className="w-[470px]">
       <Form {...form}>
         <h1 className="font-inter-font text-4xl font-medium leading-[30px]">{t("title")}</h1>
-        <form className="mt-12 space-y-8" onSubmit={form.handleSubmit(onSubmit)}>
+        <form className="mt-12 space-y-8">
           {fields.map((item, index) => (
             <FormField
               key={index}
@@ -89,13 +75,9 @@ const FormInfoUserCheckoutComponent = () => {
               )}
             />
           ))}
-          {/* <Button type="submit">Submit</Button> */}
         </form>
         <div className="mt-6 flex items-center gap-4">
-          <Checkbox
-            className="size-6 focus:border-Secondary2 data-[state=checked]:bg-Secondary2"
-            //   onCheckedChange={() => handleSelectCoupon(item)}
-          />
+          <Checkbox className="size-6 data-[state=checked]:border-Secondary2 data-[state=checked]:bg-Secondary2" />
           <p>{t("saveInfo")}</p>
         </div>
       </Form>

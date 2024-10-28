@@ -21,6 +21,7 @@ import {cartStore, productStore} from "@/store";
 import {typeProductSelect} from "@/types";
 import {productSelectStore} from "@/store/productSelect.store";
 import {isProductEqual} from "@/utils/cart.util";
+import imageDefault from "@/assets/img/imageDefault.jpg";
 
 const QuickReviewAddToCartComponent = () => {
   const {productSelect, setProductSelect} = productSelectStore();
@@ -91,7 +92,7 @@ const QuickReviewAddToCartComponent = () => {
             <Image
               alt="product img"
               height={100}
-              src={productSelect?.selectedColor?.imageUrl || ""}
+              src={productSelect?.selectedColor?.imageUrl || imageDefault}
               width={100}
             />
             <div className="flex flex-col justify-center">
@@ -124,6 +125,7 @@ const QuickReviewAddToCartComponent = () => {
                 <PrimaryButton
                   classForText="text-sm font-medium"
                   className="h-12 w-[220px] text-sm"
+                  onClick={() => setOpenQuickReviewAddToCart(false)}
                 >
                   {t("buttonCheckout")}
                 </PrimaryButton>
