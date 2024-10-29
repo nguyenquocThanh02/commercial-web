@@ -19,6 +19,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 // import "swiper/css/thumbs";
 import "photoswipe/dist/photoswipe.css";
+import "lightbox.js-react/dist/index.css";
 import {poppins, inter} from "@/app/fonts/font";
 import {Toaster} from "@/components/ui/sonner";
 import QuickReviewProductComponent from "@/components/custom/quickReviewProduct.component";

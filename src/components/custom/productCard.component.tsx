@@ -14,6 +14,7 @@ import {calculatePriceSale, renderPriceFollowCurrency} from "@/utils";
 import {cn} from "@/libs/utils";
 import iconQuickReview from "@/assets/svg/quickViewIcon.svg";
 import {productStore} from "@/store";
+import {Link} from "@/app/navigation";
 
 const ProductCardComponent: React.FC<{data: typeProduct; style?: string}> = ({
   data,
@@ -95,7 +96,11 @@ const ProductCardComponent: React.FC<{data: typeProduct; style?: string}> = ({
       </div>
 
       <div className="product-card mt-4 flex flex-col gap-2">
-        <h3 className="font-medium">{data.name}</h3>
+        <Link href={`/product/${data.id}`}>
+          <h3 className="font-medium transition-all duration-300 hover:text-Secondary2">
+            {data.name}
+          </h3>
+        </Link>
         <div
           className={cn("flex gap-2", {
             "flex-row items-center": style === "default",

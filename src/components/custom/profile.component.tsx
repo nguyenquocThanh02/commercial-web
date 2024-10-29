@@ -21,8 +21,9 @@ import {authStore} from "@/store";
 import {localStorageKey} from "@/constants/localStorage";
 
 const ProfileComponent = () => {
-  const [open, setOpen] = useState<boolean>(false);
   const t = useTranslations("Header.Profile");
+
+  const [open, setOpen] = useState<boolean>(false);
   const {setIsAuth} = authStore();
 
   const profileNav: typeProfileNav[] = [
@@ -56,8 +57,20 @@ const ProfileComponent = () => {
 
   const [hoveredItem, setHoveredItem] = useState<number | null>(null);
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
     localStorage.removeItem(localStorageKey.accessToken);
+
+    await fetch("/api/auth/logout", {
+      method: "POST",
+      body: JSON.stringify(""),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then(async (res) => {
+      const payload = await res.json();
+
+      console.log(payload);
+    });
     setIsAuth(false);
   };
 

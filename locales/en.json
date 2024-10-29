@@ -190,6 +190,7 @@
     "MainSection": {
       "title": "Wishlist",
       "button": "Move On To Badge",
+      "toastMoveAll": "Move on Badge successfully",
       "empty": "There are no products in your wishlist.",
       "redirect": "Go back"
     },
@@ -213,11 +214,55 @@
       "colours": "Colours",
       "sizes": "Sizes",
       "buttonBuy": "Buy Now",
+      "toastSize": "You must to select size",
       "methodDelivery": "Free Delivery",
       "linkChooseMethod": "Enter your postal code for Delivery Availability",
       "return": "Return Delivery",
       "returnDetail": "Free 30 Days Delivery Returns. Details",
       "linkReturn": "Details"
+    }
+  },
+  "Cart": {
+    "Header": {
+      "product": "Product",
+      "price": "Price",
+      "quantity": "Quantity",
+      "subtotal": "Subtotal",
+      "buttonReturn": "Return to Shopping"
+    }
+  },
+  "Payment": {
+    "Coupon": {
+      "placeHover": "Coupon Code",
+      "buttonApply": "Apply Code",
+      "cartTotal": "Cart Total",
+      "subTotal": "Subtotal",
+      "totalDiscount": "Discount",
+      "shipping": "Shipping",
+      "total": "Total",
+      "processButton": "Procees to checkout"
+    }
+  },
+  "Checkout": {
+    "Form": {
+      "title": "Billing Details",
+      "firstName": "First Name",
+      "companyName": "Company Name",
+      "address": "Street Address",
+      "other": "Apartment, floor, etc. (optional)",
+      "town-city": "Town/City",
+      "phone": "Phone Number",
+      "Email": "Email Address",
+      "saveInfo": "Save this information for faster check-out next time"
+    },
+    "Order": {
+      "buttonPlace": "Place order"
+    },
+    "methodPayment": "Cash On Delivery",
+    "ToastOrder": {
+      "success": "Your order has been placed successfully!",
+      "buttonReturn": "Return to Home",
+      "buttonReview": "View Order"
     }
   },
   "Tooltip": {
@@ -230,6 +275,7 @@
   },
   "NotFound": {
     "title": "404 Not Found",
+    "titleProduct": "Product Not Found",
     "description": "Your visited page not found. You may go home page.",
     "button": "Back to home page"
   }

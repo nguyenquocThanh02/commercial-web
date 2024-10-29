@@ -13,3 +13,10 @@ export type typeAuthState = {
   isAuth: boolean;
   setIsAuth: (value: boolean) => void;
 };
+
+export type typeComplete = {
+  isComplete: boolean;
+  method: string;
+  setIsComplete: (value: boolean) => void;
+  setMethod: (value: string) => void;
+};

@@ -4,7 +4,10 @@ import {Swiper, SwiperSlide} from "swiper/react";
 import {FreeMode, Navigation, Thumbs} from "swiper/modules";
 import {useLocale, useTranslations} from "next-intl";
 import Image from "next/image";
-import {Gallery, Item} from "react-photoswipe-gallery";
+import {Swiper as SwiperType} from "swiper";
+import {notFound, useRouter} from "next/navigation";
+import {toast} from "sonner";
+import {SlideshowLightbox} from "lightbox.js-react";
 
 import AddToWishlistComponent from "../form/addToWishListComponent";
 import DetailProductSkeleton from "../skeleton/detailProduct.skeleton";
@@ -22,16 +25,18 @@ import iconDeliveryBlack from "@/assets/svg/iconDeliveryBlack.svg";
 import iconReturn from "@/assets/svg/Icon-return.svg";
 import {typeColor} from "@/types";
 import {productSelectStore} from "@/store/productSelect.store";
+import {localStorageKey} from "@/constants/localStorage";
 
 const ProductDetailComponent: React.FC<{id: string}> = ({id}) => {
-  const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
-  const [swiper, setSwiper] = useState<any>(null);
-  const [amount, setAmount] = useState<number>(1);
-
-  const {productSelect, setProductSelect} = productSelectStore();
-
   const t = useTranslations("DetailProduct.InfoProduct");
   const locale = useLocale();
+  const route = useRouter();
+
+  const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
+  const [mainSwiper, setMainSwiper] = useState<any>(null);
+  const [selectedColorIndex, setSelectedColorIndex] = useState(0);
+
+  const {productSelect, setProductSelect} = productSelectStore();
 
   const {data, isLoading} = useQueryProduct.useDetailProduct(id);
 
@@ -63,15 +68,34 @@ const ProductDetailComponent: React.FC<{id: string}> = ({id}) => {
     },
   ];
 
+  if (data?.message) {
+    return notFound();
+  }
   if (isLoading) {
     return <DetailProductSkeleton />;
   }
 
-  const handleSlideChange = (index: number) => {
-    console.log(index);
-    swiper.slideTo(index);
-    console.log(swiper);
-    console.log(thumbsSwiper);
+  const handleColorSelect = (index: number) => {
+    setSelectedColorIndex(index);
+    if (mainSwiper) {
+      mainSwiper.slideTo(index);
+    }
+  };
+
+  const handleSlideChange = (swiper: SwiperType) => {
+    setSelectedColorIndex(swiper.activeIndex);
+  };
+
+  const handleBuyNow = () => {
+    if (
+      Array.isArray(productSelect.product.sizes) &&
+      productSelect.product.sizes.length > 0 &&
+      !productSelect.selectedSize
+    ) {
+      toast.warning(t("toastSize"));
+    }
+    localStorage.setItem(localStorageKey.order, JSON.stringify([productSelect]));
+    route.push("/checkout");
   };
 
   return (
@@ -85,67 +109,66 @@ const ProductDetailComponent: React.FC<{id: string}> = ({id}) => {
               className="mySwiper h-full w-[170px]"
               direction="vertical"
               freeMode={true}
-              loop={true}
+              // loop={true}
               modules={[FreeMode, Navigation, Thumbs]}
               slidesPerView={4}
               spaceBetween={16}
               watchSlidesProgress={true}
               onSwiper={setThumbsSwiper}
             >
-              {data.colors.map((item: typeColor, index: number) => (
-                <SwiperSlide
-                  key={index}
-                  className="flex h-[138px] items-center justify-center rounded bg-Secondary opacity-50"
-                >
-                  <Image
-                    alt=""
-                    className="m-auto"
-                    height={114}
-                    objectFit="cover"
-                    quality={100}
-                    src={item.imageUrl}
-                    width={121}
-                  />
-                </SwiperSlide>
-              ))}
+              {data?.colors &&
+                data.colors.map((item: typeColor, index: number) => (
+                  <SwiperSlide
+                    key={index}
+                    className="flex h-[138px] items-center justify-center rounded bg-Secondary opacity-50"
+                  >
+                    <Image
+                      alt=""
+                      className="m-auto"
+                      height={114}
+                      objectFit="cover"
+                      quality={100}
+                      src={item.imageUrl}
+                      width={121}
+                    />
+                  </SwiperSlide>
+                ))}
             </Swiper>
           </div>
-          <div className="">
-            <Gallery>
+          <div className="h-[600px]">
+            <SlideshowLightbox
+              className="container mx-auto grid grid-cols-3 gap-2"
+              fullScreen={true}
+              images={data.colors.map((item: typeColor) => ({
+                src: item.imageUrl,
+                alt: item.colorName,
+              }))}
+              lightboxIdentifier="lightbox1"
+            >
               <Swiper
                 className="h-full w-[500px]"
-                loop={true}
                 modules={[FreeMode, Navigation, Thumbs]}
                 navigation={true}
                 thumbs={{swiper: thumbsSwiper}}
-                onSwiper={setSwiper}
+                onSlideChange={handleSlideChange}
+                onSwiper={setMainSwiper}
               >
-                {data.colors.map((item: typeColor, index: number) => (
-                  <SwiperSlide key={index} className="flex h-full rounded bg-Secondary">
-                    <Item
-                      height="768"
-                      original={item.imageUrl}
-                      thumbnail={item.imageUrl}
-                      width="1024"
-                    >
-                      {({ref, open}) => (
-                        <Image
-                          ref={ref}
-                          alt="swiper product detail"
-                          className="m-auto"
-                          height={315}
-                          objectFit="cover"
-                          quality={100}
-                          src={item.imageUrl}
-                          width={400}
-                          onClick={open}
-                        />
-                      )}
-                    </Item>
+                {data?.colors?.map((item: typeColor, index: number) => (
+                  <SwiperSlide key={index} className="flex h-[600px] rounded bg-Secondary">
+                    <Image
+                      alt={`Product color option ${index + 1}`}
+                      className="m-auto"
+                      data-lightboxjs="lightbox1"
+                      height={315}
+                      objectFit="cover"
+                      quality={100}
+                      src={item.imageUrl}
+                      width={400}
+                    />
                   </SwiperSlide>
                 ))}
               </Swiper>
-            </Gallery>
+            </SlideshowLightbox>
           </div>
         </div>
 
@@ -177,27 +200,30 @@ const ProductDetailComponent: React.FC<{id: string}> = ({id}) => {
               <div className="flex items-center gap-6">
                 <h3 className="text-xl">{t("colours")}:</h3>
                 <div className="flex gap-2">
-                  {data.colors.map((color: typeColor, index: number) => (
-                    <div key={color.colorName} className="relative">
-                      <div
-                        className={cn("h-5 w-5 cursor-pointer rounded-full", {
-                          "border-4 border-Primary": index === swiper?.activeIndex,
-                        })}
-                        style={{backgroundColor: color.colorHex}}
-                        onClick={() => handleSlideChange(index)}
-                      />
-                      {index === swiper?.activeIndex && (
-                        <div className="absolute inset-0 rounded-full border-2 border-Text2" />
-                      )}
-                    </div>
-                  ))}
+                  {data?.colors &&
+                    data.colors.map((color: typeColor, index: number) => (
+                      <div key={color.colorName} className="relative">
+                        <div
+                          className={cn("h-5 w-5 cursor-pointer rounded-full", {
+                            "border-4 border-Primary": selectedColorIndex === index,
+                          })}
+                          style={{backgroundColor: color.colorHex}}
+                          onClick={() => handleColorSelect(index)}
+                        />
+                        {selectedColorIndex === index && (
+                          <div className="absolute inset-0 rounded-full border-2 border-Text2" />
+                        )}
+                      </div>
+                    ))}
                 </div>
               </div>
             )}
             <SizesProductComponent />
             <div className="flex items-center gap-4">
               <InputQuanlityComponent />
-              <PrimaryButton className="h-[44px] w-[165px]">{t("buttonBuy")}</PrimaryButton>
+              <PrimaryButton className="h-[44px] w-[165px]" onClick={handleBuyNow}>
+                {t("buttonBuy")}
+              </PrimaryButton>
               <div className="flex size-10 items-center justify-center rounded border border-Primary1">
                 <AddToWishlistComponent data={data} />
               </div>

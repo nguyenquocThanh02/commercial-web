@@ -11,6 +11,7 @@ import {typeColor, typeProduct} from "@/types";
 import {calculatePriceSale, renderPriceFollowCurrency} from "@/utils";
 import {cn} from "@/libs/utils";
 import {productStore} from "@/store";
+import {Link} from "@/app/navigation";
 
 const CardProductWishlistComponent: React.FC<{data: typeProduct}> = ({data}) => {
   const [selectColor, setSelectColor] = useState<typeColor>(data.colors[0]);
@@ -68,7 +69,11 @@ const CardProductWishlistComponent: React.FC<{data: typeProduct}> = ({data}) => 
       </div>
 
       <div className="product-card mt-4 flex flex-col gap-2">
-        <h3 className="font-medium">{data.name}</h3>
+        <Link href={`/product/${data.id}`}>
+          <h3 className="font-medium transition-all duration-300 hover:text-Secondary2">
+            {data.name}
+          </h3>
+        </Link>
         <div className="flex flex-row items-center gap-2">
           {" "}
           <div className="flex gap-3">

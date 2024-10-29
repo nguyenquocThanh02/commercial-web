@@ -28,6 +28,19 @@ export const ProductApis = {
       return error;
     }
   },
+  getCoupons: async (code: string) => {
+    try {
+      const response = await instance.get("/coupon", {
+        params: {
+          code: code,
+        },
+      });
+
+      return response?.data;
+    } catch (error) {
+      return error;
+    }
+  },
   getCategories: async () => {
     try {
       const response = await instance.get("/categories");
