@@ -61,7 +61,7 @@ const MethodCheckoutComponent: React.FC<{price: number}> = ({price}) => {
             <Elements
               options={{
                 mode: "payment",
-                amount: locale === "vi" ? Math.floor(price) : Math.floor(price * 1000),
+                amount: locale === "vi" ? Math.floor(price) : Math.floor(price * 100),
                 currency: locale === "vi" ? "vnd" : "usd",
               }}
               stripe={stripePromise}

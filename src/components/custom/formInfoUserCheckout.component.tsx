@@ -51,6 +51,7 @@ const FormInfoUserCheckoutComponent: React.FC<{
       required: true,
     },
   ];
+
   const {ref} = usePlacesWidget({
     apiKey: process.env.NEXT_PUBLIC_KEY_GOOGLE_AUTO_PLACE,
     onPlaceSelected: (place) => {
