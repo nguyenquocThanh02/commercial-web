@@ -11,7 +11,7 @@ const OrderSuccessPage = () => {
   return (
     <div className="l-container h-[70vh]">
       <div className="mt-[140px] flex flex-col items-center justify-center">
-        <h1 className="text-center font-inter-font text-3xl font-medium leading-[90px] sm:text-[80px]">
+        <h1 className="text-center font-inter-font text-2xl font-medium leading-[90px] sm:text-[60px]">
           {" "}
           {t("success")}
         </h1>

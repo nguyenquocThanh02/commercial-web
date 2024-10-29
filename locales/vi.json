@@ -231,6 +231,10 @@
       "quantity": "Số lượng",
       "subtotal": "Thành tiền",
       "buttonReturn": "Tiếp tục mua sắm"
+    },
+    "Empty": {
+      "empty": "Không có sản phẩm nào.",
+      "buttonReturn": "Trở lại mua sắm"
     }
   },
   "Payment": {

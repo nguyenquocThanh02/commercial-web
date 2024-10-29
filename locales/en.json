@@ -229,6 +229,10 @@
       "quantity": "Quantity",
       "subtotal": "Subtotal",
       "buttonReturn": "Return to Shopping"
+    },
+    "Empty": {
+      "empty": "There are no products.",
+      "buttonReturn": "Return to Shopping"
     }
   },
   "Payment": {

@@ -42,48 +42,50 @@ const PaymentCartComponent = () => {
 
   return (
     <div>
-      <div className="mt-20 flex justify-between">
-        <SearchCouponComponent setDiscount={setDiscount} />
-        <div className="h-full min-h-[324px] w-[470px] rounded border border-Text2">
-          <div className="flex h-full w-full flex-col px-6 py-8">
-            <h2 className="text-xl font-medium leading-7">{t("Payment.Coupon.cartTotal")}</h2>
-            <div className="mt-6 flex items-center justify-between">
-              <p className="leading-6">{t("Payment.Coupon.subTotal")}</p>
-              <p className="text-Text2/50">{renderPriceFollowCurrency(locale, totalPrice)}</p>
-            </div>
-            <hr className="mt-4 text-Text2" />
-            {discount > 0 && (
-              <>
-                <div className="mt-6 flex items-center justify-between">
-                  <p className="leading-6">{t("Payment.Coupon.totalDiscount")}</p>
-                  <p className="text-Text2/50">
-                    {" "}
-                    -
-                    {renderPriceFollowCurrency(
-                      locale,
-                      calculateTotalDecrease(totalPrice, discount),
-                    )}
-                  </p>
-                </div>
-                <hr className="mt-4 text-Text2" />
-              </>
-            )}
-            <div className="mt-4 flex items-center justify-between">
-              <p className="leading-6">{t("Payment.Coupon.shipping")}</p>
-              <p className="text-Text2/50">FREE</p>
-            </div>
-            <hr className="mt-4 text-Text2" />
-            <div className="mt-4 flex items-center justify-between">
-              <p className="leading-6">{t("Payment.Coupon.total")}</p>
-              <p className="text-Text2/50">{renderPriceFollowCurrency(locale, finalTotal)}</p>
-            </div>
+      {cart.length > 0 && (
+        <div className="mt-20 flex justify-between">
+          <SearchCouponComponent setDiscount={setDiscount} />
+          <div className="h-full min-h-[324px] w-[470px] rounded border border-Text2">
+            <div className="flex h-full w-full flex-col px-6 py-8">
+              <h2 className="text-xl font-medium leading-7">{t("Payment.Coupon.cartTotal")}</h2>
+              <div className="mt-6 flex items-center justify-between">
+                <p className="leading-6">{t("Payment.Coupon.subTotal")}</p>
+                <p className="text-Text2/50">{renderPriceFollowCurrency(locale, totalPrice)}</p>
+              </div>
+              <hr className="mt-4 text-Text2" />
+              {discount > 0 && (
+                <>
+                  <div className="mt-6 flex items-center justify-between">
+                    <p className="leading-6">{t("Payment.Coupon.totalDiscount")}</p>
+                    <p className="text-Text2/50">
+                      {" "}
+                      -
+                      {renderPriceFollowCurrency(
+                        locale,
+                        calculateTotalDecrease(totalPrice, discount),
+                      )}
+                    </p>
+                  </div>
+                  <hr className="mt-4 text-Text2" />
+                </>
+              )}
+              <div className="mt-4 flex items-center justify-between">
+                <p className="leading-6">{t("Payment.Coupon.shipping")}</p>
+                <p className="text-Text2/50">FREE</p>
+              </div>
+              <hr className="mt-4 text-Text2" />
+              <div className="mt-4 flex items-center justify-between">
+                <p className="leading-6">{t("Payment.Coupon.total")}</p>
+                <p className="text-Text2/50">{renderPriceFollowCurrency(locale, finalTotal)}</p>
+              </div>
 
-            <PrimaryButton className="mx-auto mt-4 h-[56px] w-[260px]" onClick={handleCheckout}>
-              {t("Payment.Coupon.processButton")}
-            </PrimaryButton>
+              <PrimaryButton className="mx-auto mt-4 h-[56px] w-[260px]" onClick={handleCheckout}>
+                {t("Payment.Coupon.processButton")}
+              </PrimaryButton>
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
