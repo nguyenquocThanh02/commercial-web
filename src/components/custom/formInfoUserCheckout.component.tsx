@@ -2,6 +2,7 @@
 import React from "react";
 import {useTranslations} from "next-intl";
 import {UseFormReturn} from "react-hook-form";
+import {usePlacesWidget} from "react-google-autocomplete";
 
 import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from "../ui/form";
 import {Checkbox} from "../ui/checkbox";
@@ -50,6 +51,22 @@ const FormInfoUserCheckoutComponent: React.FC<{
       required: true,
     },
   ];
+  const {ref} = usePlacesWidget({
+    apiKey: process.env.NEXT_PUBLIC_KEY_GOOGLE_AUTO_PLACE,
+    onPlaceSelected: (place) => {
+      // console.log(place);
+      form.setValue("streetAddress", place.formatted_address);
+      const townCity = place.address_components.find(
+        (component: any) =>
+          component.types.includes("locality") ||
+          component.types.includes("administrative_area_level_2"),
+      )?.long_name;
+
+      if (townCity) {
+        form.setValue("townCity", townCity);
+      }
+    },
+  });
 
   return (
     <div className="w-[470px]">
@@ -58,7 +75,7 @@ const FormInfoUserCheckoutComponent: React.FC<{
         <form className="mt-12 space-y-8">
           {fields.map((item, index) => (
             <FormField
-              key={index}
+              key={item.name}
               control={form.control}
               name={item.name}
               render={({field}) => (
@@ -68,7 +85,11 @@ const FormInfoUserCheckoutComponent: React.FC<{
                     {item.required && <span className="text-Secondary2/40">{"*"}</span>}
                   </FormLabel>
                   <FormControl>
-                    <InputPrimary {...field} />
+                    <InputPrimary
+                      {...field}
+                      ref={item.name === "streetAddress" ? ref : null}
+                      placeholder=""
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

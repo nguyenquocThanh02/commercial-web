@@ -259,7 +259,8 @@
     },
     "Order": {
       "buttonPlace": "Place order"
-    }
+    },
+    "methodPayment": "Thanh toán khi nhận hàng"
   },
   "Tooltip": {
     "addToWishlist": "Thêm vào yêu thích",

@@ -257,7 +257,8 @@
     },
     "Order": {
       "buttonPlace": "Place order"
-    }
+    },
+    "methodPayment": "Cash On Delivery"
   },
   "Tooltip": {
     "addToWishlist": "Add to wishlist",

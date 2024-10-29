@@ -63,7 +63,7 @@ const HeaderLayout = () => {
     isLogin = localStorage.getItem(localStorageKey.accessToken) ? true : false;
   }, [isAuth]);
 
-  const handleChangeLocale = (value: string) => {
+  const handleChangeLocale = (value: "en" | "vi") => {
     router.push(pathname, {locale: value});
   };
 

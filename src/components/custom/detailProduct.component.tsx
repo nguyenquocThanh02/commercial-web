@@ -4,10 +4,10 @@ import {Swiper, SwiperSlide} from "swiper/react";
 import {FreeMode, Navigation, Thumbs} from "swiper/modules";
 import {useLocale, useTranslations} from "next-intl";
 import Image from "next/image";
-import {Gallery, Item} from "react-photoswipe-gallery";
 import {Swiper as SwiperType} from "swiper";
 import {notFound, useRouter} from "next/navigation";
 import {toast} from "sonner";
+import {SlideshowLightbox} from "lightbox.js-react";
 
 import AddToWishlistComponent from "../form/addToWishListComponent";
 import DetailProductSkeleton from "../skeleton/detailProduct.skeleton";
@@ -135,44 +135,40 @@ const ProductDetailComponent: React.FC<{id: string}> = ({id}) => {
                 ))}
             </Swiper>
           </div>
-          <div className="">
-            <Gallery>
+          <div className="h-[600px]">
+            <SlideshowLightbox
+              className="container mx-auto grid grid-cols-3 gap-2"
+              fullScreen={true}
+              images={data.colors.map((item: typeColor) => ({
+                src: item.imageUrl,
+                alt: item.colorName,
+              }))}
+              lightboxIdentifier="lightbox1"
+            >
               <Swiper
+                className="h-full w-[500px]"
+                modules={[FreeMode, Navigation, Thumbs]}
                 navigation={true}
                 thumbs={{swiper: thumbsSwiper}}
                 onSlideChange={handleSlideChange}
                 onSwiper={setMainSwiper}
-                className="h-full w-[500px]"
-                // loop={true}
-                modules={[FreeMode, Navigation, Thumbs]}
               >
-                {data?.colors &&
-                  data.colors.map((item: typeColor, index: number) => (
-                    <SwiperSlide key={index} className="flex h-full rounded bg-Secondary">
-                      <Item
-                        height="768"
-                        original={item.imageUrl}
-                        thumbnail={item.imageUrl}
-                        width="1024"
-                      >
-                        {({ref, open}) => (
-                          <Image
-                            ref={ref}
-                            alt="swiper product detail"
-                            className="m-auto"
-                            height={315}
-                            objectFit="cover"
-                            quality={100}
-                            src={item.imageUrl}
-                            width={400}
-                            onClick={open}
-                          />
-                        )}
-                      </Item>
-                    </SwiperSlide>
-                  ))}
+                {data?.colors?.map((item: typeColor, index: number) => (
+                  <SwiperSlide key={index} className="flex h-[600px] rounded bg-Secondary">
+                    <Image
+                      alt={`Product color option ${index + 1}`}
+                      className="m-auto"
+                      data-lightboxjs="lightbox1"
+                      height={315}
+                      objectFit="cover"
+                      quality={100}
+                      src={item.imageUrl}
+                      width={400}
+                    />
+                  </SwiperSlide>
+                ))}
               </Swiper>
-            </Gallery>
+            </SlideshowLightbox>
           </div>
         </div>
 

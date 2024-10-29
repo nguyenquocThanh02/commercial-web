@@ -19,7 +19,11 @@ const ChangeQuantityProductCartComponent: React.FC<{item: typeProductSelect}> = 
 
   const handleUpdateCart = (newQuantity: number) => {
     const updatedCart = cart.map((cartItem) => {
-      if (cartItem.product.id === item.product.id) {
+      if (
+        cartItem.product.id === item.product.id &&
+        cartItem.selectedSize === item.selectedSize &&
+        cartItem.selectedColor === item.selectedColor
+      ) {
         return {...cartItem, quantity: newQuantity};
       }
 

@@ -6,6 +6,7 @@ import {UseFormReturn} from "react-hook-form";
 
 import PrimaryButton from "./primaryButton.ui";
 import SearchCouponComponent from "./searchCoupon.component";
+import MethodCheckoutComponent from "./methodCheckout.component";
 
 import {localStorageKey} from "@/constants/localStorage";
 import {typeInfoCheckout, typeOrder, typeProductSelect} from "@/types";
@@ -125,6 +126,7 @@ const CheckoutComponent: React.FC<{form: UseFormReturn}> = ({form}) => {
           <p className="text-Text2">{renderPriceFollowCurrency(locale, finalTotal)}</p>
         </div>
       </div>
+      <MethodCheckoutComponent price={finalTotal} />
       <SearchCouponComponent setDiscount={setDiscount} />
       <PrimaryButton className="h-[56px] w-[190px]" type="submit" onClick={handlePlaceOrder}>
         {t("Checkout.Order.buttonPlace")}
