@@ -1,5 +1,5 @@
-import {PaymentElement, useStripe} from "@stripe/react-stripe-js";
-import React from "react";
+import {PaymentElement, useElements, useStripe} from "@stripe/react-stripe-js";
+import React, {useState} from "react";
 import {useLocale} from "next-intl";
 
 import {Button} from "../ui/button";
@@ -8,30 +8,44 @@ import {renderPriceFollowCurrency} from "@/utils";
 
 const CheckoutStripeComponent: React.FC<{amount: number}> = ({amount}) => {
   const stripe = useStripe();
+  const elements = useElements();
   const locale = useLocale();
 
-  const handleSubmit = async (event: React.FormEvent) => {
+  const [loading, setLoading] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string>("");
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    // await fetch("/api/checkout", {
-    //   method: "POST",
-    //   body: JSON.stringify(amount),
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // }).then(async (res) => {
-    //   const payload = await res.json();
+    if (!stripe || !elements) {
+      return;
+    }
 
-    //   console.log(payload);
-    // });
+    setLoading(true);
+
+    const {error} = await stripe.confirmPayment({
+      elements,
+      confirmParams: {
+        return_url: window.location.origin,
+      },
+    });
+
+    if (error) {
+      setErrorMessage(error.message);
+      console.error(error);
+    } else {
+      console.log("Payment successful!");
+    }
+    setLoading(false);
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <PaymentElement />
-      <Button className="mt-4 w-full py-6" disabled={!stripe} type="submit">
-        Payment ({renderPriceFollowCurrency(locale, amount)})
+      <Button className="mt-4 w-full py-6" disabled={!stripe || loading} type="submit">
+        {loading ? "Processing..." : `Payment (${renderPriceFollowCurrency(locale, amount)})`}
       </Button>
+      {errorMessage && <div className="text-red-500">{errorMessage}</div>}
     </form>
   );
 };

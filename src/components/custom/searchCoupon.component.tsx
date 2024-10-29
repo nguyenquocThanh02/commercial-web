@@ -1,5 +1,5 @@
 "use client";
-import React, {useCallback, useEffect, useState} from "react";
+import React, {useCallback, useState} from "react";
 import {useTranslations} from "next-intl";
 
 import {Checkbox} from "../ui/checkbox";
@@ -40,10 +40,6 @@ const SearchCouponComponent: React.FC<{
     }, 0);
 
     setDiscount(totalDiscount);
-  }, [coupons]);
-
-  useEffect(() => {
-    handleApplyCoupon();
   }, [coupons]);
 
   const {data} = useQueryProduct.useCoupon(debounceSearchValue);

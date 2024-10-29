@@ -54,7 +54,6 @@ const FormInfoUserCheckoutComponent: React.FC<{
   const {ref} = usePlacesWidget({
     apiKey: process.env.NEXT_PUBLIC_KEY_GOOGLE_AUTO_PLACE,
     onPlaceSelected: (place) => {
-      // console.log(place);
       form.setValue("streetAddress", place.formatted_address);
       const townCity = place.address_components.find(
         (component: any) =>
@@ -89,6 +88,10 @@ const FormInfoUserCheckoutComponent: React.FC<{
                       {...field}
                       ref={item.name === "streetAddress" ? ref : null}
                       placeholder=""
+                      onChange={(e) => {
+                        field.onChange(e);
+                        form.trigger(item.name);
+                      }}
                     />
                   </FormControl>
                   <FormMessage />
