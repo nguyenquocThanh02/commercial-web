@@ -258,7 +258,12 @@
     "Order": {
       "buttonPlace": "Place order"
     },
-    "methodPayment": "Cash On Delivery"
+    "methodPayment": "Cash On Delivery",
+    "ToastOrder": {
+      "success": "Your order has been placed successfully!",
+      "buttonReturn": "Return to Home",
+      "buttonReview": "View Order"
+    }
   },
   "Tooltip": {
     "addToWishlist": "Add to wishlist",

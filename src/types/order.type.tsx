@@ -14,4 +14,5 @@ export type typeOrder = {
   total: number;
   discount: number;
   infoCheckout: typeInfoCheckout;
+  payment: string;
 };

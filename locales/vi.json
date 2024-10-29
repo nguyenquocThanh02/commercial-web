@@ -260,7 +260,12 @@
     "Order": {
       "buttonPlace": "Place order"
     },
-    "methodPayment": "Thanh toán khi nhận hàng"
+    "methodPayment": "Thanh toán khi nhận hàng",
+    "ToastOrder": {
+      "success": "Đơn hàng của bạn đã được đặt thành công!",
+      "buttonReturn": "Trở về Trang Chủ",
+      "buttonReview": "Xem Đơn Đặt"
+    }
   },
   "Tooltip": {
     "addToWishlist": "Thêm vào yêu thích",

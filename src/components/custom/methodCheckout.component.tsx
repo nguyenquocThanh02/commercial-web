@@ -1,5 +1,5 @@
 "use client";
-import React, {useState} from "react";
+import React from "react";
 import {Elements} from "@stripe/react-stripe-js";
 import {loadStripe} from "@stripe/stripe-js";
 import Image from "next/image";
@@ -11,6 +11,7 @@ import nagadImg from "@/assets/img/Nagad.png";
 import bkashImg from "@/assets/img/Bkash.png";
 import mastercardImg from "@/assets/img/Mastercard.png";
 import visaImg from "@/assets/img/Visa.png";
+import {cardSubmitStore} from "@/store/cardSubmit.store";
 
 if (process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY === undefined) {
   throw new Error("NEXT_PUBLIC_STRIPE_PUBLIC_KEY is not defined");
@@ -19,7 +20,7 @@ if (process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY === undefined) {
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
 const MethodCheckoutComponent: React.FC<{price: number}> = ({price}) => {
   const t = useTranslations("Checkout");
-  const [selectedOption, setSelectedOption] = useState("cash");
+  const {method, setMethod} = cardSubmitStore();
   const locale = useLocale();
 
   return (
@@ -27,14 +28,12 @@ const MethodCheckoutComponent: React.FC<{price: number}> = ({price}) => {
       <div className="w-[427px]">
         <div
           className="flex cursor-pointer items-center justify-between"
-          onClick={() => setSelectedOption("card")}
+          onClick={() => setMethod("card")}
         >
           <div
-            className={`flex size-6 rounded-full border border-Text2 bg-Text ${selectedOption === "option1" ? "border-Secondary2" : ""}`}
+            className={`flex size-6 rounded-full border border-Text2 bg-Text ${method === "option1" ? "border-Secondary2" : ""}`}
           >
-            {selectedOption === "card" && (
-              <div className="m-auto size-[14px] rounded-full bg-Text2" />
-            )}
+            {method === "card" && <div className="m-auto size-[14px] rounded-full bg-Text2" />}
           </div>
           <div className="flex items-center">
             <Image alt="Bkash" height={28} src={bkashImg} width={42} />
@@ -43,20 +42,7 @@ const MethodCheckoutComponent: React.FC<{price: number}> = ({price}) => {
             <Image alt="Nagad" height={28} src={nagadImg} width={42} />
           </div>
         </div>
-        <div
-          className="mt-8 flex cursor-pointer items-center gap-4"
-          onClick={() => setSelectedOption("cash")}
-        >
-          <div
-            className={`flex size-6 rounded-full border border-Text2 bg-Text ${selectedOption === "option2" ? "border-Secondary2" : ""}`}
-          >
-            {selectedOption === "cash" && (
-              <div className="m-auto size-[14px] rounded-full bg-Text2" />
-            )}
-          </div>
-          <div>{t("methodPayment")}</div>
-        </div>
-        {selectedOption === "card" && (
+        {method === "card" && (
           <div className="mt-8">
             <Elements
               options={{
@@ -66,10 +52,21 @@ const MethodCheckoutComponent: React.FC<{price: number}> = ({price}) => {
               }}
               stripe={stripePromise}
             >
-              <CheckoutStripeComponent amount={price} />
+              <CheckoutStripeComponent />
             </Elements>
           </div>
         )}
+        <div
+          className="mt-8 flex cursor-pointer items-center gap-4"
+          onClick={() => setMethod("cash")}
+        >
+          <div
+            className={`flex size-6 rounded-full border border-Text2 bg-Text ${method === "option2" ? "border-Secondary2" : ""}`}
+          >
+            {method === "cash" && <div className="m-auto size-[14px] rounded-full bg-Text2" />}
+          </div>
+          <div>{t("methodPayment")}</div>
+        </div>
       </div>
     </>
   );

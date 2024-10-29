@@ -1,67 +1,31 @@
 "use client";
 import {PaymentElement, useElements, useStripe} from "@stripe/react-stripe-js";
-import React, {useEffect, useState} from "react";
-import {useLocale} from "next-intl";
+import React, {useState} from "react";
 
-import {Button} from "../ui/button";
+import {cardSubmitStore} from "@/store/cardSubmit.store";
 
-import {renderPriceFollowCurrency} from "@/utils";
-
-const CheckoutStripeComponent: React.FC<{amount: number}> = ({amount}) => {
+const CheckoutStripeComponent = () => {
   const stripe = useStripe();
   const elements = useElements();
   const [errorMessage, setErrorMessage] = useState<string>();
-  const [clientSecret, setClientSecret] = useState("");
-  const [loading, setLoading] = useState(false);
-  const locale = useLocale();
+  const {setIsComplete} = cardSubmitStore();
 
-  useEffect(() => {
-    fetch("/api/checkout", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        amount: locale === "vi" ? Math.floor(amount) : Math.floor(amount * 100),
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => setClientSecret(data.clientSecret));
-  }, [amount]);
-
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setLoading(true);
-
+  const handleSubmit = async () => {
     if (!stripe || !elements) {
       return;
     }
-
     const {error: submitError} = await elements.submit();
+
+    console.log(submitError);
 
     if (submitError) {
       setErrorMessage(submitError.message);
-      setLoading(false);
 
       return;
     }
-
-    // const {error} = await stripe.confirmPayment({
-    //   elements,
-    //   clientSecret,
-    //   confirmParams: {
-    //     return_url: `http://www.localhost:3000/payment-success?amount=${amount}`,
-    //   },
-    // });
-
-    // if (error) {
-    //   setErrorMessage(error.message);
-    // }
-
-    setLoading(false);
   };
 
-  if (!clientSecret || !stripe || !elements) {
+  if (!stripe || !elements) {
     return (
       <div className="flex items-center justify-center">
         <div
@@ -78,14 +42,9 @@ const CheckoutStripeComponent: React.FC<{amount: number}> = ({amount}) => {
 
   return (
     <form className="rounded-md bg-white p-2" onSubmit={handleSubmit}>
-      {clientSecret && <PaymentElement />}
+      <PaymentElement onChange={(event) => setIsComplete(event.complete)} />
 
       {errorMessage && <div>{errorMessage}</div>}
-
-      <Button className="mt-4 w-full py-6" disabled={!stripe || loading} type="submit">
-        {loading ? "Processing..." : `Payment (${renderPriceFollowCurrency(locale, amount)})`}
-      </Button>
-      {errorMessage && <div className="text-red-500">{errorMessage}</div>}
     </form>
   );
 };

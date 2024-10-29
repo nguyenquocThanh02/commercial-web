@@ -4,6 +4,8 @@ import Image from "next/image";
 import React, {useMemo, useState} from "react";
 import {UseFormReturn} from "react-hook-form";
 
+import WaitingLayout from "../layout/waiting.layout";
+
 import PrimaryButton from "./primaryButton.ui";
 import SearchCouponComponent from "./searchCoupon.component";
 import MethodCheckoutComponent from "./methodCheckout.component";
@@ -14,16 +16,21 @@ import {calculatePriceSale, calculateTotalDecrease, renderPriceFollowCurrency} f
 import {couponStore} from "@/store/coupon.store";
 import imageDefault from "@/assets/img/imageDefault.jpg";
 import {OrderApis} from "@/services/order.service";
+import {cardSubmitStore} from "@/store/cardSubmit.store";
+import {useRouter} from "@/app/navigation";
 
 const CheckoutComponent: React.FC<{form: UseFormReturn}> = ({form}) => {
   const locale = useLocale();
   const t = useTranslations();
+  const route = useRouter();
 
   const {coupons} = couponStore();
+  const {isComplete, method} = cardSubmitStore();
 
   const [discount, setDiscount] = useState<number>(
     coupons.reduce((total, coupon) => total + Number(coupon.discount), 0),
   );
+  const [loading, setLoading] = useState<boolean>(false);
 
   const storedOrders = localStorage.getItem(localStorageKey.order);
   const orders: typeProductSelect[] = storedOrders ? JSON.parse(storedOrders) : [];
@@ -47,7 +54,8 @@ const CheckoutComponent: React.FC<{form: UseFormReturn}> = ({form}) => {
   const handlePlaceOrder = async () => {
     const isValid = await form.trigger();
 
-    if (isValid) {
+    if (isValid && (method === "cash" || (method === "card" && isComplete))) {
+      setLoading(true);
       const values = form.getValues();
 
       const infoCheckout: typeInfoCheckout = {
@@ -60,23 +68,25 @@ const CheckoutComponent: React.FC<{form: UseFormReturn}> = ({form}) => {
         email: values.email,
       };
 
-      console.log(infoCheckout);
-
       const order: typeOrder = {
         infoCheckout: infoCheckout,
         items: orders,
         discount: discount,
         total: finalTotal,
+        payment: method,
       };
 
       const resultPlaceOrder = await OrderApis.createOrder(order);
 
-      console.log(resultPlaceOrder);
+      if (resultPlaceOrder) {
+        route.push("/checkout/success");
+      }
     }
   };
 
   return (
     <div className="flex w-[527px] flex-col gap-8">
+      {loading && <WaitingLayout />}
       <div className="flex w-[425px] flex-col gap-8">
         {orders.map((item, index) => (
           <div key={index} className="flex h-[54px] items-center justify-between">
@@ -126,9 +136,14 @@ const CheckoutComponent: React.FC<{form: UseFormReturn}> = ({form}) => {
           <p className="text-Text2">{renderPriceFollowCurrency(locale, finalTotal)}</p>
         </div>
       </div>
-      <MethodCheckoutComponent price={finalTotal} />
+      <MethodCheckoutComponent price={totalPrice} />
       <SearchCouponComponent setDiscount={setDiscount} />
-      <PrimaryButton className="h-[56px] w-[190px]" type="submit" onClick={handlePlaceOrder}>
+      <PrimaryButton
+        className="h-[56px] w-[190px]"
+        disabled={!isComplete && method === "card"}
+        type="submit"
+        onClick={handlePlaceOrder}
+      >
         {t("Checkout.Order.buttonPlace")}
       </PrimaryButton>
     </div>
