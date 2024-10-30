@@ -95,7 +95,7 @@ const HeaderLayout = () => {
                 <DropdownMenuRadioGroup
                   defaultValue={currentLocale}
                   value={currentLocale}
-                  onValueChange={handleChangeLocale}
+                  onValueChange={(e) => handleChangeLocale(e as "en" | "vi")}
                 >
                   <DropdownMenuRadioItem className="text-shadow hover:cursor-pointer" value="en">
                     English

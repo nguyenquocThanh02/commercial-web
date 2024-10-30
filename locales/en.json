@@ -277,6 +277,59 @@
       "removed": "Removed from wishlist"
     }
   },
+  "Profile": {
+    "Sidebar": {
+      "Manage": {
+        "account": "Manage My Account",
+        "profile": "My Profile",
+        "address": "Address Book",
+        "payment": "My Payment Options"
+      },
+      "Order": {
+        "order": "My Orders",
+        "return": "My Returns",
+        "cancel": "My Cancellations"
+      },
+      "Wishlist": {
+        "wishlist": "My Wishlist"
+      }
+    },
+    "Form": {
+      "title": "Edit Your Profile",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email",
+      "address": "Address",
+      "password": "Password Changes",
+      "Placehover": {
+        "currentPass": "Current Password",
+        "newPass": "New Password",
+        "confirmPass": "Confirm New Password"
+      },
+      "cancelBtn": "Cancel",
+      "saveBtn": "Save Changes"
+    }
+  },
+  "Contact": {
+    "Sidebar": {
+      "Phone": {
+        "title": "Call To Us",
+        "content1": "We are available 24/7, 7 days a week.",
+        "content2": "Phone: +8801611112222"
+      },
+      "Email": {
+        "title": "Write To Us",
+        "content1": "Fill out our form and we will contact you within 24 hours."
+      }
+    },
+    "Form": {
+      "name": "Your Name",
+      "mail": "Your Email",
+      "message": "Your Message",
+      "phone": "Your Phone",
+      "button": "Send Message"
+    }
+  },
   "NotFound": {
     "title": "404 Not Found",
     "titleProduct": "Product Not Found",

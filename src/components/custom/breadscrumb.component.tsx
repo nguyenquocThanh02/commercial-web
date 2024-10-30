@@ -23,14 +23,14 @@ export function BreadcrumbComponent({links}: BreadcrumbCustomProps) {
 
   return (
     <Breadcrumb className="mt-20">
-      <BreadcrumbList>
+      <BreadcrumbList className="flex items-center">
         {links.map((item, index) => (
           <React.Fragment key={index}>
             {item.link ? (
               <BreadcrumbItem>
                 <LinkCustom
                   className={cn("transition-colors", {
-                    "text-Primary": paramPath === item.link,
+                    "text-Text2": paramPath === item.link,
                   })}
                   href={item.link}
                   text={item.name}

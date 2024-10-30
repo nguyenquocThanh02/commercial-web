@@ -4,6 +4,11 @@ export type typeBreadCrumbs = {
   link?: string;
   name: string;
 };
+export type typeSidebarProfile = {
+  link?: string;
+  name: string;
+  sub?: typeBreadCrumbs[];
+};
 
 export type typeCountDownTime = {
   days: number | string;

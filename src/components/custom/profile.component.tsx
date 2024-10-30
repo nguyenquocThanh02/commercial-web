@@ -19,6 +19,7 @@ import LogoutIcon from "../icon/logout.icon";
 import {typeProfileNav} from "@/types";
 import {authStore} from "@/store";
 import {localStorageKey} from "@/constants/localStorage";
+import {Link} from "@/app/navigation";
 
 const ProfileComponent = () => {
   const t = useTranslations("Header.Profile");
@@ -30,7 +31,7 @@ const ProfileComponent = () => {
     {
       name: t("account"),
       icon: <ProfileIcon height={24} strokeColor="#fff" width={24} />,
-      path: "#",
+      path: "/profile",
     },
     {
       name: t("order"),
@@ -68,8 +69,6 @@ const ProfileComponent = () => {
       },
     }).then(async (res) => {
       const payload = await res.json();
-
-      console.log(payload);
     });
     setIsAuth(false);
   };
@@ -102,10 +101,12 @@ const ProfileComponent = () => {
                 onMouseEnter={() => setHoveredItem(index)}
                 onMouseLeave={() => setHoveredItem(null)}
               >
-                {React.cloneElement(item.icon, {
-                  strokeColor: hoveredItem === index ? "#000" : "#fff",
-                })}
-                {item.name}
+                <Link href={item.path}>
+                  {React.cloneElement(item.icon, {
+                    strokeColor: hoveredItem === index ? "#000" : "#fff",
+                  })}
+                  {item.name}
+                </Link>
               </DropdownMenuItem>
             ),
           )}

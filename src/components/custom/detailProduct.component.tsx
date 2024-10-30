@@ -15,6 +15,7 @@ import DetailProductSkeleton from "../skeleton/detailProduct.skeleton";
 import InputQuanlityComponent from "./inputQuanlity.component";
 import {BreadcrumbComponent} from "./breadscrumb.component";
 import SizesProductComponent from "./sizesProduct.component";
+import RecommendSectionComponent from "./recommendSection.component";
 
 import {useQueryProduct} from "@/hooks/useQueryHooks";
 import RatingComponent from "@/components/custom/rating.component";
@@ -249,6 +250,8 @@ const ProductDetailComponent: React.FC<{id: string}> = ({id}) => {
           </div>
         </div>
       </div>
+
+      <RecommendSectionComponent />
     </section>
   );
 };

@@ -280,6 +280,59 @@
       "removed": "Đã bỏ yêu thích"
     }
   },
+  "Profile": {
+    "Sidebar": {
+      "Manage": {
+        "account": "Quản lý Tài Khoản",
+        "profile": "Hồ Sơ Của Tôi",
+        "address": "Sổ Địa Chỉ",
+        "payment": "Tùy Chọn Thanh Toán"
+      },
+      "Order": {
+        "order": "Đơn Hàng ",
+        "return": "Đơn Trả Hàng ",
+        "cancel": "Đơn Hủy "
+      },
+      "Wishlist": {
+        "wishlist": "Danh Sách Yêu Thích "
+      }
+    },
+    "Form": {
+      "title": "Chỉnh sửa Hồ Sơ Của Bạn",
+      "firstName": "Họ",
+      "lastName": "Tên",
+      "email": "Email",
+      "address": "Địa Chỉ",
+      "password": "Thay Đổi Mật Khẩu",
+      "Placehover": {
+        "currentPass": "Mật Khẩu Hiện Tại",
+        "newPass": "Mật Khẩu Mới",
+        "confirmPass": "Xác Nhận Mật Khẩu Mới"
+      },
+      "cancelBtn": "Huỷ",
+      "saveBtn": "Lưu thay đổi"
+    }
+  },
+  "Contact": {
+    "Sidebar": {
+      "Phone": {
+        "title": "Gọi cho chúng tôi",
+        "content1": "Chúng tôi có mặt 24/7, 7 ngày một tuần.",
+        "content2": "Điện thoại: +8801611112222"
+      },
+      "Email": {
+        "title": "Viết cho chúng tôi",
+        "content1": "Điền vào mẫu của chúng tôi và chúng tôi sẽ liên hệ với bạn trong vòng 24 giờ."
+      }
+    },
+    "Form": {
+      "name": "Họ và Tên",
+      "mail": "Email",
+      "message": "Tin nhắn ",
+      "phone": "Số Điện Thoại",
+      "button": "Gửi Tin Nhắn"
+    }
+  },
   "NotFound": {
     "title": "404 Không Tìm Thấy",
     "titleProduct": "Sản phầm không tồn tại",
