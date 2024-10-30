@@ -26,12 +26,38 @@
     color: gold;
   }
 
-  //  Swiper detail product
   .mySwiper .swiper-slide-thumb-active {
     opacity: 1;
   }
 
   .shadow-input-primary {
     box-shadow: 0px 1px 13px 0px #0000000d;
+  }
+
+  .swiper-pagination {
+  }
+
+  .swiper-pagination-bullet {
+    background: #000;
+    opacity: 0.5;
+  }
+
+  .swiper-pagination-bullet-active {
+    opacity: 1;
+  }
+  .swiper-pagination-bullet {
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    font-size: 12px;
+    color: #000;
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  .swiper-pagination-bullet-active {
+    color: #863232;
+    background: #007aff;
   }
 }

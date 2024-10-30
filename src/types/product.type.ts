@@ -24,6 +24,7 @@ export type typePrice = {
 
 export type typeProduct = {
   id: number | string;
+  category?: string;
   name: string;
   description: string;
   colors: typeColor[];
