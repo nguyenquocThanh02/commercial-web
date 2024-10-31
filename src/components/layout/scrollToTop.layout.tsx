@@ -56,12 +56,6 @@ const ScrollToTop = () => {
             width={60}
             onClick={scrollToTop}
           />
-          {/* <div className="absolute top-[60px] h-1 w-full rounded-full bg-gray-200">
-            <div
-              className="h-full rounded-full bg-Secondary2"
-              style={{width: `${scrollPercent}%`, transition: "width 0.5s ease-in-out"}}
-            />
-          </div> */}
         </div>
       )}
     </div>

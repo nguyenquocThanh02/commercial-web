@@ -17,7 +17,7 @@ const PromoProductComponent = () => {
         <div className="z-10 ml-[56px]">
           <div className="flex max-w-[443px] flex-col gap-8">
             <p className="font-semibold text-Button1">{t("feature")}</p>
-            <h2 className="font-inter-font text-5xl font-semibold leading-[60px] text-Text">
+            <h2 className="font-inter-font text-4xl font-semibold leading-[60px] text-Text sm:text-5xl">
               {t("title")}
             </h2>
             <CountdownTimeSaleComponent timeEnd="2024-11-25T10:00:00Z" />

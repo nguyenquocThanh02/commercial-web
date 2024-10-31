@@ -3,32 +3,28 @@ import React, {useState} from "react";
 import {useTranslations} from "use-intl";
 
 import ShopIcon from "../icon/shop.icon";
-
-import iconDelivery from "@/assets/svg/icon-delivery.svg";
-import iconService from "@/assets/svg/Icon-service.svg";
-import iconGuarantee from "@/assets/svg/Icon-guarantee.svg";
 const TrustMetricComponent = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number>(-1);
 
   const t = useTranslations("About.TrustMetric");
   const trustMetrics = [
     {
-      icon: iconDelivery,
+      icon: <ShopIcon strokeColor="white" />,
       amount: "10.5k",
       details: t("detail1"),
     },
     {
-      icon: iconService,
+      icon: <ShopIcon strokeColor="white" />,
       amount: "20k",
       details: t("detail2"),
     },
     {
-      icon: iconGuarantee,
+      icon: <ShopIcon strokeColor="white" />,
       amount: "33k",
       details: t("detail3"),
     },
     {
-      icon: iconGuarantee,
+      icon: <ShopIcon strokeColor="white" />,
       amount: "28.8k",
       details: t("detail4"),
     },
@@ -45,7 +41,9 @@ const TrustMetricComponent = () => {
         >
           <div className="flex h-20 w-20 rounded-full border-[11px] border-BorderIcon/30 group-hover:border-Text/30">
             <div className="m-auto rounded-full bg-Text2 px-[12px] py-[13px] group-hover:bg-Text">
-              <ShopIcon strokeColor={hoveredIndex === index ? "black" : "white"} />
+              {React.cloneElement(item.icon, {
+                strokeColor: hoveredIndex === index ? "black" : "white",
+              })}
             </div>
           </div>
           <div>

@@ -51,7 +51,6 @@ export default function LoginForm() {
     // const cookie = await AuthApis.setCookie(loginResult);
 
     // console.log("cookie: ", cookie);
-    // console.log(process.env.NEXT_PUBLIC_BASE_URL);
 
     await fetch("/api/auth", {
       method: "POST",

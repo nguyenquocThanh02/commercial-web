@@ -14,7 +14,6 @@ import AddToWishlistComponent from "../form/addToWishListComponent";
 import InputQuanlityComponent from "./inputQuanlity.component";
 import {BreadcrumbComponent} from "./breadscrumb.component";
 import SizesProductComponent from "./sizesProduct.component";
-import RecommendSectionComponent from "./recommendSection.component";
 
 import RatingComponent from "@/components/custom/rating.component";
 import {calculatePriceSale, renderPriceFollowCurrency} from "@/utils";
@@ -99,7 +98,6 @@ const ProductDetailComponent: React.FC<{data: typeProduct}> = ({data}) => {
               className="mySwiper h-full w-[170px]"
               direction="vertical"
               freeMode={true}
-              // loop={true}
               modules={[FreeMode, Navigation, Thumbs]}
               slidesPerView={4}
               spaceBetween={16}
@@ -239,8 +237,6 @@ const ProductDetailComponent: React.FC<{data: typeProduct}> = ({data}) => {
           </div>
         </div>
       </div>
-
-      <RecommendSectionComponent />
     </section>
   );
 };

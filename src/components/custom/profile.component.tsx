@@ -84,7 +84,7 @@ const ProfileComponent = () => {
             item?.isButton ? (
               <DropdownMenuItem
                 key={index}
-                className="text-sm [&_svg]:size-auto"
+                className="flex w-[200px] text-sm"
                 onClick={handleLogout}
                 onMouseEnter={() => setHoveredItem(index)}
                 onMouseLeave={() => setHoveredItem(null)}
@@ -97,11 +97,11 @@ const ProfileComponent = () => {
             ) : (
               <DropdownMenuItem
                 key={index}
-                className="text-sm [&_svg]:size-auto"
+                className="text-sm"
                 onMouseEnter={() => setHoveredItem(index)}
                 onMouseLeave={() => setHoveredItem(null)}
               >
-                <Link href={item.path}>
+                <Link className="flex gap-3" href={item.path}>
                   {React.cloneElement(item.icon, {
                     strokeColor: hoveredItem === index ? "#000" : "#fff",
                   })}

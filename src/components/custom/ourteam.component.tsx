@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
-import {SwiperSlide, Swiper} from "swiper/react";
 import {Autoplay, Pagination} from "swiper/modules";
+import {SwiperSlide, Swiper as SwiperPerson} from "swiper/react";
 
 import CardPersonComponent from "./cardPerson.component";
 
@@ -44,41 +44,47 @@ const OurTeamComponent = () => {
   ];
 
   const autoplay = {
-    delay: 2000,
+    delay: 3000,
     disableOnInteraction: true,
   };
 
   const pagination = {
     clickable: true,
     pagination: {
-      el: ".pagination",
       clickable: true,
-      // renderBullet: function (index: number, className: string) {
-      //   return `<span class="">${index}</span>`;
-      // },
       renderBullet: function (index: number, className: string) {
-        return '<span class="' + className + '">' + (index + 1) + "</span>";
+        return `<span class="${className}"></span>`;
       },
     },
   };
 
   return (
     <div className="l-container">
-      <Swiper
+      <SwiperPerson
         autoplay={autoplay}
-        className="h-[700px]"
+        breakpoints={{
+          400: {
+            slidesPerView: 1,
+          },
+          1200: {
+            slidesPerView: 2,
+          },
+          1440: {
+            slidesPerView: 3,
+            spaceBetween: 30,
+          },
+        }}
+        className="flex h-[700px] justify-center"
         loop={true}
         modules={[Pagination, Autoplay]}
         pagination={pagination}
-        slidesPerView={3}
-        spaceBetween={30}
       >
         {items.map((item, index) => (
-          <SwiperSlide key={index} className="h-full">
+          <SwiperSlide key={index} className="flex h-full justify-center">
             <CardPersonComponent data={item} />
           </SwiperSlide>
         ))}
-      </Swiper>
+      </SwiperPerson>
     </div>
   );
 };

@@ -2,7 +2,7 @@ import React from "react";
 import {LayoutDashboard} from "lucide-react";
 import {useTranslations} from "next-intl";
 
-import {Sheet, SheetContent, SheetTrigger} from "../ui/sheet";
+import {Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger} from "../ui/sheet";
 
 import CategoryComponent from "./category.component";
 
@@ -24,6 +24,9 @@ const HeroComponent = () => {
             {t("categories")}
           </SheetTrigger>
           <SheetContent side="bottom">
+            <SheetHeader>
+              <SheetTitle />
+            </SheetHeader>
             <CategoryComponent />
           </SheetContent>
         </Sheet>

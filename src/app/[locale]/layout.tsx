@@ -9,17 +9,14 @@ import HeaderLayout from "@/components/layout/header.layout";
 import ReactQueryProvider from "@/react-query.provider";
 import ProgressBarProviders from "@/components/progressbar.provider";
 import FooterLayout from "@/components/layout/footer.layout";
-
 import "swiper/css";
+import "swiper/css/pagination";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import "photoswipe/dist/photoswipe.css";
 import "lightbox.js-react/dist/index.css";
-import "swiper/css/pagination";
-
 import "@/styles/index.scss";
-
 import {poppins, inter} from "@/app/fonts/font";
 import {Toaster} from "@/components/ui/sonner";
 import QuickReviewProductComponent from "@/components/custom/quickReviewProduct.component";

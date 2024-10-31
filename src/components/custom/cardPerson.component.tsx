@@ -9,7 +9,7 @@ import {typeCardPerson} from "@/types";
 
 const CardPersonComponent: React.FC<{data: typeCardPerson}> = ({data}) => {
   return (
-    <div className="h-[564px] w-[370px]">
+    <div className="flex h-[564px] w-[370px] flex-col items-center text-center xl:items-start xl:text-left">
       <div className="flex h-[430px] w-[370px] items-end justify-center rounded bg-Secondary">
         <Image alt="cart person" src={data.image} />
       </div>

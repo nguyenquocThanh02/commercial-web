@@ -24,7 +24,9 @@ const ContactForm = () => {
     message: "",
   });
 
-  async function onSubmit(values: z.infer<typeof contactSchema>) {}
+  async function onSubmit(values: z.infer<typeof contactSchema>) {
+    console.log(values);
+  }
 
   return (
     <div className="shadow-input-primary flex-1 rounded">
