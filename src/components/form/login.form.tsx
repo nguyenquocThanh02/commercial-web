@@ -18,13 +18,12 @@ import {Link, useRouter} from "@/app/navigation";
 import {AuthApis} from "@/services";
 import {typeLogin} from "@/types";
 import {authStore} from "@/store";
-import {localStorageKey} from "@/constants/localStorage";
 
 export default function LoginForm() {
   const t = useTranslations("Login");
   const route = useRouter();
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const {setIsAuth} = authStore();
+  const {setAuth} = authStore();
 
   const form = useCreateForm(loginSchema, {
     account: "",
@@ -38,37 +37,21 @@ export default function LoginForm() {
       account: values.account,
       password: values.password,
     };
+
     const loginResult = await AuthApis.login(dataLogin);
 
-    localStorage.setItem(localStorageKey.accessToken, loginResult.token);
     if (loginResult) {
-      setIsAuth(true);
       toast.success("Login successfully");
       route.push("/");
+      const cookies = await AuthApis.setCookie(loginResult);
+
+      setAuth(cookies.res.token);
     }
-
-    // ---- use cookie -----
-    // const cookie = await AuthApis.setCookie(loginResult);
-
-    // console.log("cookie: ", cookie);
-
-    await fetch("/api/auth", {
-      method: "POST",
-      body: JSON.stringify(loginResult),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then(async (res) => {
-      const payload = await res.json();
-
-      console.log(payload);
-    });
-
     setIsLoading(false);
   }
 
   return (
-    <div className="">
+    <div>
       {isLoading && <WaitingLayout />}
       <Form {...form}>
         <div>

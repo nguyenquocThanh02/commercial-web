@@ -9,7 +9,7 @@ const initialCart =
     : [];
 
 export const cartStore = create<typeCart>((set) => ({
-  cart: initialCart,
+  cart: [],
   setCart: (value) => {
     set({cart: value});
     if (typeof window !== "undefined") {

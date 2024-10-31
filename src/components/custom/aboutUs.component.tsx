@@ -21,6 +21,7 @@ const AboutUsComponent = () => {
         </div>
         <div className="mt-5 flex-shrink xl:absolute xl:right-0 xl:mt-0 xl:flex">
           <Image
+            priority
             alt="slider auth"
             className="rounded-lg xl:rounded-none"
             height={609}

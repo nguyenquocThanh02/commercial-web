@@ -18,27 +18,26 @@ import {Button} from "../ui/button";
 import LinkCustom from "../custom/link.custom";
 import ProfileComponent from "../custom/profile.component";
 import IconWithCounterComponent from "../ui/iconWithCounter.component";
-import {Sheet, SheetContent, SheetTrigger} from "../ui/sheet";
+import {Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger} from "../ui/sheet";
 
 import iconSearch from "@/assets/svg/searchIcon.svg";
 import iconDropdown from "@/assets/svg/DropDown.svg";
 import {Link, usePathname, useRouter} from "@/app/navigation";
-import {localStorageKey} from "@/constants/localStorage";
 import {authStore, cartStore, wishlistStore} from "@/store";
+import {localStorageKey} from "@/constants/localStorage";
 
-const HeaderLayout = () => {
+const HeaderLayout: React.FC<{token: string}> = ({token}) => {
   const pathname = usePathname();
   const router = useRouter();
   const currentLocale = useLocale();
 
   const t = useTranslations("Header");
-  let isLogin = localStorage.getItem(localStorageKey.accessToken) ? true : false;
 
   const [open, setOpen] = useState<boolean>(false);
 
-  const {isAuth} = authStore();
-  const {wishlist} = wishlistStore();
-  const {cart} = cartStore();
+  const {auth, setAuth} = authStore();
+  const {wishlist, setWishlist} = wishlistStore();
+  const {cart, setCart} = cartStore();
 
   const navbar = [
     {
@@ -60,8 +59,10 @@ const HeaderLayout = () => {
   ];
 
   useEffect(() => {
-    isLogin = localStorage.getItem(localStorageKey.accessToken) ? true : false;
-  }, [isAuth]);
+    setAuth(token);
+    setWishlist(JSON.parse(localStorage.getItem(localStorageKey.wishlist) || "[]") || []);
+    setCart(JSON.parse(localStorage.getItem(localStorageKey.cart) || "[]") || []);
+  }, []);
 
   const handleChangeLocale = (value: "en" | "vi") => {
     router.push(pathname, {locale: value});
@@ -69,16 +70,16 @@ const HeaderLayout = () => {
 
   return (
     <div className="sticky left-0 right-0 top-0 z-20 w-full border-b border-Text2/30 bg-Primary pb-4">
-      <div className="hidden h-[48px] w-full bg-Text2 text-Primary xl:flex">
+      <div className="xl:[48px] h-[36px] w-full bg-Text2 text-Primary xl:flex">
         <div className="l-container relative my-auto">
-          <div className="flex w-full items-center justify-center gap-[10px] text-sm">
+          <div className="hidden w-full items-center justify-center gap-[10px] text-sm xl:flex">
             <p className="leading-[21px]">{t("Advertise.advertise")}</p>
             <Link className="font-semibold underline" href={"/"}>
               {t("Advertise.shop-now")}
             </Link>
           </div>
 
-          <div className="absolute bottom-0 right-primary top-0 flex items-center gap-2">
+          <div className="ml-auto flex items-center gap-2 xl:absolute xl:bottom-0 xl:right-primary xl:top-0">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button
@@ -95,7 +96,7 @@ const HeaderLayout = () => {
                 <DropdownMenuRadioGroup
                   defaultValue={currentLocale}
                   value={currentLocale}
-                  onValueChange={handleChangeLocale}
+                  onValueChange={(e) => handleChangeLocale(e as "en" | "vi")}
                 >
                   <DropdownMenuRadioItem className="text-shadow hover:cursor-pointer" value="en">
                     English
@@ -110,7 +111,7 @@ const HeaderLayout = () => {
         </div>
       </div>
 
-      <div className="l-container mt-10 flex h-[38px] items-center justify-between">
+      <div className="l-container mt-10 flex h-[28px] items-center justify-between xl:h-[38px]">
         <Link className="hidden hover:opacity-70 xl:flex" href={"/"}>
           <h2 className="font-inter-font text-2xl font-bold">Exclusive</h2>
         </Link>
@@ -121,8 +122,11 @@ const HeaderLayout = () => {
               <AlignJustify className="opacity-90 hover:opacity-70" size={28} />
             </SheetTrigger>
             <SheetContent className="flex flex-col gap-5" side="left">
+              <SheetHeader>
+                <SheetTitle />
+              </SheetHeader>
               {navbar.map((item, index) =>
-                isLogin && item.path === "/register" ? (
+                auth && item.path === "/register" ? (
                   ""
                 ) : (
                   <LinkCustom
@@ -140,7 +144,7 @@ const HeaderLayout = () => {
         </div>
         <div className="hidden items-center lg:flex lg:gap-5 xl:gap-[49px]">
           {navbar.map((item, index) =>
-            isLogin && item.path === "/register" ? (
+            auth && item.path === "/register" ? (
               ""
             ) : (
               <LinkCustom
@@ -175,7 +179,7 @@ const HeaderLayout = () => {
               path="/cart"
               tooltip={t("Icon.cart")}
             />
-            {isLogin && <ProfileComponent />}
+            {auth && <ProfileComponent />}
           </div>
         </div>
       </div>

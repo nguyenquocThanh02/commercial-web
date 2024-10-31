@@ -1,18 +1,17 @@
-import axios from "axios";
-import AxiosMockAdapter from "axios-mock-adapter";
+import {AxiosInstance} from "axios";
+import MockAdapter from "axios-mock-adapter";
 
-import mockUser from "./user.mock";
-import mockProduct from "./product.mock";
-import mockAbout from "./about.mock";
-import mockAuth from "./auth.mock";
-import mockOrder from "./order.mock";
+import {mockAbout} from "./about.mock";
+import {mockAuth} from "./auth.mock";
+import {mockOrder} from "./order.mock";
+import {mockProduct} from "./product.mock";
+import {mockUser} from "./user.mock";
+export const applyMockAdapter = (axiosInstance: AxiosInstance) => {
+  const mock = new MockAdapter(axiosInstance);
 
-const mock = new AxiosMockAdapter(axios, {delayResponse: 0});
-
-mockAuth(mock);
-mockUser(mock);
-mockProduct(mock);
-mockAbout(mock);
-mockOrder(mock);
-
-export default axios;
+  mockAbout(mock);
+  mockAuth(mock);
+  mockOrder(mock);
+  mockProduct(mock);
+  mockUser(mock);
+};

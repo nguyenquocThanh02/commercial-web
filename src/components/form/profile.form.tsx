@@ -19,7 +19,7 @@ const ProfileForm = () => {
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const {ref: refAddress} = usePlacesWidget({
+  const {ref} = usePlacesWidget<HTMLInputElement>({
     apiKey: process.env.NEXT_PUBLIC_KEY_GOOGLE_AUTO_PLACE,
     onPlaceSelected: (place) => {
       form.setValue("address", place.formatted_address);
@@ -116,9 +116,8 @@ const ProfileForm = () => {
                     <FormLabel className="text-base text-Text2">{t("address")}</FormLabel>
                     <FormControl>
                       <InputPrimary
-                        ref={refAddress ? refAddress : undefined}
-                        placeholder="126, ..."
                         {...field}
+                        ref={ref ? ref : undefined}
                         className="h-[52px] w-full"
                         onChange={(e) => {
                           field.onChange(e);

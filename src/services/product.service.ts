@@ -1,9 +1,9 @@
-import instance from "@/mocks";
+import {http} from "@/axios/axios";
 
 export const ProductApis = {
   getProduct: async (limit: string | number, page: string | number) => {
     try {
-      const response = await instance.get("/products", {
+      const response = await http.get("/products", {
         params: {
           limit: limit.toString(),
           page: page.toString(),
@@ -17,7 +17,7 @@ export const ProductApis = {
   },
   getDetailProduct: async (id: string | number) => {
     try {
-      const response = await instance.get("/product/details", {
+      const response = await http.get("/product/details", {
         params: {
           id: id,
         },
@@ -30,7 +30,7 @@ export const ProductApis = {
   },
   getCoupons: async (code: string) => {
     try {
-      const response = await instance.get("/coupon", {
+      const response = await http.get("/coupon", {
         params: {
           code: code,
         },
@@ -43,7 +43,7 @@ export const ProductApis = {
   },
   getCategories: async () => {
     try {
-      const response = await instance.get("/categories");
+      const response = await http.get("/categories");
 
       return response?.data;
     } catch (error) {
@@ -52,7 +52,7 @@ export const ProductApis = {
   },
   getBanner: async () => {
     try {
-      const response = await instance.get("/banners");
+      const response = await http.get("/banners");
 
       return response?.data;
     } catch (error) {

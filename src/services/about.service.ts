@@ -1,9 +1,9 @@
-import instance from "@/mocks";
+import {http} from "@/axios/axios";
 
 export const AboutApis = {
   getInforShop: async () => {
     try {
-      const response = await instance.get("/inforShop");
+      const response = await http.get("/inforShop");
 
       return response?.data;
     } catch (error) {
@@ -12,7 +12,7 @@ export const AboutApis = {
   },
   getSocials: async () => {
     try {
-      const response = await instance.get("/socials");
+      const response = await http.get("/socials");
 
       return response?.data;
     } catch (error) {

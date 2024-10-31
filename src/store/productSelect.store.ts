@@ -11,6 +11,7 @@ const initialCart: typeProductSelect = {
     price: 0,
     isNew: false,
     unitsInStock: 0,
+    category: "",
   },
   quantity: 1,
   totalPrice: 0,

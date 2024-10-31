@@ -1,6 +1,6 @@
-import AxiosMockAdapter from "axios-mock-adapter";
+import MockAdapter from "axios-mock-adapter";
 
-const mockAuth = (mock: AxiosMockAdapter) => {
+export const mockAuth = (mock: MockAdapter) => {
   mock.onPost("/register").reply((config) => {
     const dataRegister = JSON.parse(config.data);
 
@@ -13,8 +13,6 @@ const mockAuth = (mock: AxiosMockAdapter) => {
   mock.onPost("/forget-password").reply((config) => {
     const email = JSON.parse(config.data);
 
-    console.log(config.data);
-
     if (!email) return [400, {message: "Post email fail"}];
 
     return [200, {messages: "Post email successfully"}];
@@ -23,7 +21,6 @@ const mockAuth = (mock: AxiosMockAdapter) => {
   mock.onPost("/login").reply((config) => {
     const dataLogin = JSON.parse(config.data);
 
-    console.log("Data login: ", dataLogin);
     if (!dataLogin.account || !dataLogin.password) {
       return [400, {message: "Login fail"}];
     }
@@ -31,5 +28,3 @@ const mockAuth = (mock: AxiosMockAdapter) => {
     return [200, {message: "Login successfully", token: "token-login"}];
   });
 };
-
-export default mockAuth;

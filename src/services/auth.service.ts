@@ -1,10 +1,10 @@
-import instances from "@/mocks";
 import {typeLogin, typeRegister} from "@/types";
-import instance from "@/mocks/axios";
+import {http} from "@/axios/axios";
+import {baseClient} from "@/axios/axios";
 export const AuthApis = {
   register: async (data: typeRegister) => {
     try {
-      const response = await instances.post("/register", data);
+      const response = await http.post("/register", data);
 
       return response?.data;
     } catch (error) {
@@ -13,7 +13,7 @@ export const AuthApis = {
   },
   login: async (data: typeLogin) => {
     try {
-      const response = await instances.post("/login", data);
+      const response = await http.post("/login", data);
 
       return response?.data;
     } catch (error) {
@@ -25,7 +25,7 @@ export const AuthApis = {
       const data = {
         email: email,
       };
-      const response = await instances.post("/forget-password", data);
+      const response = await http.post("/forget-password", data);
 
       return response?.data;
     } catch (error) {
@@ -35,9 +35,16 @@ export const AuthApis = {
 
   setCookie: async (data: typeLogin) => {
     try {
-      const response = await instance.post("/auth", data);
+      const response = await baseClient.post("/auth", data);
 
-      console.log(response);
+      return response?.data;
+    } catch (error) {
+      return error;
+    }
+  },
+  clearCookie: async () => {
+    try {
+      const response = await baseClient.post("/auth/logout", {data: ""});
 
       return response?.data;
     } catch (error) {

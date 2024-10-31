@@ -1,35 +1,44 @@
-import axios from "axios";
-const instance = axios.create({
-  baseURL: "/api",
-  // transformResponse: [
-  //   function (data) {
-  //     return data;
-  //   },
-  // ],
+import axios, {AxiosError} from "axios";
+
+import {applyMockAdapter} from "@/mocks";
+
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+const http = axios.create({
+  baseURL: BASE_URL,
+  timeout: 2000,
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
+const base = axios.create({
+  baseURL: BASE_URL,
   headers: {
     "Content-Type": "application/json",
   },
   timeout: 10000,
 });
 
-instance.interceptors.response.use(
-  function (response) {
-    // if (response.data) {
-    //   return JSON.parse(response.data);
-    // }
-
-    console.log("rp", response);
-
-    return response;
+base.interceptors.response.use(
+  (response) => response,
+  (error: AxiosError) => {
+    return Promise.reject(error);
   },
-  function (error) {
-    // if (error.response.data) {
-    //   return JSON.parse(error.response.data);
-    // }
+);
+const baseClient = axios.create({
+  baseURL: "/api",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  timeout: 10000,
+});
 
-    // return error.response.data;
-    return error;
+baseClient.interceptors.response.use(
+  (response) => response,
+  (error: AxiosError) => {
+    return Promise.reject(error);
   },
 );
 
-export default instance;
+applyMockAdapter(base);
+applyMockAdapter(http);
+export {base, http, baseClient};

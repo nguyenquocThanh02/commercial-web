@@ -10,8 +10,8 @@ export type typeLogin = {
 };
 
 export type typeAuthState = {
-  isAuth: boolean;
-  setIsAuth: (value: boolean) => void;
+  auth: string;
+  setAuth: (value: string) => void;
 };
 
 export type typeComplete = {

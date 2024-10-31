@@ -12,6 +12,8 @@ export const productStore = create<typeProductStore>((set) => ({
     colors: [],
     price: "",
     isNew: false,
+    category: "",
+    unitsInStock: 0,
   },
   setOpenQuickReviewProduct: (value: boolean) => set({openQuickReviewProduct: value}),
   setOpenQuickReviewAddToCart: (value: boolean) => set({openQuickReviewAddToCart: value}),

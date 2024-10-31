@@ -4,6 +4,7 @@ import React from "react";
 import Head from "next/head";
 import {getMessages} from "next-intl/server";
 import {NextIntlClientProvider} from "next-intl";
+import {cookies} from "next/headers";
 
 import HeaderLayout from "@/components/layout/header.layout";
 import ReactQueryProvider from "@/react-query.provider";
@@ -36,6 +37,9 @@ export default async function RootLayout({
 }>) {
   const messages = await getMessages();
 
+  const cookiesStore = cookies();
+  const sessionToken = cookiesStore.get("sessionToken")?.value || "";
+
   return (
     <html lang={locale}>
       <Head>
@@ -44,7 +48,7 @@ export default async function RootLayout({
       <ReactQueryProvider>
         <body className={`${poppins.variable} ${inter.variable} scroll-smooth antialiased`}>
           <NextIntlClientProvider messages={messages}>
-            <HeaderLayout />
+            <HeaderLayout token={sessionToken} />
             <ProgressBarProviders>{children}</ProgressBarProviders>
             <QuickReviewProductComponent />
             <QuickReviewAddToCartComponent />

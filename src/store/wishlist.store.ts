@@ -9,7 +9,7 @@ const initialWishlist =
     : [];
 
 export const wishlistStore = create<typeWishlist>((set) => ({
-  wishlist: initialWishlist,
+  wishlist: [],
   setWishlist: (value) => {
     set({wishlist: value});
     if (typeof window !== "undefined") {

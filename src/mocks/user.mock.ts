@@ -1,6 +1,6 @@
 import AxiosMockAdapter from "axios-mock-adapter";
 
-const mockUser = (mock: AxiosMockAdapter) => {
+export const mockUser = (mock: AxiosMockAdapter) => {
   mock.onGet("/users").reply(200, {
     users: [
       {id: 1, name: "John Smith"},
@@ -18,5 +18,3 @@ const mockUser = (mock: AxiosMockAdapter) => {
     message: "User created successfully",
   });
 };
-
-export default mockUser;

@@ -1,6 +1,6 @@
 import AxiosMockAdapter from "axios-mock-adapter";
 
-const mockProduct = (mock: AxiosMockAdapter) => {
+export const mockProduct = (mock: AxiosMockAdapter) => {
   const products = [
     {
       id: 123,
@@ -290,5 +290,3 @@ const mockProduct = (mock: AxiosMockAdapter) => {
     ],
   });
 };
-
-export default mockProduct;

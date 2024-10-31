@@ -1,6 +1,6 @@
 import AxiosMockAdapter from "axios-mock-adapter";
 
-const mockAbout = (mock: AxiosMockAdapter) => {
+export const mockAbout = (mock: AxiosMockAdapter) => {
   mock.onGet("/inforShop").reply(200, {
     infor: {
       address: "111 Bijoy sarani, Dhaka,  DH 1515, Bangladesh.",
@@ -18,5 +18,3 @@ const mockAbout = (mock: AxiosMockAdapter) => {
     },
   });
 };
-
-export default mockAbout;
