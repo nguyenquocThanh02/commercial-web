@@ -18,7 +18,7 @@ import {Button} from "../ui/button";
 import LinkCustom from "../custom/link.custom";
 import ProfileComponent from "../custom/profile.component";
 import IconWithCounterComponent from "../ui/iconWithCounter.component";
-import {Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger} from "../ui/sheet";
+import {Sheet, SheetContent, SheetTrigger} from "../ui/sheet";
 
 import iconSearch from "@/assets/svg/searchIcon.svg";
 import iconDropdown from "@/assets/svg/DropDown.svg";
@@ -32,9 +32,8 @@ const HeaderLayout = () => {
   const currentLocale = useLocale();
 
   const t = useTranslations("Header");
-  // let isLogin = localStorage.getItem(localStorageKey.accessToken) ? true : false;
-  // let isLogin = false;
-  let isLogin = Boolean(localStorage.getItem(localStorageKey.accessToken));
+  let isLogin = localStorage.getItem(localStorageKey.accessToken) ? true : false;
+
   const [open, setOpen] = useState<boolean>(false);
 
   const {isAuth} = authStore();
@@ -70,16 +69,16 @@ const HeaderLayout = () => {
 
   return (
     <div className="sticky left-0 right-0 top-0 z-20 w-full border-b border-Text2/30 bg-Primary pb-4">
-      <div className="xl:[48px] h-[36px] w-full bg-Text2 text-Primary xl:flex">
+      <div className="hidden h-[48px] w-full bg-Text2 text-Primary xl:flex">
         <div className="l-container relative my-auto">
-          <div className="hidden w-full items-center justify-center gap-[10px] text-sm xl:flex">
+          <div className="flex w-full items-center justify-center gap-[10px] text-sm">
             <p className="leading-[21px]">{t("Advertise.advertise")}</p>
             <Link className="font-semibold underline" href={"/"}>
               {t("Advertise.shop-now")}
             </Link>
           </div>
 
-          <div className="absolute bottom-0 top-5 flex items-center gap-2 xl:right-primary xl:top-0">
+          <div className="absolute bottom-0 right-primary top-0 flex items-center gap-2">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button
@@ -96,7 +95,7 @@ const HeaderLayout = () => {
                 <DropdownMenuRadioGroup
                   defaultValue={currentLocale}
                   value={currentLocale}
-                  onValueChange={(e) => handleChangeLocale(e as "en" | "vi")}
+                  onValueChange={handleChangeLocale}
                 >
                   <DropdownMenuRadioItem className="text-shadow hover:cursor-pointer" value="en">
                     English
@@ -122,9 +121,6 @@ const HeaderLayout = () => {
               <AlignJustify className="opacity-90 hover:opacity-70" size={28} />
             </SheetTrigger>
             <SheetContent className="flex flex-col gap-5" side="left">
-              <SheetHeader>
-                <SheetTitle />
-              </SheetHeader>
               {navbar.map((item, index) =>
                 isLogin && item.path === "/register" ? (
                   ""

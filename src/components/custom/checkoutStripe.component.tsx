@@ -16,8 +16,6 @@ const CheckoutStripeComponent = () => {
     }
     const {error: submitError} = await elements.submit();
 
-    console.log(submitError);
-
     if (submitError) {
       setErrorMessage(submitError.message);
 
@@ -41,10 +39,10 @@ const CheckoutStripeComponent = () => {
   }
 
   return (
-    <form className="rounded-md bg-white p-2" onSubmit={handleSubmit}>
-      <PaymentElement onChange={(event) => setIsComplete(event.complete)} />
+    <form className="w-full rounded-md bg-white p-2" onSubmit={handleSubmit}>
+      <PaymentElement className="w-full" onChange={(event) => setIsComplete(event.complete)} />
 
-      {errorMessage && <div>{errorMessage}</div>}
+      {/* {errorMessage && <div>{errorMessage}</div>} */}
     </form>
   );
 };

@@ -3,7 +3,7 @@ import React from "react";
 import {Elements} from "@stripe/react-stripe-js";
 import {loadStripe} from "@stripe/stripe-js";
 import Image from "next/image";
-import {useLocale, useTranslations} from "next-intl";
+import {useTranslations} from "next-intl";
 
 import CheckoutStripeComponent from "./checkoutStripe.component";
 
@@ -21,7 +21,6 @@ const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
 const MethodCheckoutComponent: React.FC<{price: number}> = ({price}) => {
   const t = useTranslations("Checkout");
   const {method, setMethod} = cardSubmitStore();
-  const locale = useLocale();
 
   return (
     <>
@@ -47,8 +46,8 @@ const MethodCheckoutComponent: React.FC<{price: number}> = ({price}) => {
             <Elements
               options={{
                 mode: "payment",
-                amount: locale === "vi" ? Math.floor(price) : Math.floor(price * 100),
-                currency: locale === "vi" ? "vnd" : "usd",
+                amount: 200,
+                currency: "usd",
               }}
               stripe={stripePromise}
             >

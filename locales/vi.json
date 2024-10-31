@@ -215,7 +215,7 @@
       "toastSize": "Bạn phải chọn kích thuóc",
       "methodDelivery": "Miễn phí vận chuyển",
       "linkChooseMethod": "Nhập mã bưu chính của bạn để kiểm tra khả năng giao hàng.",
-      "Return": "Trả hàng",
+      "return": "Trả hàng",
       "returnDetail": "Miễn phí trả hàng trong 30 ngày.",
       "linkReturn": "Chi tiết"
     }
@@ -249,7 +249,7 @@
       "processButton": "Tiến hành thanh toán"
     }
   },
-  "Checkcount": {
+  "Checkout": {
     "Form": {
       "title": "Thông Tin Thanh Toán",
       "firstName": "Họ và Tên",
