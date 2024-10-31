@@ -34,14 +34,12 @@ const FlashSaveComponent = () => {
       <Swiper
         breakpoints={{
           440: {
-            slidesPerView: 2,
-            spaceBetween: 20,
+            slidesPerView: 1,
           },
           640: {
             slidesPerView: 2,
-            spaceBetween: 30,
           },
-          768: {
+          1140: {
             slidesPerView: 3,
             spaceBetween: 30,
           },
@@ -59,7 +57,7 @@ const FlashSaveComponent = () => {
       >
         {data?.products &&
           data.products.map((item: typeProduct, index: number) => (
-            <SwiperSlide key={index} className="w-full">
+            <SwiperSlide key={index} className="flex w-full justify-center">
               <ProductCardComponent key={index} data={item} style="sale" />
             </SwiperSlide>
           ))}

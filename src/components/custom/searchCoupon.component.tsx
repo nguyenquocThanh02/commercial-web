@@ -48,7 +48,7 @@ const SearchCouponComponent: React.FC<{
     <div>
       <div className="flex gap-4">
         <Input
-          className="h-[56px] w-[300px] px-8"
+          className="h-[56px] w-[300px] border border-Text2 px-8"
           placeholder={t("Payment.Coupon.placeHover")}
           type="text"
           value={valueSearch}

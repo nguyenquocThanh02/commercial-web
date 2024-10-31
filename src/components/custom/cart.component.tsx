@@ -5,6 +5,7 @@ import Image from "next/image";
 
 import CartRowComponent from "./cartRow.component";
 import PrimaryButton from "./primaryButton.ui";
+import {BreadcrumbComponent} from "./breadscrumb.component";
 
 import {Link} from "@/app/navigation";
 import SecondaryButton from "@/components/custom/secondaryButton.component";
@@ -19,13 +20,25 @@ const CartComponent = () => {
     t("Cart.Header.quantity"),
     t("Cart.Header.subtotal"),
   ];
+  const nav = [
+    {
+      name: "Home",
+      link: "/",
+    },
+    {
+      name: "Cart",
+      link: "/cart",
+    },
+  ];
 
   const {cart} = cartStore();
 
   return (
     <div>
+      <BreadcrumbComponent links={nav} />
+
       {cart.length < 1 ? (
-        <div className="flex flex-col gap-5">
+        <div className="mt-20 flex flex-col gap-5">
           <div className="flex w-full items-center justify-center">
             <Image alt="empty cart" height={300} objectFit="cover" src={emptyCart} width={300} />
           </div>
@@ -38,7 +51,7 @@ const CartComponent = () => {
         </div>
       ) : (
         <>
-          <div className="shadow-input-primary flex h-[72px] w-full items-center px-10">
+          <div className="shadow-input-primary mt-20 flex h-[72px] w-full items-center px-10">
             {headerCart.map((item, index) => (
               <div key={index} className="flex-1">
                 {item}

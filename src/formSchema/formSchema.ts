@@ -134,3 +134,107 @@ export const infoCheckoutSchema = z.object({
       message: "Format email is invalid",
     }),
 });
+
+export const profileSchema = z
+  .object({
+    firstName: z.string().trim().min(1, {
+      message: "First Name is required.",
+    }),
+    lastName: z.string().trim().min(1, {
+      message: "Last Name is required.",
+    }),
+    email: z
+      .string()
+      .trim()
+      .min(1, {
+        message: "Email is required.",
+      })
+      .email({
+        message: "Format email is invalid",
+      }),
+    address: z.string().trim().min(1, {
+      message: "Street Address is required.",
+    }),
+    currentPassword: z
+      .string()
+      .trim()
+      .min(8, {
+        message: "Password has at least 8 characters.",
+      })
+      .regex(/^(?=.*[a-z])/, {
+        message: "Password must contain at least one lowercase letter.",
+      })
+      .regex(/^(?=.*[A-Z])/, {
+        message: "Password must contain at least one uppercase letter.",
+      })
+      .regex(/^(?=.*\d)/, {
+        message: "Password must contain at least one digit.",
+      })
+      .regex(/^(?=.*[@$!%*?&])/, {
+        message: "Password must contain at least one special character (@$!%*?&).",
+      }),
+    newPassword: z
+      .string()
+      .trim()
+      .min(8, {
+        message: "Password has at least 8 characters.",
+      })
+      .regex(/^(?=.*[a-z])/, {
+        message: "Password must contain at least one lowercase letter.",
+      })
+      .regex(/^(?=.*[A-Z])/, {
+        message: "Password must contain at least one uppercase letter.",
+      })
+      .regex(/^(?=.*\d)/, {
+        message: "Password must contain at least one digit.",
+      })
+      .regex(/^(?=.*[@$!%*?&])/, {
+        message: "Password must contain at least one special character (@$!%*?&).",
+      }),
+    confirmPassword: z
+      .string()
+      .trim()
+      .min(8, {
+        message: "Password has at least 8 characters.",
+      })
+      .regex(/^(?=.*[a-z])/, {
+        message: "Password must contain at least one lowercase letter.",
+      })
+      .regex(/^(?=.*[A-Z])/, {
+        message: "Password must contain at least one uppercase letter.",
+      })
+      .regex(/^(?=.*\d)/, {
+        message: "Password must contain at least one digit.",
+      })
+      .regex(/^(?=.*[@$!%*?&])/, {
+        message: "Password must contain at least one special character (@$!%*?&).",
+      }),
+  })
+  .superRefine(({confirmPassword, newPassword}, ctx) => {
+    if (confirmPassword !== newPassword) {
+      ctx.addIssue({
+        code: "custom",
+        message: "The passwords did not match.",
+        path: ["confirmPassword"],
+      });
+    }
+  });
+
+export const contactSchema = z.object({
+  name: z.string().trim().min(1, {
+    message: "Name is required.",
+  }),
+  message: z.string().trim().optional(),
+  email: z
+    .string()
+    .trim()
+    .min(1, {
+      message: "Email is required.",
+    })
+    .email({
+      message: "Format email is invalid",
+    }),
+  phone: z.string().trim().min(1, {
+    message: "Phone number is required.",
+  }),
+});

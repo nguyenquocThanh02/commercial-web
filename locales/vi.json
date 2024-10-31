@@ -280,6 +280,73 @@
       "removed": "Đã bỏ yêu thích"
     }
   },
+  "Profile": {
+    "Sidebar": {
+      "Manage": {
+        "account": "Quản lý Tài Khoản",
+        "profile": "Hồ Sơ Của Tôi",
+        "address": "Sổ Địa Chỉ",
+        "payment": "Tùy Chọn Thanh Toán"
+      },
+      "Order": {
+        "order": "Đơn Hàng ",
+        "return": "Đơn Trả Hàng ",
+        "cancel": "Đơn Hủy "
+      },
+      "Wishlist": {
+        "wishlist": "Danh Sách Yêu Thích "
+      }
+    },
+    "Form": {
+      "title": "Chỉnh sửa Hồ Sơ Của Bạn",
+      "firstName": "Họ",
+      "lastName": "Tên",
+      "email": "Email",
+      "address": "Địa Chỉ",
+      "password": "Thay Đổi Mật Khẩu",
+      "Placehover": {
+        "currentPass": "Mật Khẩu Hiện Tại",
+        "newPass": "Mật Khẩu Mới",
+        "confirmPass": "Xác Nhận Mật Khẩu Mới"
+      },
+      "cancelBtn": "Huỷ",
+      "saveBtn": "Lưu thay đổi"
+    }
+  },
+  "Contact": {
+    "Sidebar": {
+      "Phone": {
+        "title": "Gọi cho chúng tôi",
+        "content1": "Chúng tôi có mặt 24/7, 7 ngày một tuần.",
+        "content2": "Điện thoại: +8801611112222"
+      },
+      "Email": {
+        "title": "Viết cho chúng tôi",
+        "content1": "Điền vào mẫu của chúng tôi và chúng tôi sẽ liên hệ với bạn trong vòng 24 giờ."
+      }
+    },
+    "Form": {
+      "name": "Họ và Tên",
+      "mail": "Email",
+      "message": "Tin nhắn ",
+      "phone": "Số Điện Thoại",
+      "button": "Gửi Tin Nhắn"
+    }
+  },
+  "About": {
+    "Header": {
+      "title": "Câu Chuyện Của Chúng Tôi",
+      "content1": "Được thành lập vào năm 2015, Exclusive là nền tảng mua sắm trực tuyến hàng đầu tại Nam Á với sự hiện diện tích cực tại Bangladesh. Được hỗ trợ bởi nhiều giải pháp marketing, dữ liệu và dịch vụ đa dạng, Exclusive có 10.500 người bán và 300 thương hiệu, phục vụ 3 triệu khách hàng trong khu vực.",
+      "content2": "Exclusive cung cấp hơn 1 triệu sản phẩm, với tốc độ phát triển rất nhanh. Exclusive mang đến một sự lựa chọn đa dạng trong nhiều danh mục từ người tiêu dùng."
+    },
+    "TrustMetric": {
+      "detail1": "Số người bán hoạt động trên trang",
+      "detail2": "Doanh số sản phẩm hàng tháng",
+      "detail3": "Số khách hàng hoạt động trên trang",
+      "detail4": "Doanh thu hàng năm trên trang"
+    }
+  },
+
   "NotFound": {
     "title": "404 Không Tìm Thấy",
     "titleProduct": "Sản phầm không tồn tại",

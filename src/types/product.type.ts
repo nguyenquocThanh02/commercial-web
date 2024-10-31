@@ -24,6 +24,7 @@ export type typePrice = {
 
 export type typeProduct = {
   id: number | string;
+  category: string;
   name: string;
   description: string;
   colors: typeColor[];
@@ -31,7 +32,7 @@ export type typeProduct = {
   discountPercentage?: number;
   rating?: number;
   numberOfReviews?: number;
-  unitsInStock?: number;
+  unitsInStock: number | 0;
   sizes?: string[];
   isNew: boolean;
   purchaseCount?: number;

@@ -8,12 +8,6 @@ const mockProduct = (mock: AxiosMockAdapter) => {
       description: "",
       colors: [
         {
-          colorName: "Red",
-          colorHex: "red",
-          imageUrl:
-            "https://firebasestorage.googleapis.com/v0/b/videocallapp-4fbc2.appspot.com/o/images%2FcarRed.png?alt=media&token=12ecb621-959d-47fa-bcf6-98e61c6df270",
-        },
-        {
           colorName: "Blue",
           colorHex: "blue",
           imageUrl:
@@ -24,6 +18,12 @@ const mockProduct = (mock: AxiosMockAdapter) => {
           colorHex: "#000",
           imageUrl:
             "https://firebasestorage.googleapis.com/v0/b/videocallapp-4fbc2.appspot.com/o/images%2FcarBlack.png?alt=media&token=6f8bd287-5fef-4518-9e91-bc5d2ca4674b",
+        },
+        {
+          colorName: "Red",
+          colorHex: "red",
+          imageUrl:
+            "https://firebasestorage.googleapis.com/v0/b/videocallapp-4fbc2.appspot.com/o/images%2FcarRed.png?alt=media&token=12ecb621-959d-47fa-bcf6-98e61c6df270",
         },
       ],
       price: {vi: 260000000, en: 12000},
@@ -103,6 +103,50 @@ const mockProduct = (mock: AxiosMockAdapter) => {
       category: "Electronics",
     },
     {
+      id: 124,
+      name: "Sneakers",
+      description: "Comfortable running shoes",
+      colors: [
+        {
+          colorName: "White",
+          colorHex: "#fff",
+          imageUrl:
+            "https://firebasestorage.googleapis.com/v0/b/videocallapp-4fbc2.appspot.com/o/images%2Fshoe.png?alt=media&token=accb7401-38e6-43ab-889e-338ef805abe9",
+        },
+      ],
+      price: {vi: 300000, en: 13.5},
+      discountPercentage: 15,
+      rating: 4.7,
+      numberOfReviews: 230,
+      unitsInStock: 50,
+      isNew: false,
+      purchaseCount: 30,
+      sizes: ["S", "M", "L"],
+      category: "Footwear",
+    },
+    {
+      id: 124,
+      name: "Sneakers",
+      description: "Comfortable running shoes",
+      colors: [
+        {
+          colorName: "White",
+          colorHex: "#fff",
+          imageUrl:
+            "https://firebasestorage.googleapis.com/v0/b/videocallapp-4fbc2.appspot.com/o/images%2Fshoe.png?alt=media&token=accb7401-38e6-43ab-889e-338ef805abe9",
+        },
+      ],
+      price: {vi: 300000, en: 13.5},
+      discountPercentage: 15,
+      rating: 4.7,
+      numberOfReviews: 230,
+      unitsInStock: 50,
+      isNew: false,
+      purchaseCount: 30,
+      sizes: ["S", "M", "L"],
+      category: "Footwear",
+    },
+    {
       id: 129,
       name: "Smart TV",
       description: "Ultra HD Smart TV with 4K resolution",
@@ -124,28 +168,7 @@ const mockProduct = (mock: AxiosMockAdapter) => {
       sizes: [],
       category: "Electronics",
     },
-    {
-      id: 127,
-      name: "Office Chair",
-      description: "Ergonomic office chair",
-      colors: [
-        {
-          colorName: "Gray",
-          colorHex: "#808080",
-          imageUrl:
-            "https://firebasestorage.googleapis.com/v0/b/videocallapp-4fbc2.appspot.com/o/images%2Fchair.png?alt=media&token=e104ef03-d4c9-4b0b-b06a-2820c60c2789",
-        },
-      ],
-      price: {vi: 150000, en: 6.5},
-      discountPercentage: 10,
-      rating: 4.3,
-      numberOfReviews: 180,
-      unitsInStock: 40,
-      isNew: false,
-      purchaseCount: 12,
-      sizes: [],
-      category: "Furniture",
-    },
+
     {
       id: 128,
       name: "iPad Pro",
@@ -167,6 +190,28 @@ const mockProduct = (mock: AxiosMockAdapter) => {
       purchaseCount: 20,
       sizes: [],
       category: "Electronics",
+    },
+    {
+      id: 124,
+      name: "Sneakers",
+      description: "Comfortable running shoes",
+      colors: [
+        {
+          colorName: "White",
+          colorHex: "#fff",
+          imageUrl:
+            "https://firebasestorage.googleapis.com/v0/b/videocallapp-4fbc2.appspot.com/o/images%2Fshoe.png?alt=media&token=accb7401-38e6-43ab-889e-338ef805abe9",
+        },
+      ],
+      price: {vi: 300000, en: 13.5},
+      discountPercentage: 15,
+      rating: 4.7,
+      numberOfReviews: 230,
+      unitsInStock: 50,
+      isNew: false,
+      purchaseCount: 30,
+      sizes: ["S", "M", "L"],
+      category: "Footwear",
     },
   ];
 
@@ -228,18 +273,18 @@ const mockProduct = (mock: AxiosMockAdapter) => {
       },
       {
         id: 2,
-        name: "Buy 1 Get 1 Free",
+        name: "Buy 1 Get 1",
         type: "Samsung Galaxy Series",
         image:
-          "https://firebasestorage.googleapis.com/v0/b/videocallapp-4fbc2.appspot.com/o/images%2Fsamsung.jfif?alt=media&token=033614a1-1dec-4228-a0be-c576c28cc324",
+          "https://firebasestorage.googleapis.com/v0/b/videocallapp-4fbc2.appspot.com/o/macbook.png?alt=media&token=72a52a90-029c-4995-af4c-ccc84f9b5b0f",
         logo: "https://firebasestorage.googleapis.com/v0/b/videocallapp-4fbc2.appspot.com/o/images%2FlogoSamsung.jpg?alt=media&token=8757348b-ff01-43e7-8e8f-17a60538abc9",
       },
       {
         id: 3,
-        name: "Exclusive 20% Off on Orders",
+        name: "Exclusive 20% Off",
         type: "MacBook Pro",
         image:
-          "https://firebasestorage.googleapis.com/v0/b/videocallapp-4fbc2.appspot.com/o/images%2Fmacbook.jfif?alt=media&token=6b3df992-186d-4dd0-91fb-4c8b2168137b",
+          "https://firebasestorage.googleapis.com/v0/b/videocallapp-4fbc2.appspot.com/o/samsung.png?alt=media&token=528efd36-f22d-4ea7-a88a-f027caa09d24",
         logo: "https://firebasestorage.googleapis.com/v0/b/videocallapp-4fbc2.appspot.com/o/images%2FlogoApple.png?alt=media&token=3a648c3c-5d62-437a-94e6-cc9b6b6d0232",
       },
     ],

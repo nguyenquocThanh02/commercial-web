@@ -12,6 +12,7 @@ const BestSellingProductComponent = () => {
   const theProduct: typeProduct = {
     id: 123,
     name: "Kids Electric Car",
+    category: "car",
     description: "",
     colors: [
       {

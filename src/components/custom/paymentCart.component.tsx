@@ -43,7 +43,7 @@ const PaymentCartComponent = () => {
   return (
     <div>
       {cart.length > 0 && (
-        <div className="mt-20 flex justify-between">
+        <div className="mt-20 flex flex-wrap items-center justify-center gap-8 lg:items-start lg:justify-between">
           <SearchCouponComponent setDiscount={setDiscount} />
           <div className="h-full min-h-[324px] w-[470px] rounded border border-Text2">
             <div className="flex h-full w-full flex-col px-6 py-8">

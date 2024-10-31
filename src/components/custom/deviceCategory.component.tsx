@@ -17,7 +17,7 @@ const DeviceCategoryComponent = () => {
           <ArrowButton direct="right" />
         </div>
       </div>
-      <div className="mt-[60px] flex justify-between">
+      <div className="mt-[60px] flex flex-wrap justify-center gap-7">
         {Array.from({length: 6}, (_, i) => i + 1).map((item, index) => (
           <CategoryButton key={index} />
         ))}

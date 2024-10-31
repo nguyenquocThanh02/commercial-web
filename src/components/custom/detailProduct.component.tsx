@@ -5,29 +5,27 @@ import {FreeMode, Navigation, Thumbs} from "swiper/modules";
 import {useLocale, useTranslations} from "next-intl";
 import Image from "next/image";
 import {Swiper as SwiperType} from "swiper";
-import {notFound, useRouter} from "next/navigation";
+import {useRouter} from "next/navigation";
 import {toast} from "sonner";
 import {SlideshowLightbox} from "lightbox.js-react";
 
 import AddToWishlistComponent from "../form/addToWishListComponent";
-import DetailProductSkeleton from "../skeleton/detailProduct.skeleton";
 
 import InputQuanlityComponent from "./inputQuanlity.component";
 import {BreadcrumbComponent} from "./breadscrumb.component";
 import SizesProductComponent from "./sizesProduct.component";
 
-import {useQueryProduct} from "@/hooks/useQueryHooks";
 import RatingComponent from "@/components/custom/rating.component";
 import {calculatePriceSale, renderPriceFollowCurrency} from "@/utils";
 import {cn} from "@/libs/utils";
 import PrimaryButton from "@/components/custom/primaryButton.ui";
 import iconDeliveryBlack from "@/assets/svg/iconDeliveryBlack.svg";
 import iconReturn from "@/assets/svg/Icon-return.svg";
-import {typeColor} from "@/types";
+import {typeColor, typeProduct} from "@/types";
 import {productSelectStore} from "@/store/productSelect.store";
 import {localStorageKey} from "@/constants/localStorage";
 
-const ProductDetailComponent: React.FC<{id: string}> = ({id}) => {
+const ProductDetailComponent: React.FC<{data: typeProduct}> = ({data}) => {
   const t = useTranslations("DetailProduct.InfoProduct");
   const locale = useLocale();
   const route = useRouter();
@@ -37,8 +35,6 @@ const ProductDetailComponent: React.FC<{id: string}> = ({id}) => {
   const [selectedColorIndex, setSelectedColorIndex] = useState(0);
 
   const {productSelect, setProductSelect} = productSelectStore();
-
-  const {data, isLoading} = useQueryProduct.useDetailProduct(id);
 
   useEffect(() => {
     if (data) {
@@ -67,13 +63,6 @@ const ProductDetailComponent: React.FC<{id: string}> = ({id}) => {
       link: "#",
     },
   ];
-
-  if (data?.message) {
-    return notFound();
-  }
-  if (isLoading) {
-    return <DetailProductSkeleton />;
-  }
 
   const handleColorSelect = (index: number) => {
     setSelectedColorIndex(index);
@@ -109,7 +98,6 @@ const ProductDetailComponent: React.FC<{id: string}> = ({id}) => {
               className="mySwiper h-full w-[170px]"
               direction="vertical"
               freeMode={true}
-              // loop={true}
               modules={[FreeMode, Navigation, Thumbs]}
               slidesPerView={4}
               spaceBetween={16}

@@ -4,6 +4,11 @@ export type typeBreadCrumbs = {
   link?: string;
   name: string;
 };
+export type typeSidebarProfile = {
+  link?: string;
+  name: string;
+  sub?: typeBreadCrumbs[];
+};
 
 export type typeCountDownTime = {
   days: number | string;
@@ -19,7 +24,18 @@ export type typeProfileNav = {
   isButton?: boolean;
 };
 
+export type typeCardPerson = {
+  name: string;
+  image: string | "";
+  job: string;
+};
+
 export type typeLocale = {
   vi?: string;
   en?: string;
+};
+
+export type typeUiStore = {
+  hoveredIcon: boolean;
+  setHoveredIcon: (value: boolean) => void;
 };

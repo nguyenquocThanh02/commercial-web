@@ -19,6 +19,7 @@ import LogoutIcon from "../icon/logout.icon";
 import {typeProfileNav} from "@/types";
 import {authStore} from "@/store";
 import {localStorageKey} from "@/constants/localStorage";
+import {Link} from "@/app/navigation";
 
 const ProfileComponent = () => {
   const t = useTranslations("Header.Profile");
@@ -30,7 +31,7 @@ const ProfileComponent = () => {
     {
       name: t("account"),
       icon: <ProfileIcon height={24} strokeColor="#fff" width={24} />,
-      path: "#",
+      path: "/profile",
     },
     {
       name: t("order"),
@@ -68,8 +69,6 @@ const ProfileComponent = () => {
       },
     }).then(async (res) => {
       const payload = await res.json();
-
-      console.log(payload);
     });
     setIsAuth(false);
   };
@@ -85,7 +84,7 @@ const ProfileComponent = () => {
             item?.isButton ? (
               <DropdownMenuItem
                 key={index}
-                className="text-sm [&_svg]:size-auto"
+                className="flex w-[200px] text-sm"
                 onClick={handleLogout}
                 onMouseEnter={() => setHoveredItem(index)}
                 onMouseLeave={() => setHoveredItem(null)}
@@ -98,14 +97,16 @@ const ProfileComponent = () => {
             ) : (
               <DropdownMenuItem
                 key={index}
-                className="text-sm [&_svg]:size-auto"
+                className="text-sm"
                 onMouseEnter={() => setHoveredItem(index)}
                 onMouseLeave={() => setHoveredItem(null)}
               >
-                {React.cloneElement(item.icon, {
-                  strokeColor: hoveredItem === index ? "#000" : "#fff",
-                })}
-                {item.name}
+                <Link className="flex gap-3" href={item.path}>
+                  {React.cloneElement(item.icon, {
+                    strokeColor: hoveredItem === index ? "#000" : "#fff",
+                  })}
+                  {item.name}
+                </Link>
               </DropdownMenuItem>
             ),
           )}

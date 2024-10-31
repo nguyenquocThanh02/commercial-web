@@ -277,6 +277,72 @@
       "removed": "Removed from wishlist"
     }
   },
+  "Profile": {
+    "Sidebar": {
+      "Manage": {
+        "account": "Manage My Account",
+        "profile": "My Profile",
+        "address": "Address Book",
+        "payment": "My Payment Options"
+      },
+      "Order": {
+        "order": "My Orders",
+        "return": "My Returns",
+        "cancel": "My Cancellations"
+      },
+      "Wishlist": {
+        "wishlist": "My Wishlist"
+      }
+    },
+    "Form": {
+      "title": "Edit Your Profile",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email",
+      "address": "Address",
+      "password": "Password Changes",
+      "Placehover": {
+        "currentPass": "Current Password",
+        "newPass": "New Password",
+        "confirmPass": "Confirm New Password"
+      },
+      "cancelBtn": "Cancel",
+      "saveBtn": "Save Changes"
+    }
+  },
+  "Contact": {
+    "Sidebar": {
+      "Phone": {
+        "title": "Call To Us",
+        "content1": "We are available 24/7, 7 days a week.",
+        "content2": "Phone: +8801611112222"
+      },
+      "Email": {
+        "title": "Write To Us",
+        "content1": "Fill out our form and we will contact you within 24 hours."
+      }
+    },
+    "Form": {
+      "name": "Your Name",
+      "mail": "Your Email",
+      "message": "Your Message",
+      "phone": "Your Phone",
+      "button": "Send Message"
+    }
+  },
+  "About": {
+    "Header": {
+      "title": "Our Story",
+      "content1": "Launced in 2015, Exclusive is South Asia’s premier online shopping makterplace with an active presense in Bangladesh. Supported by wide range of tailored marketing, data and service solutions, Exclusive has 10,500 sallers and 300 brands and serves 3 millioons customers across the region. ",
+      "content2": "Exclusive has more than 1 Million products to offer, growing at a very fast. Exclusive offers a diverse assotment in categories ranging  from consumer."
+    },
+    "TrustMetric": {
+      "detail1": "Sallers active our site",
+      "detail2": "Mopnthly Produduct Sale",
+      "detail3": "Customer active in our site",
+      "detail4": "Anual gross sale in our site"
+    }
+  },
   "NotFound": {
     "title": "404 Not Found",
     "titleProduct": "Product Not Found",
