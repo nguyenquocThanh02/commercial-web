@@ -18,6 +18,7 @@ import {OrderApis} from "@/services/order.service";
 import {cardSubmitStore} from "@/store/cardSubmit.store";
 import {useRouter} from "@/app/navigation";
 import {cartStore} from "@/store";
+import {stripeSubmitStore} from "@/store/stripeSubmit.store";
 
 const CheckoutComponent: React.FC<{form: UseFormReturn}> = ({form}) => {
   const locale = useLocale();
@@ -27,14 +28,13 @@ const CheckoutComponent: React.FC<{form: UseFormReturn}> = ({form}) => {
   const {coupons} = couponStore();
   const {isComplete, method} = cardSubmitStore();
   const {cart, setCart} = cartStore();
+  const {clearCoupons} = couponStore();
+  const {submit, setSubmit} = stripeSubmitStore();
 
   const [discount, setDiscount] = useState<number>(
     coupons.reduce((total, coupon) => total + Number(coupon.discount), 0),
   );
   const [loading, setLoading] = useState<boolean>(false);
-
-  // const storedOrders = localStorage.getItem(localStorageKey.order);
-  // const orders: typeProductSelect[] = storedOrders ? JSON.parse(storedOrders) : [];
 
   const totalPrice = useMemo(() => {
     return cart.reduce((accumulator, item) => {
@@ -50,9 +50,11 @@ const CheckoutComponent: React.FC<{form: UseFormReturn}> = ({form}) => {
     const total = totalPrice;
 
     return (total * (100 - discount)) / 100;
-  }, [discount, totalPrice]);
+  }, [discount, totalPrice, coupons]);
 
   const handlePlaceOrder = async () => {
+    console.log("check: ", submit);
+    setSubmit(true);
     const isValid = await form.trigger();
 
     if (isValid && (method === "cash" || (method === "card" && isComplete))) {
@@ -81,6 +83,7 @@ const CheckoutComponent: React.FC<{form: UseFormReturn}> = ({form}) => {
 
       if (resultPlaceOrder) {
         setCart([]);
+        clearCoupons();
         route.push("/checkout/success");
       }
     }
@@ -117,7 +120,7 @@ const CheckoutComponent: React.FC<{form: UseFormReturn}> = ({form}) => {
         </div>
         <hr className="mt-4 text-Text2" />
         {discount > 0 && (
-          <>
+          <div>
             <div className="mt-6 flex items-center justify-between">
               <p className="leading-6">{t("Payment.Coupon.totalDiscount")}</p>
               <p className="text-Text2/50">
@@ -125,8 +128,15 @@ const CheckoutComponent: React.FC<{form: UseFormReturn}> = ({form}) => {
                 -{renderPriceFollowCurrency(locale, calculateTotalDecrease(totalPrice, discount))}
               </p>
             </div>
+            {/* {coupons.map((coupon, index) => (
+              <ul key={index} className="my-2 flex items-center gap-4 text-sm">
+                (<li>{coupon.name}</li>
+                <li>- {coupon.discount} %</li>
+                <li className="text-Secondary2">{coupon.code}</li>)
+              </ul>
+            ))} */}
             <hr className="mt-4 text-Text2" />
-          </>
+          </div>
         )}
         <div className="mt-4 flex items-center justify-between">
           <p className="leading-6">{t("Payment.Coupon.shipping")}</p>
@@ -142,7 +152,7 @@ const CheckoutComponent: React.FC<{form: UseFormReturn}> = ({form}) => {
       <SearchCouponComponent setDiscount={setDiscount} />
       <PrimaryButton
         className="h-[56px] w-[190px]"
-        disabled={!isComplete && method === "card"}
+        // disabled={!isComplete && method === "card"}
         type="submit"
         onClick={handlePlaceOrder}
       >

@@ -24,6 +24,7 @@ import iconReturn from "@/assets/svg/Icon-return.svg";
 import {typeColor, typeProduct} from "@/types";
 import {productSelectStore} from "@/store/productSelect.store";
 import {localStorageKey} from "@/constants/localStorage";
+import {authStore} from "@/store";
 
 const ProductDetailComponent: React.FC<{data: typeProduct}> = ({data}) => {
   const t = useTranslations("DetailProduct.InfoProduct");
@@ -35,6 +36,7 @@ const ProductDetailComponent: React.FC<{data: typeProduct}> = ({data}) => {
   const [selectedColorIndex, setSelectedColorIndex] = useState(0);
 
   const {productSelect, setProductSelect} = productSelectStore();
+  const {auth} = authStore();
 
   useEffect(() => {
     if (data) {
@@ -76,15 +78,19 @@ const ProductDetailComponent: React.FC<{data: typeProduct}> = ({data}) => {
   };
 
   const handleBuyNow = () => {
-    if (
-      Array.isArray(productSelect.product.sizes) &&
-      productSelect.product.sizes.length > 0 &&
-      !productSelect.selectedSize
-    ) {
-      toast.warning(t("toastSize"));
+    if (auth) {
+      if (
+        Array.isArray(productSelect.product.sizes) &&
+        productSelect.product.sizes.length > 0 &&
+        !productSelect.selectedSize
+      ) {
+        toast.warning(t("toastSize"));
+      }
+      localStorage.setItem(localStorageKey.order, JSON.stringify([productSelect]));
+      route.push("/checkout");
+    } else {
+      toast.warning("You need to login before buy now");
     }
-    localStorage.setItem(localStorageKey.order, JSON.stringify([productSelect]));
-    route.push("/checkout");
   };
 
   return (

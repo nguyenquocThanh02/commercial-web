@@ -19,7 +19,11 @@ const LinkCustom: React.FC<LinkCustomProps> = ({
   ...props
 }) => {
   return (
-    <Link className={cn("group relative w-max text-base font-semibold", className)} href={href}>
+    <Link
+      className={cn("group relative w-max text-base font-semibold", className)}
+      href={href}
+      prefetch={false}
+    >
       <span className="hover:opacity-70" {...props}>
         {text}
       </span>

@@ -1,6 +1,7 @@
 "use client";
 import React, {useState} from "react";
 import {useTranslations} from "next-intl";
+import {useRouter} from "next/navigation";
 
 import ProfileActiveIcon from "../icon/profileActive.icon";
 import ProfileIcon from "../icon/profile.icon";
@@ -24,6 +25,7 @@ import {localStorageKey} from "@/constants/localStorage";
 
 const ProfileComponent = () => {
   const t = useTranslations("Header.Profile");
+  const route = useRouter();
 
   const [open, setOpen] = useState<boolean>(false);
   const {setAuth} = authStore();
@@ -63,6 +65,7 @@ const ProfileComponent = () => {
     localStorage.removeItem(localStorageKey.accessToken);
     await AuthApis.clearCookie();
     setAuth("");
+    route.refresh();
   };
 
   return (

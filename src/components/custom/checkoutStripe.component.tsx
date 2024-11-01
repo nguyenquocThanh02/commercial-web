@@ -1,15 +1,22 @@
 "use client";
 import {PaymentElement, useElements, useStripe} from "@stripe/react-stripe-js";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 
 import {cardSubmitStore} from "@/store/cardSubmit.store";
+import {stripeSubmitStore} from "@/store/stripeSubmit.store";
 
 const CheckoutStripeComponent = () => {
   const stripe = useStripe();
   const elements = useElements();
   const [errorMessage, setErrorMessage] = useState<string>();
   const {setIsComplete} = cardSubmitStore();
+  // const [submit, setSubmit] = useState<boolean>(false);
+  const {submit, setSubmit} = stripeSubmitStore();
 
+  useEffect(() => {
+    console.log("submit:", submit);
+    handleSubmit();
+  }, [submit]);
   const handleSubmit = async () => {
     if (!stripe || !elements) {
       return;
@@ -42,6 +49,9 @@ const CheckoutStripeComponent = () => {
     <form className="w-full rounded-md bg-white p-2" onSubmit={handleSubmit}>
       <PaymentElement className="w-full" onChange={(event) => setIsComplete(event.complete)} />
 
+      {/* <Button type="button" onClick={() => setSubmit(true)}>
+        Change
+      </Button> */}
       {/* {errorMessage && <div>{errorMessage}</div>} */}
     </form>
   );

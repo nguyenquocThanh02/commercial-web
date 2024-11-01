@@ -20,3 +20,8 @@ export type typeComplete = {
   setIsComplete: (value: boolean) => void;
   setMethod: (value: string) => void;
 };
+
+export type typeSubmit = {
+  submit: boolean;
+  setSubmit: (value: boolean) => void;
+};

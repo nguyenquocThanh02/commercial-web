@@ -48,6 +48,7 @@ export default function LoginForm() {
 
       setAuth(cookies.res.token);
       route.push("/");
+      route.refresh();
     } else {
       setIsLoading(false);
     }

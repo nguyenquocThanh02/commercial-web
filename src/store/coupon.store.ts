@@ -17,4 +17,5 @@ export const couponStore = create<typeCouponStore>((set) => ({
         };
       }
     }),
+  clearCoupons: () => set({coupons: []}),
 }));

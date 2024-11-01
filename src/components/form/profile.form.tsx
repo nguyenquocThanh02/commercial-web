@@ -1,8 +1,9 @@
 "use client";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useTranslations} from "next-intl";
 import {z} from "zod";
 import {usePlacesWidget} from "react-google-autocomplete";
+import useGoogle from "react-google-autocomplete/lib/usePlacesAutocompleteService";
 
 import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from "../ui/form";
 import WaitingLayout from "../layout/waiting.layout";
@@ -10,6 +11,7 @@ import {InputPrimary} from "../custom/inputPrimary.component";
 import {Label} from "../ui/label";
 import PrimaryButton from "../custom/primaryButton.ui";
 import {Button} from "../ui/button";
+import {Popover, PopoverContent, PopoverTrigger} from "../ui/popover";
 
 import {useCreateForm} from "@/hooks/useCreateForm.hook";
 import {profileSchema} from "@/formSchema/formSchema";
@@ -18,6 +20,12 @@ const ProfileForm = () => {
   const t = useTranslations("Profile.Form");
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [open, setOpen] = useState<boolean>(false);
+  const [value, setValue] = useState("");
+
+  const {placePredictions, getPlacePredictions} = useGoogle({
+    apiKey: process.env.NEXT_PUBLIC_KEY_GOOGLE_AUTO_PLACE,
+  });
 
   const {ref} = usePlacesWidget<HTMLInputElement>({
     apiKey: process.env.NEXT_PUBLIC_KEY_GOOGLE_AUTO_PLACE,
@@ -25,6 +33,14 @@ const ProfileForm = () => {
       form.setValue("address", place.formatted_address);
     },
   });
+
+  useEffect(() => {
+    console.log("here:", placePredictions);
+    console.log("value: ", value.length);
+    if (value.length > 0) {
+      setOpen(true);
+    }
+  }, [value]);
 
   const passwords = [
     {
@@ -55,6 +71,7 @@ const ProfileForm = () => {
   return (
     <div className="shadow-input-primary flex-1 rounded">
       {isLoading && <WaitingLayout />}
+
       <div className="px-20 py-10">
         <Form {...form}>
           <h1 className="mb-6 font-inter-font text-[20px] font-medium leading-7 tracking-wider text-Secondary2">
@@ -117,14 +134,22 @@ const ProfileForm = () => {
                     <FormControl>
                       <InputPrimary
                         {...field}
-                        ref={ref ? ref : undefined}
                         className="h-[52px] w-full"
-                        onChange={(e) => {
-                          field.onChange(e);
-                          form.trigger("address");
+                        value={value}
+                        onChange={(evt) => {
+                          getPlacePredictions({input: evt.target.value});
+                          setValue(evt.target.value);
                         }}
                       />
                     </FormControl>
+                    <Popover open={open} onOpenChange={setOpen}>
+                      <PopoverTrigger />
+                      <PopoverContent>
+                        {placePredictions.map((item, index) => (
+                          <div key={index}>check: {item?.description}</div>
+                        ))}
+                      </PopoverContent>
+                    </Popover>
                     <FormMessage />
                   </FormItem>
                 )}
