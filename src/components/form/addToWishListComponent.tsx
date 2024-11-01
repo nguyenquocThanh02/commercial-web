@@ -6,24 +6,29 @@ import WishlistIcon from "../icon/wishlist.icon";
 import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from "../ui/tooltip";
 
 import {typeProduct} from "@/types";
-import {wishlistStore} from "@/store";
+import {authStore, wishlistStore} from "@/store";
 
 const AddToWishlistComponent: React.FC<{data: typeProduct}> = ({data}) => {
   const t = useTranslations("Tooltip");
   const {wishlist, setWishlist} = wishlistStore();
+  const {auth} = authStore();
 
-  const inWishlist = wishlist.some((item) => item.id === data.id);
+  const inWishlist = auth ? wishlist.some((item) => item.id === data.id) : false;
 
   const handleAddToWishlist = () => {
-    if (!wishlist.some((item) => item.id === data.id)) {
-      wishlist.push(data);
-      setWishlist(wishlist);
-      toast.success(t("MessageToast.added"));
-    } else {
-      const favoritesAfterDelete: typeProduct[] = wishlist.filter((item) => item.id !== data.id);
+    if (auth) {
+      if (!wishlist.some((item) => item.id === data.id)) {
+        wishlist.push(data);
+        setWishlist(wishlist);
+        toast.success(t("MessageToast.added"));
+      } else {
+        const favoritesAfterDelete: typeProduct[] = wishlist.filter((item) => item.id !== data.id);
 
-      setWishlist(favoritesAfterDelete);
-      toast.info(t("MessageToast.removed"));
+        setWishlist(favoritesAfterDelete);
+        toast.info(t("MessageToast.removed"));
+      }
+    } else {
+      toast.warning("You need to login before action with wishlist");
     }
   };
 

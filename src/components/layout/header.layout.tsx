@@ -26,7 +26,7 @@ import {Link, usePathname, useRouter} from "@/app/navigation";
 import {authStore, cartStore, wishlistStore} from "@/store";
 import {localStorageKey} from "@/constants/localStorage";
 
-const HeaderLayout: React.FC<{token: string}> = ({token}) => {
+const HeaderLayout = () => {
   const pathname = usePathname();
   const router = useRouter();
   const currentLocale = useLocale();
@@ -59,7 +59,7 @@ const HeaderLayout: React.FC<{token: string}> = ({token}) => {
   ];
 
   useEffect(() => {
-    setAuth(token);
+    setAuth(localStorage.getItem(localStorageKey.accessToken) || "");
     setWishlist(JSON.parse(localStorage.getItem(localStorageKey.wishlist) || "[]") || []);
     setCart(JSON.parse(localStorage.getItem(localStorageKey.cart) || "[]") || []);
   }, []);
@@ -172,9 +172,12 @@ const HeaderLayout: React.FC<{token: string}> = ({token}) => {
             />
           </div>
           <div className="flex gap-4">
-            <IconWithCounterComponent account={wishlist.length} tooltip={t("Icon.wishlist")} />
             <IconWithCounterComponent
-              account={cart.length}
+              account={auth ? wishlist.length : 0}
+              tooltip={t("Icon.wishlist")}
+            />
+            <IconWithCounterComponent
+              account={auth ? cart.length : 0}
               icon="cart"
               path="/cart"
               tooltip={t("Icon.cart")}

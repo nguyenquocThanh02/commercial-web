@@ -10,14 +10,14 @@ import PrimaryButton from "./primaryButton.ui";
 import SearchCouponComponent from "./searchCoupon.component";
 import MethodCheckoutComponent from "./methodCheckout.component";
 
-import {localStorageKey} from "@/constants/localStorage";
-import {typeInfoCheckout, typeOrder, typeProductSelect} from "@/types";
+import {typeInfoCheckout, typeOrder} from "@/types";
 import {calculatePriceSale, calculateTotalDecrease, renderPriceFollowCurrency} from "@/utils";
 import {couponStore} from "@/store/coupon.store";
 import imageDefault from "@/assets/img/imageDefault.jpg";
 import {OrderApis} from "@/services/order.service";
 import {cardSubmitStore} from "@/store/cardSubmit.store";
 import {useRouter} from "@/app/navigation";
+import {cartStore} from "@/store";
 
 const CheckoutComponent: React.FC<{form: UseFormReturn}> = ({form}) => {
   const locale = useLocale();
@@ -26,24 +26,25 @@ const CheckoutComponent: React.FC<{form: UseFormReturn}> = ({form}) => {
 
   const {coupons} = couponStore();
   const {isComplete, method} = cardSubmitStore();
+  const {cart, setCart} = cartStore();
 
   const [discount, setDiscount] = useState<number>(
     coupons.reduce((total, coupon) => total + Number(coupon.discount), 0),
   );
   const [loading, setLoading] = useState<boolean>(false);
 
-  const storedOrders = localStorage.getItem(localStorageKey.order);
-  const orders: typeProductSelect[] = storedOrders ? JSON.parse(storedOrders) : [];
+  // const storedOrders = localStorage.getItem(localStorageKey.order);
+  // const orders: typeProductSelect[] = storedOrders ? JSON.parse(storedOrders) : [];
 
   const totalPrice = useMemo(() => {
-    return orders.reduce((accumulator, item) => {
+    return cart.reduce((accumulator, item) => {
       const itemTotalPrice =
         calculatePriceSale(item.product.price[locale], item.product.discountPercentage) *
         item.quantity;
 
       return accumulator + itemTotalPrice;
     }, 0);
-  }, [orders]);
+  }, [cart]);
 
   const finalTotal = useMemo(() => {
     const total = totalPrice;
@@ -70,7 +71,7 @@ const CheckoutComponent: React.FC<{form: UseFormReturn}> = ({form}) => {
 
       const order: typeOrder = {
         infoCheckout: infoCheckout,
-        items: orders,
+        items: cart,
         discount: discount,
         total: finalTotal,
         payment: method,
@@ -79,6 +80,7 @@ const CheckoutComponent: React.FC<{form: UseFormReturn}> = ({form}) => {
       const resultPlaceOrder = await OrderApis.createOrder(order);
 
       if (resultPlaceOrder) {
+        setCart([]);
         route.push("/checkout/success");
       }
     }
@@ -88,7 +90,7 @@ const CheckoutComponent: React.FC<{form: UseFormReturn}> = ({form}) => {
     <div className="flex w-[527px] flex-col gap-8">
       {loading && <WaitingLayout />}
       <div className="flex w-[425px] flex-col gap-8">
-        {orders.map((item, index) => (
+        {cart.map((item, index) => (
           <div key={index} className="flex h-[54px] items-center justify-between">
             <div className="flex items-center gap-6">
               <Image

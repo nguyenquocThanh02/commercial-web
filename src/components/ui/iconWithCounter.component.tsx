@@ -17,7 +17,7 @@ const IconWithCounterComponent: React.FC<{
     <TooltipProvider delayDuration={0}>
       <Tooltip>
         <TooltipTrigger>
-          <Link className="hover:opacity-75" href={path}>
+          <Link className="hover:opacity-75" href={path} prefetch={false} shallow={false}>
             <div className="relative">
               {account !== 0 && (
                 <div className="absolute right-0 top-0 flex size-4 items-center justify-center rounded-full border border-Secondary2 bg-Secondary2 text-sm text-Text">

@@ -17,7 +17,7 @@ import SelectColorProductComponent from "./selectColorProduct.component";
 
 import {calculatePriceSale, renderPriceFollowCurrency} from "@/utils";
 import {Link} from "@/app/navigation";
-import {cartStore, productStore} from "@/store";
+import {authStore, cartStore, productStore} from "@/store";
 import {typeProductSelect} from "@/types";
 import {productSelectStore} from "@/store/productSelect.store";
 import {isProductEqual} from "@/utils/cart.util";
@@ -26,6 +26,7 @@ import imageDefault from "@/assets/img/imageDefault.jpg";
 const QuickReviewAddToCartComponent = () => {
   const {productSelect, setProductSelect} = productSelectStore();
   const {cart, setCart} = cartStore();
+  const {auth} = authStore();
   const {setOpenQuickReviewAddToCart, openQuickReviewAddToCart, product: data} = productStore();
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -39,7 +40,7 @@ const QuickReviewAddToCartComponent = () => {
       setProductSelect({
         product: data,
         selectedColor: data.colors[0],
-        selectedSize: "",
+        selectedSize: data?.sizes ? data?.sizes[0] : "",
         quantity: 1,
         totalPrice: 0,
         discount: 0,
@@ -48,27 +49,31 @@ const QuickReviewAddToCartComponent = () => {
   }, [data]);
 
   const handleAddToCart = () => {
-    setIsLoading(true);
-    if (data.sizes && data.sizes.length > 0 && !productSelect.selectedSize) {
-      toast.warning(t("messageErrorAdd"));
+    if (auth) {
+      setIsLoading(true);
+      if (data.sizes && data.sizes.length > 0 && !productSelect.selectedSize) {
+        toast.warning(t("messageErrorAdd"));
 
-      return;
-    }
+        return;
+      }
 
-    const existingProductIndex = cart.findIndex((item: typeProductSelect) => {
-      return isProductEqual(item, productSelect);
-    });
+      const existingProductIndex = cart.findIndex((item: typeProductSelect) => {
+        return isProductEqual(item, productSelect);
+      });
 
-    if (existingProductIndex > -1) {
-      cart[existingProductIndex].quantity += productSelect.quantity;
+      if (existingProductIndex > -1) {
+        cart[existingProductIndex].quantity += productSelect.quantity;
+      } else {
+        cart.push(productSelect);
+      }
+      setCart(cart);
+
+      toast.success(t("messageAdded"));
+      setIsAdded(true);
+      setIsLoading(false);
     } else {
-      cart.push(productSelect);
+      toast.warning("You need to login before add product to cart");
     }
-    setCart(cart);
-
-    toast.success(t("messageAdded"));
-    setIsAdded(true);
-    setIsLoading(false);
   };
 
   return (

@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {useTranslations} from "next-intl";
 import {UseFormReturn} from "react-hook-form";
 import {usePlacesWidget} from "react-google-autocomplete";
@@ -8,6 +8,8 @@ import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from "..
 import {Checkbox} from "../ui/checkbox";
 
 import {InputPrimary} from "./inputPrimary.component";
+
+import {useDebounce} from "@/hooks/useDebounce.hook";
 
 const FormInfoUserCheckoutComponent: React.FC<{
   form: UseFormReturn;
@@ -52,6 +54,10 @@ const FormInfoUserCheckoutComponent: React.FC<{
     },
   ];
 
+  const [inputValue, setInputValue] = useState("");
+  const debouncedInputValue = useDebounce(inputValue, 800);
+  const inputRef = useRef<HTMLInputElement>(null);
+
   const {ref} = usePlacesWidget<HTMLInputElement>({
     apiKey: process.env.NEXT_PUBLIC_KEY_GOOGLE_AUTO_PLACE,
     onPlaceSelected: (place) => {
@@ -68,12 +74,23 @@ const FormInfoUserCheckoutComponent: React.FC<{
     },
   });
 
+  useEffect(() => {
+    if (debouncedInputValue && inputRef.current) {
+      // Optionally, update the Autocomplete with the new value
+      inputRef.current.value = debouncedInputValue;
+
+      // Trigger any additional logic you need, such as filtering suggestions
+      // If you need to programmatically trigger the autocomplete, you can use:
+      // autocompleteRef.current.setBounds(...) or similar method
+    }
+  }, [debouncedInputValue]);
+
   return (
     <div className="w-[470px]">
       <Form {...form}>
         <h1 className="font-inter-font text-4xl font-medium leading-[30px]">{t("title")}</h1>
         <form className="mt-12 space-y-8">
-          {fields.map((item, index) => (
+          {fields.map((item) => (
             <FormField
               key={item.name}
               control={form.control}
@@ -87,10 +104,11 @@ const FormInfoUserCheckoutComponent: React.FC<{
                   <FormControl>
                     <InputPrimary
                       {...field}
-                      ref={item.name === "streetAddress" ? ref : undefined}
+                      ref={item.name === "streetAddress" ? inputRef : undefined}
                       placeholder=""
                       onChange={(e) => {
-                        field.onChange(e);
+                        setInputValue(e.target.value); // Update input value
+                        field.onChange(e); // Update the form field value
                         form.trigger(item.name);
                       }}
                     />

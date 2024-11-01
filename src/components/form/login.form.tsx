@@ -18,6 +18,7 @@ import {Link, useRouter} from "@/app/navigation";
 import {AuthApis} from "@/services";
 import {typeLogin} from "@/types";
 import {authStore} from "@/store";
+import {localStorageKey} from "@/constants/localStorage";
 
 export default function LoginForm() {
   const t = useTranslations("Login");
@@ -41,13 +42,15 @@ export default function LoginForm() {
     const loginResult = await AuthApis.login(dataLogin);
 
     if (loginResult) {
+      localStorage.setItem(localStorageKey.accessToken, loginResult.token);
       toast.success("Login successfully");
-      route.push("/");
       const cookies = await AuthApis.setCookie(loginResult);
 
       setAuth(cookies.res.token);
+      route.push("/");
+    } else {
+      setIsLoading(false);
     }
-    setIsLoading(false);
   }
 
   return (

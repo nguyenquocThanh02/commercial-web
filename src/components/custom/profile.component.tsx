@@ -20,6 +20,7 @@ import {typeProfileNav} from "@/types";
 import {authStore} from "@/store";
 import {Link} from "@/app/navigation";
 import {AuthApis} from "@/services";
+import {localStorageKey} from "@/constants/localStorage";
 
 const ProfileComponent = () => {
   const t = useTranslations("Header.Profile");
@@ -59,6 +60,7 @@ const ProfileComponent = () => {
   const [hoveredItem, setHoveredItem] = useState<number | null>(null);
 
   const handleLogout = async () => {
+    localStorage.removeItem(localStorageKey.accessToken);
     await AuthApis.clearCookie();
     setAuth("");
   };
