@@ -5,9 +5,10 @@ import {z} from "zod";
 
 import {Form, FormControl, FormField, FormItem, FormMessage} from "../ui/form";
 import WaitingLayout from "../layout/waiting.layout";
-import {InputPrimary} from "../custom/inputPrimary.component";
 import PrimaryButton from "../custom/primaryButton.ui";
 import {TextareaCustom} from "../custom/textareaCustom";
+
+import FormFieldCustom from "./fieldCustom";
 
 import {useCreateForm} from "@/hooks/useCreateForm.hook";
 import {contactSchema} from "@/formSchema/formSchema";
@@ -35,53 +36,26 @@ const ContactForm = () => {
         <Form {...form}>
           <form className="w-full" onSubmit={form.handleSubmit(onSubmit)}>
             <div className="flex gap-4">
-              <FormField
+              <FormFieldCustom
+                className="w-full"
+                classNameInput="h-[50px] w-full"
                 control={form.control}
                 name="name"
-                render={({field}) => (
-                  <FormItem className="w-full">
-                    <FormControl>
-                      <InputPrimary
-                        placeholder={t("name")}
-                        {...field}
-                        className="h-[50px] w-full"
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
+                placeholder={t("name")}
               />
-              <FormField
+              <FormFieldCustom
+                className="w-full"
+                classNameInput="h-[50px] w-full"
                 control={form.control}
                 name="email"
-                render={({field}) => (
-                  <FormItem className="w-full">
-                    <FormControl>
-                      <InputPrimary
-                        placeholder={t("mail")}
-                        {...field}
-                        className="h-[50px] w-full"
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
+                placeholder={t("mail")}
               />
-              <FormField
+              <FormFieldCustom
+                className="w-full"
+                classNameInput="h-[50px] w-full"
                 control={form.control}
                 name="phone"
-                render={({field}) => (
-                  <FormItem className="w-full">
-                    <FormControl>
-                      <InputPrimary
-                        placeholder={t("phone")}
-                        {...field}
-                        className="h-[50px] w-full"
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
+                placeholder={t("phone")}
               />
             </div>
             <FormField

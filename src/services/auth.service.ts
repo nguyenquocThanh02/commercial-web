@@ -3,6 +3,7 @@ import {http} from "@/axios/axios";
 import {baseClient} from "@/axios/axios";
 export const AuthApis = {
   register: async (data: typeRegister) => {
+    console.log("🚀 ~ register: ~ data-from-api:", data);
     try {
       const response = await http.post("/register", data);
 

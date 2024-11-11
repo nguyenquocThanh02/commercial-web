@@ -16,6 +16,7 @@ import {useCreateForm} from "@/hooks/useCreateForm.hook";
 import {registerSchema} from "@/formSchema/formSchema";
 import {AuthApis} from "@/services";
 import {typeRegister} from "@/types";
+import {useMutationHooks} from "@/hooks/useMutation.hook";
 
 export default function RegisterForm() {
   const t = useTranslations("Register");
@@ -27,6 +28,8 @@ export default function RegisterForm() {
     password: "",
   });
 
+  const {mutateAsync} = useMutationHooks((data: typeRegister) => AuthApis.register(data));
+
   async function onSubmit(values: z.infer<typeof registerSchema>) {
     setIsLoading(true);
 
@@ -35,7 +38,10 @@ export default function RegisterForm() {
       account: values.account,
       password: values.password,
     };
-    const result = await AuthApis.register(dataRegister);
+    // const result = await AuthApis.register(dataRegister);
+    const result = await mutateAsync(dataRegister);
+
+    console.log("🚀 ~ onSubmit ~ result-RT:", result);
 
     if (result) {
       toast.success("Register Successfully");
