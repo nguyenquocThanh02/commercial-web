@@ -38,5 +38,7 @@
 @layer utilities {
   .input-auth {
     @apply border-b border-none;
+  .text-balance {
+    color: blue;
   }
 }
