@@ -46,15 +46,15 @@ const SearchCouponComponent: React.FC<{
 
   return (
     <div>
-      <div className="flex gap-4">
+      <div className="flex w-full justify-between gap-4">
         <Input
-          className="h-[56px] w-[300px] border border-Text2 px-8"
+          className="h-[56px] flex-1 border border-Text2 px-8 xl:w-[300px]"
           placeholder={t("Payment.Coupon.placeHover")}
           type="text"
           value={valueSearch}
           onChange={(e) => handleSearch(e)}
         />
-        <PrimaryButton className="h-[56px] w-[211px]" onClick={handleApplyCoupon}>
+        <PrimaryButton className="h-[56px] flex-1 xl:w-[211px]" onClick={handleApplyCoupon}>
           {t("Payment.Coupon.buttonApply")}
         </PrimaryButton>
       </div>

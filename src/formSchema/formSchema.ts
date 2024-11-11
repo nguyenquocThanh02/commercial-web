@@ -1,5 +1,7 @@
 import {z} from "zod";
 
+import {emailValidator} from "@/app/rules";
+
 export const registerSchema = z.object({
   name: z.string().trim().min(1, {
     message: "Name is required.",
@@ -98,15 +100,16 @@ export const loginSchema = z.object({
 });
 
 export const emailSchema = z.object({
-  email: z
-    .string()
-    .trim()
-    .min(1, {
-      message: "Email is required.",
-    })
-    .email({
-      message: "Format email is invalid",
-    }),
+  email: emailValidator(),
+  // email: z
+  //   .string()
+  //   .trim()
+  //   .min(1, {
+  //     message: "Email is required.",
+  //   })
+  //   .email({
+  //     message: "Format email is invalid",
+  //   }),
 });
 
 export const infoCheckoutSchema = z.object({
@@ -143,15 +146,16 @@ export const profileSchema = z
     lastName: z.string().trim().min(1, {
       message: "Last Name is required.",
     }),
-    email: z
-      .string()
-      .trim()
-      .min(1, {
-        message: "Email is required.",
-      })
-      .email({
-        message: "Format email is invalid",
-      }),
+    // email: z
+    //   .string()
+    //   .trim()
+    //   .min(1, {
+    //     message: "Email is required.",
+    //   })
+    //   .email({
+    //     message: "Format email is invalid",
+    //   }),
+    email: emailValidator(),
     address: z.string().trim().min(1, {
       message: "Street Address is required.",
     }),

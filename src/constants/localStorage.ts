@@ -9,4 +9,4 @@ export const localStorageKey = {
   cart: `cart_${version}`,
   order: `order_${version}`,
   coupon: `coupon_${version}`,
-};
+} as const;

@@ -37,7 +37,7 @@ const CheckoutPage = () => {
     <section>
       <BreadcrumbComponent links={nav} />
 
-      <div className="mt-20 flex flex-col items-center justify-between lg:flex-row">
+      <div className="mt-20 flex flex-col items-center justify-between gap-8 xl:flex-row">
         <FormInfoUserCheckoutComponent form={form} />
         <CheckoutComponent form={form} />
       </div>

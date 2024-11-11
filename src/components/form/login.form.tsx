@@ -19,6 +19,7 @@ import {AuthApis} from "@/services";
 import {typeLogin} from "@/types";
 import {authStore} from "@/store";
 import {localStorageKey} from "@/constants/localStorage";
+import {useMutationHooks} from "@/hooks/useMutation.hook";
 
 export default function LoginForm() {
   const t = useTranslations("Login");
@@ -31,6 +32,14 @@ export default function LoginForm() {
     password: "",
   });
 
+  const {
+    mutateAsync,
+    isSuccess,
+    data: loginRS,
+  } = useMutationHooks((data: typeLogin) => AuthApis.login(data));
+
+  console.log("🚀 ~ LoginForm ~ loginRS:", loginRS);
+
   async function onSubmit(values: z.infer<typeof loginSchema>) {
     setIsLoading(true);
 
@@ -39,7 +48,8 @@ export default function LoginForm() {
       password: values.password,
     };
 
-    const loginResult = await AuthApis.login(dataLogin);
+    const loginResult = await mutateAsync(dataLogin);
+    // const loginResult = await AuthApis.login(dataLogin);
 
     if (loginResult) {
       localStorage.setItem(localStorageKey.accessToken, loginResult.token);
